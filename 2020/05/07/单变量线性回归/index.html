@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020/5 | Xinsteinのblog</title>
+  <title>单变量线性回归 | Xinsteinのblog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Xinsteinのblog">
-<meta property="og:url" content="http://yoursite.com/archives/2020/05/index.html">
+  <meta name="description" content="单变量线性回归代价函数   我认为代价函数的主要功能就是找到最适合的拟合的参数，有很多的代价函数，其中最常用的就是误差平方和的函数，通过求代价函数的最小值，就能找到最适合的参数，因为这时候误差是最小的，一般来是这个代价函数可以描述为  J_\theta(\theta_0,\theta_1) &#x3D; \dfrac{1}{2m}\sum_{1}^{m}(h_\theta(x^{(i)}) - y^{(i)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单变量线性回归">
+<meta property="og:url" content="http://yoursite.com/2020/05/07/%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/index.html">
 <meta property="og:site_name" content="Xinsteinのblog">
+<meta property="og:description" content="单变量线性回归代价函数   我认为代价函数的主要功能就是找到最适合的拟合的参数，有很多的代价函数，其中最常用的就是误差平方和的函数，通过求代价函数的最小值，就能找到最适合的参数，因为这时候误差是最小的，一般来是这个代价函数可以描述为  J_\theta(\theta_0,\theta_1) &#x3D; \dfrac{1}{2m}\sum_{1}^{m}(h_\theta(x^{(i)}) - y^{(i)">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-07T07:29:40.000Z">
+<meta property="article:modified_time" content="2020-05-10T09:04:11.206Z">
 <meta property="article:author" content="Xinstein">
+<meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Xinsteinのblog" type="application/atom+xml">
@@ -154,398 +159,228 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-单变量线性回归" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      单变量线性回归
+    </h1>
+  
+
+        
+        <a href="/2020/05/07/%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" class="archive-article-date">
+  	<time datetime="2020-05-07T07:29:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-07</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="单变量线性回归"><a href="#单变量线性回归" class="headerlink" title="单变量线性回归"></a>单变量线性回归</h2><h3 id="代价函数"><a href="#代价函数" class="headerlink" title="代价函数"></a>代价函数</h3><p>   我认为代价函数的主要功能就是找到最适合的拟合的参数，有很多的代价函数，其中最常用的就是误差平方和的函数，通过求代价函数的最小值，就能找到最适合的参数，因为这时候误差是最小的，一般来是这个代价函数可以描述为</p>
+<script type="math/tex; mode=display">
+J_\theta(\theta_0,\theta_1) = \dfrac{1}{2m}\sum_{1}^{m}(h_\theta(x^{(i)}) - y^{(i)})^2</script><p>其中m是训练集中样本的个数</p>
+<a id="more"></a>
+<div align = center>
+    <img src = 单变量线性回归\1.png />
+</div>
+
+
+<center>Fig1.代价函数缓慢下降</center>
+
+<h3 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h3><h4 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h4><p>梯度下降就是从一组初始的参数值开始，不断地去改变参数值，使得代价函数$J_\theta $ 最小。每次想要往下走一步，都要环顾周围，看看从哪个方向下降是最快的，然后不断地循环这个步骤，就找到了代价函数的局部最小值，也找到了最小值对应的参数值。值得注意的是，这是一个局部的最小值，如果我们选择的初始参数值不同的话，很有可能就得出另一个局部的最小值。每次代价函数参数的变化可以描述为 </p>
+<script type="math/tex; mode=display">
+\theta_j := \theta_j - \alpha\dfrac{\delta}{\delta \theta_j}J(\theta_0,\theta_1)~(for~j = 0~and~j = 1)</script><blockquote>
+<p>值得一提的是，$\theta_0 $ 和 $\theta_1 $ 的更新是同步的，即应该按照如下方式完成</p>
+<script type="math/tex; mode=display">
+temp0:=\theta_0 - \alpha\dfrac{\delta}{\delta \theta_0}J(\theta_0,\theta_1)\\
+temp1:=\theta_1 - \alpha\dfrac{\delta}{\delta \theta_1}J(\theta_0,\theta_1)\
+\theta_0:=temp0\\
+\theta_1:=temp1</script></blockquote>
+<h4 id="具体解释"><a href="#具体解释" class="headerlink" title="具体解释"></a>具体解释</h4><p>梯度下降中的$\alpha\dfrac{\delta}{\delta \theta_j}J(\theta_0,\theta_1)$是一个偏导数，这个值是正的 <em>θ</em> 就减小，负的就增大，使其不断去找最小值，如果到达了最小值，这个偏导数就是 0 了，<em>θ</em> 就不会改变了。</p>
+<p><em>α</em> 的具体数学含义还没搞懂，一开始还以为是个高度，但是最后推到了一下发现并不是，但直观上感觉就是一个系数，乘上他的偏导数，得到了一个 x 轴上的一块距离，然后通过对这个距离的加减，来更新 <em>θ</em>。<em>α</em> 的选取是一门学问，要是选的太小的话，更新速度就会很慢，要是选的很大，就容易导致发散，无法收敛。</p>
+<p>步长也会随着  $\dfrac{\delta}{\delta \theta_j}J(\theta_0,\theta_1)$的变化而变化，偏导数小，步长就小，并不用刻意改变 <em>α</em> 的值来改变, 见下图。就类似于网络中 Negal 算法，有一个自时钟，收到的ACK 快，发的就越快。</p>
+<h4 id="线性回归的梯度下降"><a href="#线性回归的梯度下降" class="headerlink" title="线性回归的梯度下降"></a>线性回归的梯度下降</h4><p><strong>Theorem 2.1</strong> <em>Gradient descent algorithm</em></p>
+<p>repeat until convergence{</p>
+<script type="math/tex; mode=display">
+\theta_j:=\theta_j-\alpha\frac{1}{m}\sum_{1}^{m}(h_\theta(x^{(i)}) - y^{(i)})\\
+            \theta_j:=\theta_j-\alpha\frac{1}{m}\sum_{1}^{m}(h_\theta(x^{(i)}) - y^{(i)})\cdot x^{(i)}_j</script><p>}</p>
+<div align = center>
+    <img src = 单变量线性回归\2.png />
+    &nbsp;&nbsp;&nbsp;&nbsp;<img src = 单变量线性回归\3.png />
+</div>
+
+
+<div align  = center>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fig2.代价函数  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fig3.代价函数的等高线表示
+</div>
+
+
+
+<p>线性回归的梯度下降，主要是要算出偏导数，上面的偏导数计算是视频直接给出的，通过这种办法，就把参数不断地更新。因为每次更新参数，都要遍历数据集计算偏导数，所以这种梯度下降也叫做“Batch”梯度下降。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/10/hello-world/" class="archive-article-date">
-  	<time datetime="2020-05-10T12:05:33.470Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/10/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/10/UML%E7%B1%BB%E5%9B%BE%E5%8F%8A%E7%94%BB%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-05-10T06:58:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/10/UML%E7%B1%BB%E5%9B%BE%E5%8F%8A%E7%94%BB%E6%B3%95/">UML类图及画法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">UML类图</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">软件工程</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/07/%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/09/1010-Radix-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-09T06:47:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/05/08/1007-Maximum-Subsequence-Sum-25%E5%88%86/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          1007 Maximum Subsequence Sum (25分)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/07/1006-Sign-In-and-Sign-Out-25%E5%88%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">1006 Sign In and Sign Out (25分)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/09/1010-Radix-25%E5%88%86/">1010 Radix (25分)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#单变量线性回归"><span class="toc-number">1.</span> <span class="toc-text">单变量线性回归</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代价函数"><span class="toc-number">1.1.</span> <span class="toc-text">代价函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度下降"><span class="toc-number">1.2.</span> <span class="toc-text">梯度下降</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基础概念"><span class="toc-number">1.2.1.</span> <span class="toc-text">基础概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#具体解释"><span class="toc-number">1.2.2.</span> <span class="toc-text">具体解释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#线性回归的梯度下降"><span class="toc-number">1.2.3.</span> <span class="toc-text">线性回归的梯度下降</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/09/1032-Sharing-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-09T06:27:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/09/1032-Sharing-25%E5%88%86/">1032 Sharing (25分)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/09/1028-List-Sorting-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-09T06:22:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/09/1028-List-Sorting-25%E5%88%86/">1028 List Sorting (25分)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/09/1025-PAT-Ranking-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-09T06:17:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/09/1025-PAT-Ranking-25%E5%88%86/">1025 PAT Ranking (25分)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/09/1024-Palindromic-Number-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-09T06:08:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/09/1024-Palindromic-Number-25%E5%88%86/">1024 Palindromic Number (25分)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/08/1020-Tree-Traversals-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-08T13:12:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/08/1020-Tree-Traversals-25%E5%88%86/">1020 Tree Traversals (25分)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/08/1009-Product-of-Polynomials-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-08T12:54:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/08/1009-Product-of-Polynomials-25%E5%88%86/">1009 Product of Polynomials (25分)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/08/1007-Maximum-Subsequence-Sum-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-08T06:49:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/08/1007-Maximum-Subsequence-Sum-25%E5%88%86/">1007 Maximum Subsequence Sum (25分)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PAT</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2020/05/page/2/">2</a><a class="extend next" rel="next" href="/archives/2020/05/page/2/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -569,8 +404,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
