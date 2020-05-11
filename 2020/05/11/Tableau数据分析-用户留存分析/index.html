@@ -6,20 +6,32 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>PAT(Advanced)1003 Emergency (25分) | Xinsteinのblog</title>
+  <title>Tableau数据分析-用户留存分析 | Xinsteinのblog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1003 Emergency (25分)As an emergency rescue team leader of a city, you are given a special map of your country. The map shows several scattered cities connected by some roads. Amount of rescue teams in">
+  <meta name="description" content="Tableau用户留存分析数据来源博文视点http:&#x2F;&#x2F;www.broadview.com.cn&#x2F;book&#x2F;5566，第六章数据，会员留存分析 数据预处理将会员创建日期由文本格式分离出来，形成日期格式 分析步骤将会员创建日期销售日期做差将会员创建日期销售日期做差，意思是我从创建会员到购买劲过了多长时间。创建一个记录字段名叫“购买点会员生命周期（月）”，这里我们用了一个函数叫DATEDIFF（dat">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PAT(Advanced)1003 Emergency (25分)">
-<meta property="og:url" content="http://yoursite.com/2020/05/05/PAT-Advanced-1003-Emergency-25%E5%88%86/index.html">
+<meta property="og:title" content="Tableau数据分析-用户留存分析">
+<meta property="og:url" content="http://yoursite.com/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="Xinsteinのblog">
-<meta property="og:description" content="1003 Emergency (25分)As an emergency rescue team leader of a city, you are given a special map of your country. The map shows several scattered cities connected by some roads. Amount of rescue teams in">
+<meta property="og:description" content="Tableau用户留存分析数据来源博文视点http:&#x2F;&#x2F;www.broadview.com.cn&#x2F;book&#x2F;5566，第六章数据，会员留存分析 数据预处理将会员创建日期由文本格式分离出来，形成日期格式 分析步骤将会员创建日期销售日期做差将会员创建日期销售日期做差，意思是我从创建会员到购买劲过了多长时间。创建一个记录字段名叫“购买点会员生命周期（月）”，这里我们用了一个函数叫DATEDIFF（dat">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-05-05T02:12:28.000Z">
-<meta property="article:modified_time" content="2020-05-06T11:27:29.948Z">
+<meta property="og:image" content="http://yoursite.com/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/1.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/2.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/3.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/4.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/6.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/7.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/8.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/9.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/10.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/11.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/12.jpg">
+<meta property="article:published_time" content="2020-05-11T09:30:07.000Z">
+<meta property="article:modified_time" content="2020-05-11T13:46:34.566Z">
 <meta property="article:author" content="Xinstein">
-<meta property="article:tag" content="PAT">
+<meta property="article:tag" content="Tableau数据分析">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Xinsteinのblog" type="application/atom+xml">
   
@@ -159,36 +171,74 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-PAT-Advanced-1003-Emergency-25分" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Tableau数据分析-用户留存分析" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      PAT(Advanced)1003 Emergency (25分)
+      Tableau数据分析-用户留存分析
     </h1>
   
 
         
-        <a href="/2020/05/05/PAT-Advanced-1003-Emergency-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-05T02:12:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-05</time>
+        <a href="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/" class="archive-article-date">
+  	<time datetime="2020-05-11T09:30:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1003-Emergency-25分"><a href="#1003-Emergency-25分" class="headerlink" title="1003 Emergency (25分)"></a><strong>1003</strong> <strong>Emergency</strong> (25分)</h2><p>As an emergency rescue team leader of a city, you are given a special map of your country. The map shows several scattered cities connected by some roads. Amount of rescue teams in each city and the length of each road between any pair of cities are marked on the map. When there is an emergency call to you from some other city, your job is to lead your men to the place as quickly as possible, and at the mean time, call up as many hands on the way as possible.</p>
-<a id="more"></a>
-<h3 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h3><p>Each input file contains one test case. For each test case, the first line contains 4 positive integers: <em>N</em> (≤500) - the number of cities (and the cities are numbered from 0 to <em>N</em>−1), <em>M</em> - the number of roads, C<sub>1</sub> and <em>C</em><sub>2</sub> - the cities that you are currently in and that you must save, respectively. The next line contains <em>N</em> integers, where the <em>i</em>-th integer is the number of rescue teams in the <em>i</em>-th city. Then <em>M</em> lines follow, each describes a road with three integers <em>c</em><sub>1</sub>, <em>c</em><sub>2</sub> and <em>L</em>, which are the pair of cities connected by a road and the length of that road, respectively. It is guaranteed that there exists at least one path from <em>C</em><sub>1</sub> to <em>C</em><sub>2</sub>.</p>
-<h3 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h3><p>For each test case, print in one line two numbers: the number of different shortest paths between <em>C<sub>1</sub></em> and <em>C</em><sub>2</sub>, and the maximum amount of rescue teams you can possibly gather. All the numbers in a line must be separated by exactly one space, and there is no extra space allowed at the end of a line.</p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input:"></a>Sample Input:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">5 6 0 2</span><br><span class="line">1 2 1 5 3</span><br><span class="line">0 1 1</span><br><span class="line">0 2 2</span><br><span class="line">0 3 1</span><br><span class="line">1 2 1</span><br><span class="line">2 4 1</span><br><span class="line">3 4 1</span><br></pre></td></tr></table></figure>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2 4</span><br></pre></td></tr></table></figure>
-<h4 id="思路分析："><a href="#思路分析：" class="headerlink" title="思路分析："></a>思路分析：</h4><blockquote>
-<p>​        <font color=" LightCoral">这个题考的就是用Dijkstra在求最短路径的同时，把最短路径的条数也求出来，一开始根本没有思路，想着最短路径的条数怎么求啊，哎，还是自己不够聪明，不过天才在于积累，我相信，通过自己的努力，以后肯定会想的过来的！然后看了题解，普通的Dijkstra就是只有一个If(dis[u] + map[u][v] &lt; dis[v])然后不断更新，这样就自动的把最短路径的条数求解直接滤掉了，直接求一条最短路径，而要想把这些条数求出来，需要加一个判断if(dis[v] == dis[u] + mp[u][v])再找一个num[]数组，记录到这个点的最短路径的条数，If(dis[u] + map[u][v] &lt; dis[v]) num[v] = num[u]不需要更新最短路径的数量，直接等于前面的最短路径数量就好,if(dis[v] == dis[u] + mp[u][v])num[v] = num[v] + num[u]，这时候因为有好几条路都可以到达这个点，所以以前的到这个点的条数加上通过别的点到这个点的条数，更新完成。 在这个过程中有一个问题，就是在跑Dijkstra之前，起点标不标记的问题，在普通Dijkstra过程中，一开始是将book[c1] = 1的，但是这个题不行，因为如果把起点标记，后面再找一个到起点最近的点，更新这个点后面的路径长度，然后在更新路径条数的时候，没有把起点的条数同步到第二个点，导致后面的路径条数都为0，反正就是标记了，第一个点的信息就被拉下了，所以涉及到把路径上的什么东西加起来的问题，都不要标记起点，也不需要初始化dis[]数组，直接跑Dijkstra就好。</font></p>
-</blockquote>
-<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> mp[<span class="number">510</span>][<span class="number">510</span>];</span><br><span class="line"><span class="keyword">int</span> w[<span class="number">510</span>];</span><br><span class="line"><span class="keyword">int</span> dis[<span class="number">510</span>], sum[<span class="number">510</span>], book[<span class="number">510</span>];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; pre[<span class="number">510</span>];</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">99999999</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n, m, s, e;</span><br><span class="line">	<span class="built_in">fill</span>(dis, dis + <span class="number">510</span>, INF);</span><br><span class="line">	<span class="built_in">fill</span>(mp[<span class="number">0</span>], mp[<span class="number">0</span>] + <span class="number">510</span> * <span class="number">510</span>, INF);</span><br><span class="line">	<span class="built_in">fill</span>(sum, sum + <span class="number">510</span>, <span class="number">0</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d %d %d %d"</span>, &amp;n, &amp;m, &amp;s, &amp;e);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;w[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> a, b, c;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d %d %d"</span>, &amp;a, &amp;b, &amp;c);</span><br><span class="line">		mp[a][b] = c;</span><br><span class="line">		mp[b][a] = c;</span><br><span class="line">	&#125;</span><br><span class="line">	dis[s] = <span class="number">0</span>;</span><br><span class="line">	sum[s] = w[s];</span><br><span class="line">	<span class="keyword">int</span> u, v;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> minn = INF; u = <span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(book[j] == <span class="number">0</span> &amp;&amp; dis[j] &lt; minn)&#123;</span><br><span class="line">				minn = dis[j];</span><br><span class="line">				u = j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(u == <span class="number">-1</span>) <span class="keyword">break</span>;</span><br><span class="line">		book[u] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(v = <span class="number">0</span>; v &lt; n; v++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(book[v] == <span class="number">0</span> &amp;&amp; mp[u][v] != INF)&#123;</span><br><span class="line">				<span class="keyword">if</span>(dis[v] &gt; dis[u] + mp[u][v])&#123;</span><br><span class="line">					dis[v] = dis[u] + mp[u][v];</span><br><span class="line">					sum[v] = sum[u] + w[v]; </span><br><span class="line">					pre[v].<span class="built_in">clear</span>();</span><br><span class="line">					pre[v].push_back(u);</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span>(dis[v] == dis[u] + mp[u][v])&#123;</span><br><span class="line">					<span class="keyword">if</span>(sum[v] &lt; sum[u] + w[v])&#123;</span><br><span class="line">						sum[v] = sum[u] + w[v];</span><br><span class="line">					&#125;</span><br><span class="line">					pre[v].push_back(u);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(i == s) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">else</span> sum *= pre[i].<span class="built_in">size</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; sum &lt;&lt; <span class="string">" "</span> &lt;&lt;sum[e] &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="Tableau用户留存分析"><a href="#Tableau用户留存分析" class="headerlink" title="Tableau用户留存分析"></a>Tableau用户留存分析</h3><h4 id="数据来源"><a href="#数据来源" class="headerlink" title="数据来源"></a>数据来源</h4><p>博文视点<a href="http://www.broadview.com.cn/book/5566，第六章数据，会员留存分析" target="_blank" rel="noopener">http://www.broadview.com.cn/book/5566，第六章数据，会员留存分析</a></p>
+<h4 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h4><p>将会员创建日期由文本格式分离出来，形成日期格式</p>
+<h4 id="分析步骤"><a href="#分析步骤" class="headerlink" title="分析步骤"></a>分析步骤</h4><h5 id="将会员创建日期销售日期做差"><a href="#将会员创建日期销售日期做差" class="headerlink" title="将会员创建日期销售日期做差"></a>将会员创建日期销售日期做差</h5><p>将会员创建日期销售日期做差，意思是我从创建会员到购买劲过了多长时间。创建一个记录字段名叫“购买点会员生命周期（月）”，这里我们用了一个函数叫DATEDIFF（data_part, start_date,end_date)，这里的data_part是表示做出来的差是以月为单位，还是年or天。具体如下：<img src="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/1.jpg" alt="1"></p>
+<center>Fig1.添加计算字段</center>
+
+<p>创建完成之后我们到数据源就可以看到增加了一个字段，表示用户隔了几个月进行了一次购买，如下，第一条记录就表示，用户在创建会员7个月后，来进行了一次购买<img src="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/2.jpg" alt="2"></p>
+<center>Fig2.新增计算字段</center>
+
+<h5 id="将销售日期与会员创建日期分为年和月，分别计数不同的ID个数"><a href="#将销售日期与会员创建日期分为年和月，分别计数不同的ID个数" class="headerlink" title="将销售日期与会员创建日期分为年和月，分别计数不同的ID个数"></a>将销售日期与会员创建日期分为年和月，分别计数不同的ID个数</h5><p>将销售日期与会员创建日期分为年和月，分别计数不同的ID个数，具体设置和绘图如下</p>
+<p><img src="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/3.jpg" alt="3"></p>
+<center>Fig3.绘图设置</center>
+
+<p><img src="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/4.jpg" alt="4"></p>
+<center>Fig4.绘图效果</center>
+
+<p>从上述图我们可以看出一个现象，就是一般都在办理会员当月购买。</p>
+<h5 id="漏斗图的绘制"><a href="#漏斗图的绘制" class="headerlink" title="漏斗图的绘制"></a>漏斗图的绘制</h5><p>漏斗图的绘制：将用户的留存情况绘制成一个漏斗图，能更直观的感受到用户的留存情况。具体设置和绘图如下</p>
+<p><img src="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/6.jpg" alt="7"></p>
+<center>Fig5. 漏斗图设置</center>
+
+<p><img src="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/7.jpg" alt="7"></p>
+<center>Fig6. 漏斗图</center>
+
+<p>从上图也可以看出，办理会员一月内，用户消费是最多的。</p>
+<h5 id="分省不同等级留存图"><a href="#分省不同等级留存图" class="headerlink" title="分省不同等级留存图"></a>分省不同等级留存图</h5><p>接下来，我们要对用户进行省市的划分，观察一下不同省市用户留存率的区别。具体设置和绘图如下</p>
+<p><img src="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/8.jpg" alt="8"></p>
+<center>Fig7.省市划分设置</center>
+
+<p><img src="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/9.jpg" alt="9"></p>
+<center>Fig8. 分省不同等级留存图</center>
+
+<h5 id="对省市按照留存率分组"><a href="#对省市按照留存率分组" class="headerlink" title="对省市按照留存率分组"></a>对省市按照留存率分组</h5><p>对不同省市的留存率按照高低进行分组，分组的结果如下</p>
+<p><img src="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/10.jpg" alt="10"></p>
+<center>Fig9. 分组留存率</center>
+
+<p>从上面可以看出SDDF在12月的留存率比高留存率的城市还要高，然而网络平台WEB的用户留存率不算很好，可以采取一些措施，比如分发优惠券等提高留存率。</p>
+<h5 id="对品类细分"><a href="#对品类细分" class="headerlink" title="对品类细分"></a>对品类细分</h5><p>我们可以观察到，第一个月用户购买的东西比较多，我们就考虑他买了什么东西，是不是购买东西的品类，也影响了留存率。</p>
+<p>我们观察一下用户首次购买的东西，创建一个计算字段“首次购买flag”，如果创建会员日期==销售日期，就设置为真。</p>
+<p>根据二级品类和留存率分的组，我们观察不同级别的留存率人群，对于不同商品他们的首次购买情况是怎么样的，结果如下图：</p>
+<p><img src="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/11.jpg" alt="11"></p>
+<center>Fig10. 不同留存率人群首次购买情况</center>
+
+<p>根据热力图，我们可以观察到，山东地区买防尿用品特别多，中间可能就会隐藏出别的什么信息，需要结合不同的数据来分析；中高低留存率的城市主要是买奶粉比较多。</p>
+<h5 id="品类漏斗图"><a href="#品类漏斗图" class="headerlink" title="品类漏斗图"></a>品类漏斗图</h5><p>针对每一个品类，画出一个漏斗图</p>
+<p><img src="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/12.jpg" alt="12"></p>
+<center>Fig11. 品类漏斗图</center>
+
+<h5 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h5><p>通过画漏斗图，我们可以清晰地看出留存率情况，并且深入到更细的粒度，我们可以得到的信息也就越多。</p>
 
       
 
@@ -223,7 +273,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PAT</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Tableau数据分析</a>
         		</li>
       		
 		</ul>
@@ -279,7 +329,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/05/PAT-Advanced-1003-Emergency-25%E5%88%86/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -293,15 +343,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/05/07/1006-Sign-In-and-Sign-Out-25%E5%88%86/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          1006 Sign In and Sign Out (25分)
-        
-      </div>
-    </a>
   
+    <a href="/2020/05/11/1036-Boys-vs-Girls-25%E5%88%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">1036 Boys vs Girls (25分)</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -326,7 +372,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1003-Emergency-25分"><span class="toc-number">1.</span> <span class="toc-text">1003 Emergency (25分)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-Specification"><span class="toc-number">1.1.</span> <span class="toc-text">Input Specification:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-Specification"><span class="toc-number">1.2.</span> <span class="toc-text">Output Specification:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input"><span class="toc-number">1.3.</span> <span class="toc-text">Sample Input:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output"><span class="toc-number">1.4.</span> <span class="toc-text">Sample Output:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#思路分析："><span class="toc-number">1.4.1.</span> <span class="toc-text">思路分析：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AC代码"><span class="toc-number">1.4.2.</span> <span class="toc-text">AC代码</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tableau用户留存分析"><span class="toc-number">1.</span> <span class="toc-text">Tableau用户留存分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据来源"><span class="toc-number">1.1.</span> <span class="toc-text">数据来源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据预处理"><span class="toc-number">1.2.</span> <span class="toc-text">数据预处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分析步骤"><span class="toc-number">1.3.</span> <span class="toc-text">分析步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#将会员创建日期销售日期做差"><span class="toc-number">1.3.1.</span> <span class="toc-text">将会员创建日期销售日期做差</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#将销售日期与会员创建日期分为年和月，分别计数不同的ID个数"><span class="toc-number">1.3.2.</span> <span class="toc-text">将销售日期与会员创建日期分为年和月，分别计数不同的ID个数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#漏斗图的绘制"><span class="toc-number">1.3.3.</span> <span class="toc-text">漏斗图的绘制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#分省不同等级留存图"><span class="toc-number">1.3.4.</span> <span class="toc-text">分省不同等级留存图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#对省市按照留存率分组"><span class="toc-number">1.3.5.</span> <span class="toc-text">对省市按照留存率分组</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#对品类细分"><span class="toc-number">1.3.6.</span> <span class="toc-text">对品类细分</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#品类漏斗图"><span class="toc-number">1.3.7.</span> <span class="toc-text">品类漏斗图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#结论"><span class="toc-number">1.3.8.</span> <span class="toc-text">结论</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>

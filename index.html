@@ -156,6 +156,123 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Tableau数据分析-用户留存分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/">Tableau数据分析-用户留存分析</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/" class="archive-article-date">
+  	<time datetime="2020-05-11T09:30:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Tableau用户留存分析"><a href="#Tableau用户留存分析" class="headerlink" title="Tableau用户留存分析"></a>Tableau用户留存分析</h3><h4 id="数据来源"><a href="#数据来源" class="headerlink" title="数据来源"></a>数据来源</h4><p>博文视点<a href="http://www.broadview.com.cn/book/5566，第六章数据，会员留存分析" target="_blank" rel="noopener">http://www.broadview.com.cn/book/5566，第六章数据，会员留存分析</a></p>
+<h4 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h4><p>将会员创建日期由文本格式分离出来，形成日期格式</p>
+<h4 id="分析步骤"><a href="#分析步骤" class="headerlink" title="分析步骤"></a>分析步骤</h4><h5 id="将会员创建日期销售日期做差"><a href="#将会员创建日期销售日期做差" class="headerlink" title="将会员创建日期销售日期做差"></a>将会员创建日期销售日期做差</h5><p>将会员创建日期销售日期做差，意思是我从创建会员到购买劲过了多长时间。创建一个记录字段名叫“购买点会员生命周期（月）”，这里我们用了一个函数叫DATEDIFF（data_part, start_date,end_date)，这里的data_part是表示做出来的差是以月为单位，还是年or天。具体如下：<img src="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/1.jpg" alt="1"></p>
+<center>Fig1.添加计算字段</center>
+
+<p>创建完成之后我们到数据源就可以看到增加了一个字段，表示用户隔了几个月进行了一次购买，如下，第一条记录就表示，用户在创建会员7个月后，来进行了一次购买<img src="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/2.jpg" alt="2"></p>
+<center>Fig2.新增计算字段</center>
+
+<h5 id="将销售日期与会员创建日期分为年和月，分别计数不同的ID个数"><a href="#将销售日期与会员创建日期分为年和月，分别计数不同的ID个数" class="headerlink" title="将销售日期与会员创建日期分为年和月，分别计数不同的ID个数"></a>将销售日期与会员创建日期分为年和月，分别计数不同的ID个数</h5><p>将销售日期与会员创建日期分为年和月，分别计数不同的ID个数，具体设置和绘图如下</p>
+<p><img src="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/3.jpg" alt="3"></p>
+<center>Fig3.绘图设置</center>
+
+<p><img src="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/4.jpg" alt="4"></p>
+<center>Fig4.绘图效果</center>
+
+<p>从上述图我们可以看出一个现象，就是一般都在办理会员当月购买。</p>
+<h5 id="漏斗图的绘制"><a href="#漏斗图的绘制" class="headerlink" title="漏斗图的绘制"></a>漏斗图的绘制</h5><p>漏斗图的绘制：将用户的留存情况绘制成一个漏斗图，能更直观的感受到用户的留存情况。具体设置和绘图如下</p>
+<p><img src="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/6.jpg" alt="7"></p>
+<center>Fig5. 漏斗图设置</center>
+
+<p><img src="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/7.jpg" alt="7"></p>
+<center>Fig6. 漏斗图</center>
+
+<p>从上图也可以看出，办理会员一月内，用户消费是最多的。</p>
+<h5 id="分省不同等级留存图"><a href="#分省不同等级留存图" class="headerlink" title="分省不同等级留存图"></a>分省不同等级留存图</h5><p>接下来，我们要对用户进行省市的划分，观察一下不同省市用户留存率的区别。具体设置和绘图如下</p>
+<p><img src="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/8.jpg" alt="8"></p>
+<center>Fig7.省市划分设置</center>
+
+<p><img src="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/9.jpg" alt="9"></p>
+<center>Fig8. 分省不同等级留存图</center>
+
+<h5 id="对省市按照留存率分组"><a href="#对省市按照留存率分组" class="headerlink" title="对省市按照留存率分组"></a>对省市按照留存率分组</h5><p>对不同省市的留存率按照高低进行分组，分组的结果如下</p>
+<p><img src="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/10.jpg" alt="10"></p>
+<center>Fig9. 分组留存率</center>
+
+<p>从上面可以看出SDDF在12月的留存率比高留存率的城市还要高，然而网络平台WEB的用户留存率不算很好，可以采取一些措施，比如分发优惠券等提高留存率。</p>
+<h5 id="对品类细分"><a href="#对品类细分" class="headerlink" title="对品类细分"></a>对品类细分</h5><p>我们可以观察到，第一个月用户购买的东西比较多，我们就考虑他买了什么东西，是不是购买东西的品类，也影响了留存率。</p>
+<p>我们观察一下用户首次购买的东西，创建一个计算字段“首次购买flag”，如果创建会员日期==销售日期，就设置为真。</p>
+<p>根据二级品类和留存率分的组，我们观察不同级别的留存率人群，对于不同商品他们的首次购买情况是怎么样的，结果如下图：</p>
+<p><img src="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/11.jpg" alt="11"></p>
+<center>Fig10. 不同留存率人群首次购买情况</center>
+
+<p>根据热力图，我们可以观察到，山东地区买防尿用品特别多，中间可能就会隐藏出别的什么信息，需要结合不同的数据来分析；中高低留存率的城市主要是买奶粉比较多。</p>
+<h5 id="品类漏斗图"><a href="#品类漏斗图" class="headerlink" title="品类漏斗图"></a>品类漏斗图</h5><p>针对每一个品类，画出一个漏斗图</p>
+<p><img src="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/12.jpg" alt="12"></p>
+<center>Fig11. 品类漏斗图</center>
+
+<h5 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h5><p>通过画漏斗图，我们可以清晰地看出留存率情况，并且深入到更细的粒度，我们可以得到的信息也就越多。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Tableau数据分析</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-1036-Boys-vs-Girls-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -826,78 +943,6 @@ J_\theta(\theta_0,\theta_1) = \dfrac{1}{2m}\sum_{1}^{m}(h_\theta(x^{(i)}) - y^{(
 
 
   
-    <article id="post-1020-Tree-Traversals-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/08/1020-Tree-Traversals-25%E5%88%86/">1020 Tree Traversals (25分)</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/08/1020-Tree-Traversals-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-08T13:12:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1020-Tree-Traversals-25分"><a href="#1020-Tree-Traversals-25分" class="headerlink" title="1020 Tree Traversals (25分)"></a><strong>1020</strong> <strong>Tree Traversals</strong> (25分)</h3><p>Suppose that all the keys in a binary tree are distinct positive integers. Given the postorder and inorder traversal sequences, you are supposed to output the level order traversal sequence of the corresponding binary tree.</p>
-        
-          <a class="article-more-a" href="/2020/05/08/1020-Tree-Traversals-25%E5%88%86/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1038,6 +1083,10 @@ MathJax.Hub.Queue(function() {
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Tableau数据分析</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -1088,7 +1137,7 @@ MathJax.Hub.Queue(function() {
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+              <a href="https://beef-v.github.io/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
             </li>
           
             <li class="search-li">
@@ -1119,7 +1168,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">大三软件工程在读~~&lt;br&gt;&lt;br&gt;是一枚可爱的程序媛&lt;br&gt;博客记录了自己大学期间做过的算法题，以及自己的学习笔记~</div>
   	  	
     	</section>
     
