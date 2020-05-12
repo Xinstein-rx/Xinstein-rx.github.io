@@ -8,17 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>1028 List Sorting (25分) | Xinsteinのblog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1028 List Sorting (25分)Excel can sort records according to any column. Now you are supposed to imitate this function. Input Specification:Each input file contains one test case. For each case, the fir">
+  <meta name="description" content="Excel can sort records according to any column. Now you are supposed to imitate this function. Input Specification:Each input file contains one test case. For each case, the first line contains two in">
 <meta property="og:type" content="article">
 <meta property="og:title" content="1028 List Sorting (25分)">
 <meta property="og:url" content="http://yoursite.com/2020/05/09/1028-List-Sorting-25%E5%88%86/index.html">
 <meta property="og:site_name" content="Xinsteinのblog">
-<meta property="og:description" content="1028 List Sorting (25分)Excel can sort records according to any column. Now you are supposed to imitate this function. Input Specification:Each input file contains one test case. For each case, the fir">
+<meta property="og:description" content="Excel can sort records according to any column. Now you are supposed to imitate this function. Input Specification:Each input file contains one test case. For each case, the first line contains two in">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-09T06:22:10.000Z">
-<meta property="article:modified_time" content="2020-05-09T06:26:01.899Z">
+<meta property="article:modified_time" content="2020-05-12T05:52:47.440Z">
 <meta property="article:author" content="Xinstein">
 <meta property="article:tag" content="PAT-Advanced">
+<meta property="article:tag" content="排序">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Xinsteinのblog" type="application/atom+xml">
@@ -179,7 +180,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1028-List-Sorting-25分"><a href="#1028-List-Sorting-25分" class="headerlink" title="1028 List Sorting (25分)"></a><strong>1028</strong> <strong>List Sorting</strong> (25分)</h3><p>Excel can sort records according to any column. Now you are supposed to imitate this function.</p>
+        <p>Excel can sort records according to any column. Now you are supposed to imitate this function.</p>
 <h4 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h4><p>Each input file contains one test case. For each case, the first line contains two integers <em>N</em> (≤105) and <em>C</em>, where <em>N</em> is the number of records and <em>C</em> is the column that you are supposed to sort the records with. Then <em>N</em> lines follow, each contains a record of a student. A student’s record consists of his or her distinct ID (a 6-digit number), name (a string with no more than 8 characters without space), and grade (an integer between 0 and 100, inclusive).</p>
 <a id="more"></a>
 <h4 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h4><p>For each test case, output the sorting result in <em>N</em> lines. That is, if <em>C</em> = 1 then the records must be sorted in increasing order according to ID’s; if <em>C</em> = 2 then the records must be sorted in non-decreasing order according to names; and if <em>C</em> = 3 then the records must be sorted in non-decreasing order according to grades. If there are several students who have the same name or grade, they must be sorted according to their ID’s in increasing order.</p>
@@ -229,6 +230,10 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
         		</li>
       		
 		</ul>
@@ -336,7 +341,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1028-List-Sorting-25分"><span class="toc-number">1.</span> <span class="toc-text">1028 List Sorting (25分)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Input-Specification"><span class="toc-number">1.1.</span> <span class="toc-text">Input Specification:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Output-Specification"><span class="toc-number">1.2.</span> <span class="toc-text">Output Specification:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Input-1"><span class="toc-number">1.3.</span> <span class="toc-text">Sample Input 1:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Output-1"><span class="toc-number">1.4.</span> <span class="toc-text">Sample Output 1:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Input-2"><span class="toc-number">1.5.</span> <span class="toc-text">Sample Input 2:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Output-2"><span class="toc-number">1.6.</span> <span class="toc-text">Sample Output 2:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Input-3"><span class="toc-number">1.7.</span> <span class="toc-text">Sample Input 3:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Output-3"><span class="toc-number">1.8.</span> <span class="toc-text">Sample Output 3:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解题思路"><span class="toc-number">1.9.</span> <span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AC代码"><span class="toc-number">1.10.</span> <span class="toc-text">AC代码</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Input-Specification"><span class="toc-number">1.</span> <span class="toc-text">Input Specification:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Output-Specification"><span class="toc-number">2.</span> <span class="toc-text">Output Specification:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Input-1"><span class="toc-number">3.</span> <span class="toc-text">Sample Input 1:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Output-1"><span class="toc-number">4.</span> <span class="toc-text">Sample Output 1:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Input-2"><span class="toc-number">5.</span> <span class="toc-text">Sample Input 2:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Output-2"><span class="toc-number">6.</span> <span class="toc-text">Sample Output 2:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Input-3"><span class="toc-number">7.</span> <span class="toc-text">Sample Input 3:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Output-3"><span class="toc-number">8.</span> <span class="toc-text">Sample Output 3:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解题思路"><span class="toc-number">9.</span> <span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AC代码"><span class="toc-number">10.</span> <span class="toc-text">AC代码</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -469,15 +474,43 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PAT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PAT-Advanced</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">二分</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">最短路</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Dijkstra</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Tableau数据分析</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -486,14 +519,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">软件工程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">排序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Tableau数据分析</a>
               </li>
             
             <div class="clearfix"></div>

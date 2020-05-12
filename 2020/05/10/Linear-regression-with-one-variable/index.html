@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Linear-regression-with-one-variable | Xinsteinのblog</title>
+  <title>单变量线性回归 | Xinsteinのblog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="单变量线性回归代价函数   我认为代价函数的主要功能就是找到最适合的拟合的参数，有很多的代价函数，其中最常用的就是误差平方和的函数，通过求代价函数的最小值，就能找到最适合的参数，因为这时候误差是最小的，一般来是这个代价函数可以描述为  J_\theta(\theta_0,\theta_1) &#x3D; \dfrac{1}{2m}\sum_{1}^{m}(h_\theta(x^{(i)}) - y^{(i)">
+  <meta name="description" content="代价函数   我认为代价函数的主要功能就是找到最适合的拟合的参数，有很多的代价函数，其中最常用的就是误差平方和的函数，通过求代价函数的最小值，就能找到最适合的参数，因为这时候误差是最小的，一般来是这个代价函数可以描述为  J_\theta(\theta_0,\theta_1) &#x3D; \dfrac{1}{2m}\sum_{1}^{m}(h_\theta(x^{(i)}) - y^{(i)})^2其中m">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linear-regression-with-one-variable">
+<meta property="og:title" content="单变量线性回归">
 <meta property="og:url" content="http://yoursite.com/2020/05/10/Linear-regression-with-one-variable/index.html">
 <meta property="og:site_name" content="Xinsteinのblog">
-<meta property="og:description" content="单变量线性回归代价函数   我认为代价函数的主要功能就是找到最适合的拟合的参数，有很多的代价函数，其中最常用的就是误差平方和的函数，通过求代价函数的最小值，就能找到最适合的参数，因为这时候误差是最小的，一般来是这个代价函数可以描述为  J_\theta(\theta_0,\theta_1) &#x3D; \dfrac{1}{2m}\sum_{1}^{m}(h_\theta(x^{(i)}) - y^{(i)">
+<meta property="og:description" content="代价函数   我认为代价函数的主要功能就是找到最适合的拟合的参数，有很多的代价函数，其中最常用的就是误差平方和的函数，通过求代价函数的最小值，就能找到最适合的参数，因为这时候误差是最小的，一般来是这个代价函数可以描述为  J_\theta(\theta_0,\theta_1) &#x3D; \dfrac{1}{2m}\sum_{1}^{m}(h_\theta(x^{(i)}) - y^{(i)})^2其中m">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/2020/05/10/Linear-regression-with-one-variable/a.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/05/10/Linear-regression-with-one-variable/2.PNG">
 <meta property="og:image" content="http://yoursite.com/2020/05/10/Linear-regression-with-one-variable/%E5%93%88%E5%93%88.png">
 <meta property="article:published_time" content="2020-05-10T15:11:31.000Z">
-<meta property="article:modified_time" content="2020-05-10T15:16:31.973Z">
+<meta property="article:modified_time" content="2020-05-12T05:54:17.890Z">
 <meta property="article:author" content="Xinstein">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
@@ -170,7 +170,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Linear-regression-with-one-variable
+      单变量线性回归
     </h1>
   
 
@@ -183,7 +183,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="单变量线性回归"><a href="#单变量线性回归" class="headerlink" title="单变量线性回归"></a>单变量线性回归</h2><h3 id="代价函数"><a href="#代价函数" class="headerlink" title="代价函数"></a>代价函数</h3><p>   我认为代价函数的主要功能就是找到最适合的拟合的参数，有很多的代价函数，其中最常用的就是误差平方和的函数，通过求代价函数的最小值，就能找到最适合的参数，因为这时候误差是最小的，一般来是这个代价函数可以描述为</p>
+        <h3 id="代价函数"><a href="#代价函数" class="headerlink" title="代价函数"></a>代价函数</h3><p>   我认为代价函数的主要功能就是找到最适合的拟合的参数，有很多的代价函数，其中最常用的就是误差平方和的函数，通过求代价函数的最小值，就能找到最适合的参数，因为这时候误差是最小的，一般来是这个代价函数可以描述为</p>
 <script type="math/tex; mode=display">
 J_\theta(\theta_0,\theta_1) = \dfrac{1}{2m}\sum_{1}^{m}(h_\theta(x^{(i)}) - y^{(i)})^2</script><p>其中m是训练集中样本的个数</p>
 <a id="more"></a>
@@ -335,7 +335,7 @@ temp1:=\theta_1 - \alpha\dfrac{\delta}{\delta \theta_1}J(\theta_0,\theta_1)\
   
   
     <a href="/2020/05/10/drawUML/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">drawUML</div>
+      <div class="article-nav-title">UML类图</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -362,7 +362,7 @@ temp1:=\theta_1 - \alpha\dfrac{\delta}{\delta \theta_1}J(\theta_0,\theta_1)\
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#单变量线性回归"><span class="toc-number">1.</span> <span class="toc-text">单变量线性回归</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代价函数"><span class="toc-number">1.1.</span> <span class="toc-text">代价函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度下降"><span class="toc-number">1.2.</span> <span class="toc-text">梯度下降</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基础概念"><span class="toc-number">1.2.1.</span> <span class="toc-text">基础概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#具体解释"><span class="toc-number">1.2.2.</span> <span class="toc-text">具体解释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#线性回归的梯度下降"><span class="toc-number">1.2.3.</span> <span class="toc-text">线性回归的梯度下降</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#代价函数"><span class="toc-number">1.</span> <span class="toc-text">代价函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度下降"><span class="toc-number">2.</span> <span class="toc-text">梯度下降</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基础概念"><span class="toc-number">2.1.</span> <span class="toc-text">基础概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#具体解释"><span class="toc-number">2.2.</span> <span class="toc-text">具体解释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#线性回归的梯度下降"><span class="toc-number">2.3.</span> <span class="toc-text">线性回归的梯度下降</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -495,15 +495,43 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PAT</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">PAT-Advanced</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">二分</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">最短路</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Dijkstra</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Tableau数据分析</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -512,14 +540,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">软件工程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">排序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Tableau数据分析</a>
               </li>
             
             <div class="clearfix"></div>
