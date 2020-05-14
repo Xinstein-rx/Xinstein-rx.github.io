@@ -6,14 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Xinsteinのblog</title>
+  <title>1047 Student List for Course (25分) | Xinsteinのblog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Xinsteinのblog">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="Zhejiang University has 40,000 students and provides 2,500 courses. Now given the registered course list of each student, you are supposed to output the student name lists of all the courses. Input Sp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1047 Student List for Course (25分)">
+<meta property="og:url" content="http://yoursite.com/2020/05/14/1047-Student-List-for-Course-25%E5%88%86/index.html">
 <meta property="og:site_name" content="Xinsteinのblog">
+<meta property="og:description" content="Zhejiang University has 40,000 students and provides 2,500 courses. Now given the registered course list of each student, you are supposed to output the student name lists of all the courses. Input Sp">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-14T02:55:04.000Z">
+<meta property="article:modified_time" content="2020-05-14T07:10:56.606Z">
 <meta property="article:author" content="Xinstein">
+<meta property="article:tag" content="PAT-Advanced">
+<meta property="article:tag" content="排序">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Xinsteinのblog" type="application/atom+xml">
@@ -154,36 +160,65 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-1047-Student-List-for-Course-25分" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      1047 Student List for Course (25分)
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/14/1047-Student-List-for-Course-25%E5%88%86/" class="archive-article-date">
+
+        
+        <a href="/2020/05/14/1047-Student-List-for-Course-25%E5%88%86/" class="archive-article-date">
   	<time datetime="2020-05-14T02:55:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-14</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/14/1047-Student-List-for-Course-25%E5%88%86/">1047 Student List for Course (25分)</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Zhejiang University has 40,000 students and provides 2,500 courses. Now given the registered course list of each student, you are supposed to output the student name lists of all the courses.</p>
+<h4 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h4><p>Each input file contains one test case. For each case, the first line contains 2 numbers: <em>N</em> (≤40,000), the total number of students, and <em>K</em> (≤2,500), the total number of courses. Then <em>N</em> lines follow, each contains a student’s name (3 capital English letters plus a one-digit number), a positive number <em>C</em> (≤20) which is the number of courses that this student has registered, and then followed by <em>C</em> course numbers. For the sake of simplicity, the courses are numbered from 1 to <em>K</em>.</p>
+<h4 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h4><p>For each test case, print the student name lists of all the courses in increasing order of the course numbers. For each course, first print in one line the course number and the number of registered students, separated by a space. Then output the students’ names in alphabetical order. Each name occupies a line.</p>
+<h4 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input:"></a>Sample Input:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">10 5</span><br><span class="line">ZOE1 2 4 5</span><br><span class="line">ANN0 3 5 2 1</span><br><span class="line">BOB5 5 3 4 2 1 5</span><br><span class="line">JOE4 1 2</span><br><span class="line">JAY9 4 1 2 5 4</span><br><span class="line">FRA8 3 4 2 5</span><br><span class="line">DON2 2 4 5</span><br><span class="line">AMY7 1 5</span><br><span class="line">KAT3 3 5 4 2</span><br><span class="line">LOR6 4 2 4 1 5</span><br></pre></td></tr></table></figure>
+<h4 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">1 4</span><br><span class="line">ANN0</span><br><span class="line">BOB5</span><br><span class="line">JAY9</span><br><span class="line">LOR6</span><br><span class="line">2 7</span><br><span class="line">ANN0</span><br><span class="line">BOB5</span><br><span class="line">FRA8</span><br><span class="line">JAY9</span><br><span class="line">JOE4</span><br><span class="line">KAT3</span><br><span class="line">LOR6</span><br><span class="line">3 1</span><br><span class="line">BOB5</span><br><span class="line">4 7</span><br><span class="line">BOB5</span><br><span class="line">DON2</span><br><span class="line">FRA8</span><br><span class="line">JAY9</span><br><span class="line">KAT3</span><br><span class="line">LOR6</span><br><span class="line">ZOE1</span><br><span class="line">5 9</span><br><span class="line">AMY7</span><br><span class="line">ANN0</span><br><span class="line">BOB5</span><br><span class="line">DON2</span><br><span class="line">FRA8</span><br><span class="line">JAY9</span><br><span class="line">KAT3</span><br><span class="line">LOR6</span><br><span class="line">ZOE1</span><br></pre></td></tr></table></figure>
+<blockquote>
+<font color="LightCoral">这个题是刚才自己做的一个题，emmm就是，上面的那个，那个题自己大胆的使用了Map[char*,set<int> > mp过的，然后题解用的向量，然后这个题自己看到的时候觉得很简单，比第一个简单多了，给出名字对应的课程，输出每个课程的人数，用string很快就错完了，但是超时了，所以自己改啊改，改成char*， char name[5], 甚至都有了vector<char[]>,呜呜呜，还是过不了，用char*的时候，好像sort是按照他们的地址排序的，然后就做啊做，做啊做，最后hhhh屈服了，看了题解，题解是设置了一个二维name[40010][5]数组，vector里面存的是对应课程的名字的编号，然后对这些名字的编号写一个cmp函数，sort的时候就可以根据字典序对名字编号进行排序，最后输出，方法真的很巧妙，不用对字符串排序，而是对它们的编号排序，字符串的排序都再cmp函数里面了~C语言字符串比较用到了strcmp函数，a < b 返回负数，a = b, 返回0， a > b返回正数。</char[]></int></font>
 
-        <div class="article-info info-on-right">
-          
+</blockquote>
+<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> p[<span class="number">40001</span>][<span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">tra</span><span class="params">(<span class="keyword">char</span> *s)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sum = (s[<span class="number">0</span>] - <span class="string">'A'</span>) * <span class="number">26</span> * <span class="number">26</span> * <span class="number">26</span> + (s[<span class="number">1</span>] - <span class="string">'A'</span>) * <span class="number">26</span> * <span class="number">26</span> + (s[<span class="number">2</span>] - <span class="string">'A'</span>) * <span class="number">26</span> + s[<span class="number">3</span>] - <span class="string">'0'</span>;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n, m, k, a, num;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v[<span class="number">2501</span>];</span><br><span class="line">	<span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; mp;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%s %d"</span>, p[i], &amp;num);</span><br><span class="line">		<span class="keyword">int</span> id = tra(p[i]);</span><br><span class="line">		mp[id] = i;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; num; j++)&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a);</span><br><span class="line">			v[a].push_back(id);</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">" "</span> &lt;&lt; v[i].<span class="built_in">size</span>() &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		sort(v[i].<span class="built_in">begin</span>(), v[i].<span class="built_in">end</span>());</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; v[i].<span class="built_in">size</span>(); j++)&#123;</span><br><span class="line">			<span class="keyword">int</span> id = mp[v[i][j]];</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, p[id]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -199,380 +234,118 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/14/1047-Student-List-for-Course-25%E5%88%86/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/12/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-RFM%E5%88%86%E6%9E%90%E4%B8%8E%E7%94%A8%E6%88%B7%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%88%86%E6%9E%90/" class="archive-article-date">
-  	<time datetime="2020-05-12T13:29:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-12</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/12/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-RFM%E5%88%86%E6%9E%90%E4%B8%8E%E7%94%A8%E6%88%B7%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%88%86%E6%9E%90/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Tableau数据分析-RFM分析与用户生命周期分析</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/12/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-RFM%E5%88%86%E6%9E%90%E4%B8%8E%E7%94%A8%E6%88%B7%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%88%86%E6%9E%90/">Tableau数据分析-RFM分析与用户生命周期分析</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Tableau数据分析</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Input-Specification"><span class="toc-number">1.</span> <span class="toc-text">Input Specification:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Output-Specification"><span class="toc-number">2.</span> <span class="toc-text">Output Specification:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Input"><span class="toc-number">3.</span> <span class="toc-text">Sample Input:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Output"><span class="toc-number">4.</span> <span class="toc-text">Sample Output:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AC代码"><span class="toc-number">5.</span> <span class="toc-text">AC代码</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/12/1039-Course-List-for-Student-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-12T05:44:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-12</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/12/1039-Course-List-for-Student-25%E5%88%86/">1039 Course List for Student (25分)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/12/1037-Magic-Coupon-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-12T05:34:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/12/1037-Magic-Coupon-25%E5%88%86/">1037 Magic Coupon (25分)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/" class="archive-article-date">
-  	<time datetime="2020-05-11T09:30:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/">Tableau数据分析-用户留存分析</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Tableau数据分析</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/11/1036-Boys-vs-Girls-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-11T05:58:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/11/1036-Boys-vs-Girls-25%E5%88%86/">1036 Boys vs Girls (25分)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/11/1029-Median-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-11T02:21:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/11/1029-Median-25%E5%88%86/">1029 Median (25分)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/10/Linear-regression-with-one-variable/" class="archive-article-date">
-  	<time datetime="2020-05-10T15:11:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/10/Linear-regression-with-one-variable/">单变量线性回归</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/10/drawUML/" class="archive-article-date">
-  	<time datetime="2020-05-10T14:07:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/10/drawUML/">UML类图</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">UML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">软件工程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/09/1010-Radix-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-09T06:47:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/09/1010-Radix-25%E5%88%86/">1010 Radix (25分)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">二分</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -596,8 +369,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

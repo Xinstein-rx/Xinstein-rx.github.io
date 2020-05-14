@@ -156,6 +156,160 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-1047-Student-List-for-Course-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/14/1047-Student-List-for-Course-25%E5%88%86/">1047 Student List for Course (25分)</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/14/1047-Student-List-for-Course-25%E5%88%86/" class="archive-article-date">
+  	<time datetime="2020-05-14T02:55:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Zhejiang University has 40,000 students and provides 2,500 courses. Now given the registered course list of each student, you are supposed to output the student name lists of all the courses.</p>
+<h4 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h4><p>Each input file contains one test case. For each case, the first line contains 2 numbers: <em>N</em> (≤40,000), the total number of students, and <em>K</em> (≤2,500), the total number of courses. Then <em>N</em> lines follow, each contains a student’s name (3 capital English letters plus a one-digit number), a positive number <em>C</em> (≤20) which is the number of courses that this student has registered, and then followed by <em>C</em> course numbers. For the sake of simplicity, the courses are numbered from 1 to <em>K</em>.</p>
+<h4 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h4><p>For each test case, print the student name lists of all the courses in increasing order of the course numbers. For each course, first print in one line the course number and the number of registered students, separated by a space. Then output the students’ names in alphabetical order. Each name occupies a line.</p>
+<h4 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input:"></a>Sample Input:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">10 5</span><br><span class="line">ZOE1 2 4 5</span><br><span class="line">ANN0 3 5 2 1</span><br><span class="line">BOB5 5 3 4 2 1 5</span><br><span class="line">JOE4 1 2</span><br><span class="line">JAY9 4 1 2 5 4</span><br><span class="line">FRA8 3 4 2 5</span><br><span class="line">DON2 2 4 5</span><br><span class="line">AMY7 1 5</span><br><span class="line">KAT3 3 5 4 2</span><br><span class="line">LOR6 4 2 4 1 5</span><br></pre></td></tr></table></figure>
+<h4 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">1 4</span><br><span class="line">ANN0</span><br><span class="line">BOB5</span><br><span class="line">JAY9</span><br><span class="line">LOR6</span><br><span class="line">2 7</span><br><span class="line">ANN0</span><br><span class="line">BOB5</span><br><span class="line">FRA8</span><br><span class="line">JAY9</span><br><span class="line">JOE4</span><br><span class="line">KAT3</span><br><span class="line">LOR6</span><br><span class="line">3 1</span><br><span class="line">BOB5</span><br><span class="line">4 7</span><br><span class="line">BOB5</span><br><span class="line">DON2</span><br><span class="line">FRA8</span><br><span class="line">JAY9</span><br><span class="line">KAT3</span><br><span class="line">LOR6</span><br><span class="line">ZOE1</span><br><span class="line">5 9</span><br><span class="line">AMY7</span><br><span class="line">ANN0</span><br><span class="line">BOB5</span><br><span class="line">DON2</span><br><span class="line">FRA8</span><br><span class="line">JAY9</span><br><span class="line">KAT3</span><br><span class="line">LOR6</span><br><span class="line">ZOE1</span><br></pre></td></tr></table></figure>
+<blockquote>
+<font color="LightCoral">这个题是刚才自己做的一个题，emmm就是，上面的那个，那个题自己大胆的使用了Map[char*,set<int> > mp过的，然后题解用的向量，然后这个题自己看到的时候觉得很简单，比第一个简单多了，给出名字对应的课程，输出每个课程的人数，用string很快就错完了，但是超时了，所以自己改啊改，改成char*， char name[5], 甚至都有了vector<char[]>,呜呜呜，还是过不了，用char*的时候，好像sort是按照他们的地址排序的，然后就做啊做，做啊做，最后hhhh屈服了，看了题解，题解是设置了一个二维name[40010][5]数组，vector里面存的是对应课程的名字的编号，然后对这些名字的编号写一个cmp函数，sort的时候就可以根据字典序对名字编号进行排序，最后输出，方法真的很巧妙，不用对字符串排序，而是对它们的编号排序，字符串的排序都再cmp函数里面了~C语言字符串比较用到了strcmp函数，a < b 返回负数，a = b, 返回0， a > b返回正数。</char[]></int></font>
+
+</blockquote>
+<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> p[<span class="number">40001</span>][<span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">tra</span><span class="params">(<span class="keyword">char</span> *s)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sum = (s[<span class="number">0</span>] - <span class="string">'A'</span>) * <span class="number">26</span> * <span class="number">26</span> * <span class="number">26</span> + (s[<span class="number">1</span>] - <span class="string">'A'</span>) * <span class="number">26</span> * <span class="number">26</span> + (s[<span class="number">2</span>] - <span class="string">'A'</span>) * <span class="number">26</span> + s[<span class="number">3</span>] - <span class="string">'0'</span>;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n, m, k, a, num;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v[<span class="number">2501</span>];</span><br><span class="line">	<span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; mp;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%s %d"</span>, p[i], &amp;num);</span><br><span class="line">		<span class="keyword">int</span> id = tra(p[i]);</span><br><span class="line">		mp[id] = i;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; num; j++)&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a);</span><br><span class="line">			v[a].push_back(id);</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">" "</span> &lt;&lt; v[i].<span class="built_in">size</span>() &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		sort(v[i].<span class="built_in">begin</span>(), v[i].<span class="built_in">end</span>());</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; v[i].<span class="built_in">size</span>(); j++)&#123;</span><br><span class="line">			<span class="keyword">int</span> id = mp[v[i][j]];</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, p[id]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Tableau数据分析-RFM分析与用户生命周期分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/12/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-RFM%E5%88%86%E6%9E%90%E4%B8%8E%E7%94%A8%E6%88%B7%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%88%86%E6%9E%90/">Tableau数据分析-RFM分析与用户生命周期分析</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/12/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-RFM%E5%88%86%E6%9E%90%E4%B8%8E%E7%94%A8%E6%88%B7%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%88%86%E6%9E%90/" class="archive-article-date">
+  	<time datetime="2020-05-12T13:29:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="RFM定义："><a href="#RFM定义：" class="headerlink" title="RFM定义："></a>RFM定义：</h4><p>RFM模型是衡量客户价值和客户创利能力的重要工具和手段。在众多的<a href="https://baike.baidu.com/item/客户关系管理/254554" target="_blank" rel="noopener">客户关系管理</a>(CRM)的分析模式中，RFM模型是被广泛提到的。该机械模型通过一个客户的近期购买行为（Recently）、购买的总体频率（Frequency）以及花了多少钱（Money）3项指标来描述该客户的价值状况。（百度百科）</p>
+<h4 id="用户生命期定义"><a href="#用户生命期定义" class="headerlink" title="用户生命期定义"></a>用户生命期定义</h4><p>从用户创建会员开始，到最后一次消费的时间。如果RFM模型里的R很大了，可能就会采取分发优惠券的措施。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Tableau数据分析</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-1039-Course-List-for-Student-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -729,159 +883,6 @@ J_\theta(\theta_0,\theta_1) = \dfrac{1}{2m}\sum_{1}^{m}(h_\theta(x^{(i)}) - y^{(
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">二分</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-1032-Sharing-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/09/1032-Sharing-25%E5%88%86/">1032 Sharing (25分)</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/09/1032-Sharing-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-09T06:27:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>To store English words, one method is to use linked lists and store a word letter by letter. To save some space, we may let the words share the same sublist if they share the same suffix. For example, <code>loading</code> and <code>being</code> are stored as showed in Figure 1.</p>
-        
-          <a class="article-more-a" href="/2020/05/09/1032-Sharing-25%E5%88%86/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">链表</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-1028-List-Sorting-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/09/1028-List-Sorting-25%E5%88%86/">1028 List Sorting (25分)</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/09/1028-List-Sorting-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-09T06:22:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Excel can sort records according to any column. Now you are supposed to imitate this function.</p>
-<h4 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h4><p>Each input file contains one test case. For each case, the first line contains two integers <em>N</em> (≤105) and <em>C</em>, where <em>N</em> is the number of records and <em>C</em> is the column that you are supposed to sort the records with. Then <em>N</em> lines follow, each contains a record of a student. A student’s record consists of his or her distinct ID (a 6-digit number), name (a string with no more than 8 characters without space), and grade (an integer between 0 and 100, inclusive).</p>
-        
-          <a class="article-more-a" href="/2020/05/09/1028-List-Sorting-25%E5%88%86/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
         		</li>
       		
 		</ul>
