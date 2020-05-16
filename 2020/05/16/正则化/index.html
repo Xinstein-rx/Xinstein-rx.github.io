@@ -6,28 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Logistic 回归 | Xinsteinのblog</title>
+  <title>正则化 | Xinsteinのblog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="为什么不用线性回归Logistic 回归是一种分类算法。一开始我们也想把线性回归用于这种分类的算法，给线性回归函数设置一个阈值，大于这个值的所有 x 归为一类值，小于的归为另一类。但是线性回归不总是能找出一条合适的直线和阈值，如图3.1所示，并且分类一般的取值都是 0，1，线性回归的函数值有可能比 0 小很多，也可能比 1 大很多，这样看起来很奇怪，于是得用 Logistic 回归，Logisti">
+  <meta name="description" content="过拟合问题定义过拟合问题一般来讲，是因为我们设置了很多的参数和高阶的项，使得拟合出来的假设函数可以通过所有的数据点，虽然看起来拟合效果很好，他千方百计地你和数据点，但是不能泛化到新样本中，如右边图1所示，也就是说我们的数据集，不能约束住这个假设函数，所以才有了数据集太小，所以过拟合了的说法。      &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;   Fig1. 欠拟合">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Logistic 回归">
-<meta property="og:url" content="http://yoursite.com/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/index.html">
+<meta property="og:title" content="正则化">
+<meta property="og:url" content="http://yoursite.com/2020/05/16/%E6%AD%A3%E5%88%99%E5%8C%96/index.html">
 <meta property="og:site_name" content="Xinsteinのblog">
-<meta property="og:description" content="为什么不用线性回归Logistic 回归是一种分类算法。一开始我们也想把线性回归用于这种分类的算法，给线性回归函数设置一个阈值，大于这个值的所有 x 归为一类值，小于的归为另一类。但是线性回归不总是能找出一条合适的直线和阈值，如图3.1所示，并且分类一般的取值都是 0，1，线性回归的函数值有可能比 0 小很多，也可能比 1 大很多，这样看起来很奇怪，于是得用 Logistic 回归，Logisti">
+<meta property="og:description" content="过拟合问题定义过拟合问题一般来讲，是因为我们设置了很多的参数和高阶的项，使得拟合出来的假设函数可以通过所有的数据点，虽然看起来拟合效果很好，他千方百计地你和数据点，但是不能泛化到新样本中，如右边图1所示，也就是说我们的数据集，不能约束住这个假设函数，所以才有了数据集太小，所以过拟合了的说法。      &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;   Fig1. 欠拟合">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/4.PNG">
-<meta property="og:image" content="http://yoursite.com/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/5.PNG">
-<meta property="og:image" content="http://yoursite.com/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/6.PNG">
-<meta property="og:image" content="http://yoursite.com/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/7.PNG">
-<meta property="og:image" content="http://yoursite.com/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/8.PNG">
-<meta property="og:image" content="http://yoursite.com/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/9.PNG">
-<meta property="og:image" content="http://yoursite.com/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/10.PNG">
-<meta property="article:published_time" content="2020-05-16T13:28:16.000Z">
-<meta property="article:modified_time" content="2020-05-16T14:04:58.858Z">
+<meta property="og:image" content="http://yoursite.com/2020/05/16/%E6%AD%A3%E5%88%99%E5%8C%96/11.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/05/16/%E6%AD%A3%E5%88%99%E5%8C%96/12.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/05/16/%E6%AD%A3%E5%88%99%E5%8C%96/13.PNG">
+<meta property="article:published_time" content="2020-05-16T14:07:37.000Z">
+<meta property="article:modified_time" content="2020-05-16T14:28:04.351Z">
 <meta property="article:author" content="Xinstein">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/4.PNG">
+<meta name="twitter:image" content="http://yoursite.com/2020/05/16/%E6%AD%A3%E5%88%99%E5%8C%96/11.PNG">
   
     <link rel="alternative" href="/atom.xml" title="Xinsteinのblog" type="application/atom+xml">
   
@@ -167,115 +163,58 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Logistic-回归" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-正则化" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Logistic 回归
+      正则化
     </h1>
   
 
         
-        <a href="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/" class="archive-article-date">
-  	<time datetime="2020-05-16T13:28:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
+        <a href="/2020/05/16/%E6%AD%A3%E5%88%99%E5%8C%96/" class="archive-article-date">
+  	<time datetime="2020-05-16T14:07:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="为什么不用线性回归"><a href="#为什么不用线性回归" class="headerlink" title="为什么不用线性回归"></a>为什么不用线性回归</h2><p>Logistic 回归是一种分类算法。一开始我们也想把线性回归用于这种分类的算法，给线性回归函数设置一个阈值，大于这个值的所有 <em>x</em> 归为一类值，小于的归为另一类。但是线性回归不总是能找出一条合适的直线和阈值，如图3.1所示，并且分类一般的取值都是 0，1，线性回归的函数值有可能比 0 小很多，也可能比 1 大很多，这样看起来很奇怪，于是得用 Logistic 回归，Logistic 函数的函数值固定在 [0,1] 之间。</p>
+        <h2 id="过拟合问题"><a href="#过拟合问题" class="headerlink" title="过拟合问题"></a>过拟合问题</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>过拟合问题一般来讲，是因为我们设置了很多的参数和高阶的项，使得拟合出来的假设函数可以通过所有的数据点，虽然看起来拟合效果很好，他千方百计地你和数据点，但是不能泛化到新样本中，如右边图1所示，也就是说我们的数据集，不能约束住这个假设函数，所以才有了数据集太小，所以过拟合了的说法。</p>
+<div align="center">
+    <img src="/2020/05/16/%E6%AD%A3%E5%88%99%E5%8C%96/11.PNG">&nbsp;&nbsp;&nbsp;<img src="/2020/05/16/%E6%AD%A3%E5%88%99%E5%8C%96/12.PNG">&nbsp;&nbsp;&nbsp;<img src="/2020/05/16/%E6%AD%A3%E5%88%99%E5%8C%96/13.PNG">
+</div>
+
+<center>Fig1. 欠拟合&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;Fig2. just right &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fig3. 过拟合</center>
+
 <a id="more"></a>
-<div align="center">
-    <img src="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/4.PNG">
-</div>
-
-<center>Fig1. 线性回归不好的例子</center>
-
-<h2 id="Logistic-回归"><a href="#Logistic-回归" class="headerlink" title="Logistic 回归"></a><strong>Logistic</strong> 回归</h2><h3 id="假设函数"><a href="#假设函数" class="headerlink" title="假设函数"></a>假设函数</h3><p>Logistic 回归与一般线性回归的不同点在于，Logistic 回归将线性回归得到的函数，通过一个激活函数映射到了一个非线性的情况，Logistic 回归的假设函数如下</p>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><ol>
+<li>如果假设函数可以可视化的话，可以手动选择较高阶的假设函数，观察拟合效果</li>
+<li>减少特征的数量</li>
+<li>正则化：保留所有的特征，但是减小特征参数的值</li>
+</ol>
+<h2 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h2><p>正则化我现在的理解就是，对参数加上一个惩罚项，使他变得更小，进而对假设函数形状的影响更小，使假设函数变得更简单。但是由于不知道哪个特征是无关性较小的（也就是说这个特征前面的参数值较小），所以在进行惩罚的时候，要对所有的参数都进行一个惩罚。正则化后的代价函数如下：</p>
 <script type="math/tex; mode=display">
-h_\theta(x)=\dfrac{1}{1+e^{-\theta^Tx}}</script><p>上面公式是一个复合版本，过程函数如下</p>
-<p>先是一个线性回归</p>
-<script type="math/tex; mode=display">
-h_\theta(x)=\theta^Tx</script><p>再将线性回归得出来的值，带入一个激活函数，激活函数有很多，一般比较常用的是sigmoid 函数，见图2</p>
-<script type="math/tex; mode=display">
-g(z)=\dfrac{1}{1+e^{-z}}</script><div align="center">
-    <img src="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/5.PNG">
-</div>
-
-<center>Fig2. sigmoid函数</center>
-
-<p>可以这样来理解 Logistic 的假设函数，即我输入一个 x，我将有多大的概率知道，在给定参数的情况下，这个 x 属于哪一类</p>
-<script type="math/tex; mode=display">
-P(y=1|x;\theta) + P(y=0|x;\theta)=1</script><h3 id="如何预测"><a href="#如何预测" class="headerlink" title="如何预测"></a>如何预测</h3><p>我们把分类的规则定义如下：</p>
+J(\theta)=\frac{1}{2m}[\sum_{i=1}^{m}(h_\theta(x^{(i)})-y^{(i)})^2+\lambda\sum_{i=1}^{n}\theta^2_j]</script><p><em>λ</em> 是一个正则化参数，如果设置的太大的话，就会导致对每一个参数惩罚的程度太大，进而就导致拟合出来的函数是一条直线，造成了欠拟合。</p>
+<h3 id="线性回归的正则化"><a href="#线性回归的正则化" class="headerlink" title="线性回归的正则化"></a>线性回归的正则化</h3><p>将普通的线性回归的梯度下降算法稍微一修改，就可以得到下面的带有正则化项的梯度下降算法。</p>
 <blockquote>
-<p><strong>Definition 1</strong> 假设函数的预测规则：</p>
-<p>”y = 1” if $h_\theta(x) \ge 0.5$ 即 $ \theta^Tx \ge 0 $</p>
-<p>”y = 0” if $h_\theta(x) \ne 0.5$ 即 $\theta^Tx \ne 0$ </p>
-</blockquote>
-<h3 id="决策界限"><a href="#决策界限" class="headerlink" title="决策界限"></a>决策界限</h3><p>决策界限简单来说就是第一步线性回归得到的线性假设函数的图，见图3</p>
-<p>决策界限不是数据集的特性，而是假设函数的特性，一旦假设函数中的参数确定了，决策界限也就确定了，不过，参数的拟合需要用数据集来拟合。</p>
-<div align="center">
-    <img src="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/6.PNG">
-</div>
-
-<center>Fig3. 紫红色为决策界限</center>
-
-<p>决策界限也不都是直线，当需要一个曲线作为决策界限时，可以在线性回归的方程中，增加高阶项来拟合，见图4。增加线性回归中的阶数，还将有可能得到更复杂的决策界限。</p>
-<div align="center">
-    <img src="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/7.PNG">
-</div>
-
-<center>Fig4. 增加高阶项的例子</center>
-
-<h3 id="代价函数"><a href="#代价函数" class="headerlink" title="代价函数"></a>代价函数</h3><p>一开始我们想用线性回归的代价函数来作为 Logistic 的代价函数，但是因为 Logistic</p>
-<p>回归的假设函数不是一个线性的，因此用线性回归的代价函数的话，回导致代价函数不是</p>
-<p>一个凸函数，会有很多的局部最优值。因此我们用下面的函数来作为 Logistic 回归的代价</p>
-<p>函数：</p>
-<blockquote>
-<p><strong>Theorem 4.1</strong></p>
-<script type="math/tex; mode=display">
-J(\theta)=\frac{1}{m}\sum_{1}^{m}cost(h_\theta(x^{(i)}), y^{(i)})\\
-cost(h_\theta(x), y))=
-           \begin{cases}
-           -log(h_\theta(x)) & \text{if } y = 1,\\
-           -log(1-h_\theta(x)) & \text{if } y = 0
-           \end{cases}</script></blockquote>
-<p>直观的来理解一下这个代价函数，<em>y</em> = 1 时的代价函数如图5，<em>y</em> = 2 时的代价</p>
-<p>函数如图6</p>
-<div align="center">
-    <img src="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/8.PNG">
-    <img src="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/9.PNG">
-</div>
-
-<center>Fig5. y=1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fig6. y = 0</center>
-
-<p>当 <em>y</em> = 1 时，预测值 <em>h**θ</em>(<em>x</em>) = 0 代价就会很大，这也符合我们的假设，因为这时候 <em>y</em> = 1，与我们的预期完全不符，所以代价就会非常大，反之当预测值为 1 时，代价就是 0，因为这时候完全预测对了。反之，当 <em>y</em> = 0 时的分析也是一样的。</p>
-<p>通过这种方法得到的代价函数就会是一个凸函数，有全局的最优值。</p>
-<p>代价函数 cots 的简化形式：</p>
-<script type="math/tex; mode=display">
-cost(h_\theta(x), y))= -ylog(h_\theta(x))-(1-y)log(1-h_\theta(x))</script><p>因此代价函数可以写成</p>
-<blockquote>
-<script type="math/tex; mode=display">
-J(\theta) = -\frac{1}{m}[\sum_{i=1}^{m}y^{(i)}log(h_\theta(x^{(i)}))+(1-y^{(i)})log(1-h_\theta(x^{(i)}))]</script></blockquote>
-<h3 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h3><p>Logistic 回归的梯度下降法和线性回归的梯度下降的形式是一样的</p>
-<blockquote>
-<p><strong>Theorem 2</strong> <em>Logistic’s Gradient descent algorithm</em></p>
-<p>repeat :</p>
+<p><strong>Theorem 1</strong> 加入正则化后的 <em>Gradient descent algorithm</em></p>
+<p>repeat {</p>
 <script type="math/tex; mode=display">
 \theta_j:=\theta_j-\alpha\frac{\delta}{\delta \theta_j}J(\theta)\\
-   \theta_j:=\theta_j-\alpha\frac{1}{m}\sum_{1}^{m}(h_\theta(x^{(i)}) - y^{(i)})\cdot x^{(i)}_j</script></blockquote>
-<p>但是不能说线性回归的梯度下降和 Logistic 回归的梯度下降是一个算法，因为他们的</p>
-<p>$h_\theta(x)$函数是不一样的。</p>
-<h3 id="多类别分类"><a href="#多类别分类" class="headerlink" title="多类别分类"></a>多类别分类</h3><p>多类别分类的一般思想就是，如果有 m 个类，就训练 m 个分类器，每个分类器可以确定一类，要是有一个输入 <em>x</em>，就选择，分类器输出值最大的那一类，即 max <em>h</em>(<em>i</em>) <em>θ</em> (<em>x</em>), 具体过程见图7</p>
-<div align="center">
-    <img src="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/10.PNG">
-</div>
+\theta_0:=\theta_0-\alpha\frac{1}{m}\sum_{1}^{m}(h_\theta(x^{(i)}) - y^{(i)})\cdot x^{(i)}_0\\
+\theta_j:=\theta_j-\alpha[\frac{1}{m}\sum_{1}^{m}(h_\theta(x^{(i)}) - y^{(i)})\cdot x^{(i)}_j+\frac{\lambda}{m}\theta_j\\</script><p>整理一下，就能得到</p>
+<script type="math/tex; mode=display">
+\theta_j:=\theta_j(1-\alpha\frac{\lambda}{m})-\alpha\frac{1}{m}\sum_{1}^{m}(h_\theta(x^{(i)}) - y^{(i)})\cdot x^{(i)}_j</script><p>}</p>
+</blockquote>
+<p>这里的$1-\alpha\frac{\lambda}{m}$是一个很小的一个数，这个公式直观的感觉就是将 $\theta_j$变小了一点点，大约变成了 0.99$\theta_j$，再减去一个偏导数，但实际上是 $\theta_j$减去了一个带着正则项的偏导数</p>
+<h3 id="Logistic-回归的正则化"><a href="#Logistic-回归的正则化" class="headerlink" title="Logistic 回归的正则化"></a><strong>Logistic</strong> 回归的正则化</h3><p>Logistic 回归加入正则函数后的代价函数为</p>
+<script type="math/tex; mode=display">
+    J(\theta) = -\frac{1}{m}[\sum_{i=1}^{m}y^{(i)}log(h_\theta(x^{(i)}))+(1-y^{(i)})log(1-h_\theta(x^{(i)}))]+\frac{\lambda}{2m}\sum_{j=1}^{n}\theta^2_j</script><p>梯度下降算法的更新方式与上面线性回归形式是一样的, 但不是同一个模型。</p>
 
-<center>Fig7. 多元分类</center>
       
 
       
@@ -365,7 +304,7 @@ J(\theta) = -\frac{1}{m}[\sum_{i=1}^{m}y^{(i)}log(h_\theta(x^{(i)}))+(1-y^{(i)})
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/16/%E6%AD%A3%E5%88%99%E5%8C%96/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -379,18 +318,9 @@ J(\theta) = -\frac{1}{m}[\sum_{i=1}^{m}y^{(i)}log(h_\theta(x^{(i)}))+(1-y^{(i)})
   
 <nav id="article-nav">
   
-    <a href="/2020/05/16/%E6%AD%A3%E5%88%99%E5%8C%96/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          正则化
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/05/16/1062-Talent-and-Virtue-25%E5%88%86/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">1062 Talent and Virtue (25分)</div>
+    <a href="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Logistic 回归</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -417,7 +347,7 @@ J(\theta) = -\frac{1}{m}[\sum_{i=1}^{m}y^{(i)}log(h_\theta(x^{(i)}))+(1-y^{(i)})
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么不用线性回归"><span class="toc-number">1.</span> <span class="toc-text">为什么不用线性回归</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Logistic-回归"><span class="toc-number">2.</span> <span class="toc-text">Logistic 回归</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#假设函数"><span class="toc-number">2.1.</span> <span class="toc-text">假设函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何预测"><span class="toc-number">2.2.</span> <span class="toc-text">如何预测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#决策界限"><span class="toc-number">2.3.</span> <span class="toc-text">决策界限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代价函数"><span class="toc-number">2.4.</span> <span class="toc-text">代价函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#梯度下降"><span class="toc-number">2.5.</span> <span class="toc-text">梯度下降</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多类别分类"><span class="toc-number">2.6.</span> <span class="toc-text">多类别分类</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#过拟合问题"><span class="toc-number">1.</span> <span class="toc-text">过拟合问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决方法"><span class="toc-number">1.2.</span> <span class="toc-text">解决方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则化"><span class="toc-number">2.</span> <span class="toc-text">正则化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#线性回归的正则化"><span class="toc-number">2.1.</span> <span class="toc-text">线性回归的正则化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Logistic-回归的正则化"><span class="toc-number">2.2.</span> <span class="toc-text">Logistic 回归的正则化</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
