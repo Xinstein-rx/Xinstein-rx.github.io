@@ -6,15 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Xinsteinのblog</title>
+  <title>Logistic 回归 | Xinsteinのblog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Xinsteinのblog">
-<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+  <meta name="description" content="为什么不用线性回归Logistic 回归是一种分类算法。一开始我们也想把线性回归用于这种分类的算法，给线性回归函数设置一个阈值，大于这个值的所有 x 归为一类值，小于的归为另一类。但是线性回归不总是能找出一条合适的直线和阈值，如图3.1所示，并且分类一般的取值都是 0，1，线性回归的函数值有可能比 0 小很多，也可能比 1 大很多，这样看起来很奇怪，于是得用 Logistic 回归，Logisti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Logistic 回归">
+<meta property="og:url" content="http://yoursite.com/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/index.html">
 <meta property="og:site_name" content="Xinsteinのblog">
+<meta property="og:description" content="为什么不用线性回归Logistic 回归是一种分类算法。一开始我们也想把线性回归用于这种分类的算法，给线性回归函数设置一个阈值，大于这个值的所有 x 归为一类值，小于的归为另一类。但是线性回归不总是能找出一条合适的直线和阈值，如图3.1所示，并且分类一般的取值都是 0，1，线性回归的函数值有可能比 0 小很多，也可能比 1 大很多，这样看起来很奇怪，于是得用 Logistic 回归，Logisti">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/4.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/5.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/6.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/7.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/8.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/9.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/10.PNG">
+<meta property="article:published_time" content="2020-05-16T13:28:16.000Z">
+<meta property="article:modified_time" content="2020-05-16T13:51:09.199Z">
 <meta property="article:author" content="Xinstein">
+<meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/4.PNG">
   
     <link rel="alternative" href="/atom.xml" title="Xinsteinのblog" type="application/atom+xml">
   
@@ -154,35 +167,138 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-1009-Product-of-Polynomials-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Logistic-回归" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/08/1009-Product-of-Polynomials-25%E5%88%86/">1009 Product of Polynomials (25分)</a>
+    <h1 class="article-title" itemprop="name">
+      Logistic 回归
     </h1>
   
 
         
-        <a href="/2020/05/08/1009-Product-of-Polynomials-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-08T12:54:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
+        <a href="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/" class="archive-article-date">
+  	<time datetime="2020-05-16T13:28:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>This time, you are supposed to find <em>A</em>×<em>B</em> where <em>A</em> and <em>B</em> are two polynomials.</p>
-<h4 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h4><p>Each input file contains one test case. Each case occupies 2 lines, and each line contains the information of a polynomial:</p>
-        
-          <a class="article-more-a" href="/2020/05/08/1009-Product-of-Polynomials-25%E5%88%86/#more">more >></a>
-        
+        <h3 id="为什么不用线性回归"><a href="#为什么不用线性回归" class="headerlink" title="为什么不用线性回归"></a>为什么不用线性回归</h3><p>Logistic 回归是一种分类算法。一开始我们也想把线性回归用于这种分类的算法，给线性回归函数设置一个阈值，大于这个值的所有 <em>x</em> 归为一类值，小于的归为另一类。但是线性回归不总是能找出一条合适的直线和阈值，如图3.1所示，并且分类一般的取值都是 0，1，线性回归的函数值有可能比 0 小很多，也可能比 1 大很多，这样看起来很奇怪，于是得用 Logistic 回归，Logistic 函数的函数值固定在 [0,1] 之间。</p>
+<a id="more"></a>
+<div align="center">
+    <img src="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/4.PNG">
+</div>
+
+<center>Fig1. 线性回归不好的例子</center>
+
+<h3 id="Logistic-回归"><a href="#Logistic-回归" class="headerlink" title="Logistic 回归"></a><strong>Logistic</strong> 回归</h3><h4 id="假设函数"><a href="#假设函数" class="headerlink" title="假设函数"></a>假设函数</h4><p>Logistic 回归与一般线性回归的不同点在于，Logistic 回归将线性回归得到的函数，通过一个激活函数映射到了一个非线性的情况，Logistic 回归的假设函数如下</p>
+<script type="math/tex; mode=display">
+h_\theta(x)=\dfrac{1}{1+e^{-\theta^Tx}}</script><p>上面公式是一个复合版本，过程函数如下</p>
+<p>先是一个线性回归</p>
+<script type="math/tex; mode=display">
+h_\theta(x)=\theta^Tx</script><p>再将线性回归得出来的值，带入一个激活函数，激活函数有很多，一般比较常用的是sigmoid 函数，见图2</p>
+<script type="math/tex; mode=display">
+g(z)=\dfrac{1}{1+e^{-z}}</script><div align="center">
+    <img src="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/5.PNG">
+</div>
+
+<center>Fig2. sigmoid函数</center>
+
+<p>可以这样来理解 Logistic 的假设函数，即我输入一个 x，我将有多大的概率知道，在给定参数的情况下，这个 x 属于哪一类</p>
+<script type="math/tex; mode=display">
+P(y=1|x;\theta) + P(y=0|x;\theta)=1</script><h4 id="如何预测"><a href="#如何预测" class="headerlink" title="如何预测"></a>如何预测</h4><p>我们把分类的规则定义如下：</p>
+<blockquote>
+<p><strong>Definition 1</strong> 假设函数的预测规则：</p>
+<p>”y = 1” if $h_\theta(x) \ge 0.5$ 即 $ \theta^Tx \ge 0 $</p>
+<p>”y = 0” if $h_\theta(x) \ne 0.5$ 即 $\theta^Tx \ne 0$ </p>
+</blockquote>
+<h4 id="决策界限"><a href="#决策界限" class="headerlink" title="决策界限"></a>决策界限</h4><p>决策界限简单来说就是第一步线性回归得到的线性假设函数的图，见图3</p>
+<p>决策界限不是数据集的特性，而是假设函数的特性，一旦假设函数中的参数确定了，决策界限也就确定了，不过，参数的拟合需要用数据集来拟合。</p>
+<div align="center">
+    <img src="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/6.PNG">
+</div>
+
+<center>Fig3. 紫红色为决策界限</center>
+
+<p>决策界限也不都是直线，当需要一个曲线作为决策界限时，可以在线性回归的方程中，增加高阶项来拟合，见图4。增加线性回归中的阶数，还将有可能得到更复杂的决策界限。</p>
+<div align="center">
+    <img src="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/7.PNG">
+</div>
+
+<center>Fig4. 增加高阶项的例子</center>
+
+<h4 id="代价函数"><a href="#代价函数" class="headerlink" title="代价函数"></a>代价函数</h4><p>一开始我们想用线性回归的代价函数来作为 Logistic 的代价函数，但是因为 Logistic</p>
+<p>回归的假设函数不是一个线性的，因此用线性回归的代价函数的话，回导致代价函数不是</p>
+<p>一个凸函数，会有很多的局部最优值。因此我们用下面的函数来作为 Logistic 回归的代价</p>
+<p>函数：</p>
+<blockquote>
+<p><strong>Theorem 4.1</strong></p>
+<script type="math/tex; mode=display">
+J(\theta)=\frac{1}{m}\sum_{1}^{m}cost(h_\theta(x^{(i)}), y^{(i)})\\
+cost(h_\theta(x), y))=
+           \begin{cases}
+           -log(h_\theta(x)) & \text{if } y = 1,\\
+           -log(1-h_\theta(x)) & \text{if } y = 0
+           \end{cases}</script></blockquote>
+<p>直观的来理解一下这个代价函数，<em>y</em> = 1 时的代价函数如图5，<em>y</em> = 2 时的代价</p>
+<p>函数如图6</p>
+<div align="center">
+    <img src="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/8.PNG">
+    <img src="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/9.PNG">
+</div>
+
+<center>Fig5. y=1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fig6. y = 0</center>
+
+<p>当 <em>y</em> = 1 时，预测值 <em>h**θ</em>(<em>x</em>) = 0 代价就会很大，这也符合我们的假设，因为这时候 <em>y</em> = 1，与我们的预期完全不符，所以代价就会非常大，反之当预测值为 1 时，代价就是 0，因为这时候完全预测对了。反之，当 <em>y</em> = 0 时的分析也是一样的。</p>
+<p>通过这种方法得到的代价函数就会是一个凸函数，有全局的最优值。</p>
+<p>代价函数 cots 的简化形式：</p>
+<script type="math/tex; mode=display">
+cost(h_\theta(x), y))= -ylog(h_\theta(x))-(1-y)log(1-h_\theta(x))</script><p>因此代价函数可以写成</p>
+<blockquote>
+<script type="math/tex; mode=display">
+J(\theta) = -\frac{1}{m}[\sum_{i=1}^{m}y^{(i)}log(h_\theta(x^{(i)}))+(1-y^{(i)})log(1-h_\theta(x^{(i)}))]</script></blockquote>
+<h4 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h4><p>Logistic 回归的梯度下降法和线性回归的梯度下降的形式是一样的</p>
+<blockquote>
+<p><strong>Theorem 2</strong> <em>Logistic’s Gradient descent algorithm</em></p>
+<p>repeat :</p>
+<script type="math/tex; mode=display">
+\theta_j:=\theta_j-\alpha\frac{\delta}{\delta \theta_j}J(\theta)\\
+   \theta_j:=\theta_j-\alpha\frac{1}{m}\sum_{1}^{m}(h_\theta(x^{(i)}) - y^{(i)})\cdot x^{(i)}_j</script></blockquote>
+<p>但是不能说线性回归的梯度下降和 Logistic 回归的梯度下降是一个算法，因为他们的</p>
+<p>$h_\theta(x)$函数是不一样的。</p>
+<h4 id="多类别分类"><a href="#多类别分类" class="headerlink" title="多类别分类"></a>多类别分类</h4><p>多类别分类的一般思想就是，如果有 m 个类，就训练 m 个分类器，每个分类器可以确定一类，要是有一个输入 <em>x</em>，就选择，分类器输出值最大的那一类，即 max <em>h</em>(<em>i</em>) <em>θ</em> (<em>x</em>), 具体过程见图7</p>
+<div align="center">
+    <img src="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/10.PNG">
+</div>
+
+<center>Fig7. 多元分类</center>
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -193,7 +309,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
         		</li>
       		
 		</ul>
@@ -204,10 +320,73 @@
       
 
       
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/16/1062-Talent-and-Virtue-25%E5%88%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">1062 Talent and Virtue (25分)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -222,242 +401,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-1007-Maximum-Subsequence-Sum-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/08/1007-Maximum-Subsequence-Sum-25%E5%88%86/">1007 Maximum Subsequence Sum (25分)</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/08/1007-Maximum-Subsequence-Sum-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-08T06:49:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a sequence of <em>K</em> integers { <em>N<sub>1</sub></em>, <em>N</em><sub>2</sub>, …, <em>N</em><sub>k</sub>}. A continuous subsequence is defined to be { <em>N<sub>i</sub></em>, <em>N<sub>i+1</sub></em>, …, <em>N<sub>j</sub></em> } where 1≤<em>i</em>≤<em>j</em>≤<em>K</em>. The Maximum Subsequence is the continuous subsequence which has the largest sum of its elements. For example, given sequence { -2, 11, -4, 13, -5, -2 }, its maximum subsequence is { 11, -4, 13 } with the largest sum being 20.</p>
-<p>Now you are supposed to find the largest sum, together with the first and the last numbers of the maximum subsequence.</p>
-        
-          <a class="article-more-a" href="/2020/05/08/1007-Maximum-Subsequence-Sum-25%E5%88%86/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么不用线性回归"><span class="toc-number">1.</span> <span class="toc-text">为什么不用线性回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Logistic-回归"><span class="toc-number">2.</span> <span class="toc-text">Logistic 回归</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#假设函数"><span class="toc-number">2.1.</span> <span class="toc-text">假设函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何预测"><span class="toc-number">2.2.</span> <span class="toc-text">如何预测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#决策界限"><span class="toc-number">2.3.</span> <span class="toc-text">决策界限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代价函数"><span class="toc-number">2.4.</span> <span class="toc-text">代价函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#梯度下降"><span class="toc-number">2.5.</span> <span class="toc-text">梯度下降</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多类别分类"><span class="toc-number">2.6.</span> <span class="toc-text">多类别分类</span></a></li></ol></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
-  
-    <article id="post-1006-Sign-In-and-Sign-Out-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/07/1006-Sign-In-and-Sign-Out-25%E5%88%86/">1006 Sign In and Sign Out (25分)</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/07/1006-Sign-In-and-Sign-Out-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-07T07:28:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>At the beginning of every day, the first person who signs in the computer room will unlock the door, and the last one who signs out will lock the door. Given the records of signing in’s and out’s, you are supposed to find the ones who have unlocked and locked the door on that day.</p>
-        
-          <a class="article-more-a" href="/2020/05/07/1006-Sign-In-and-Sign-Out-25%E5%88%86/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-PAT-Advanced-1003-Emergency-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/05/PAT-Advanced-1003-Emergency-25%E5%88%86/">1003 Emergency (25分)</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/05/PAT-Advanced-1003-Emergency-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-05T02:12:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1003-Emergency-25分"><a href="#1003-Emergency-25分" class="headerlink" title="1003 Emergency (25分)"></a><strong>1003</strong> <strong>Emergency</strong> (25分)</h2><p>As an emergency rescue team leader of a city, you are given a special map of your country. The map shows several scattered cities connected by some roads. Amount of rescue teams in each city and the length of each road between any pair of cities are marked on the map. When there is an emergency call to you from some other city, your job is to lead your men to the place as quickly as possible, and at the mean time, call up as many hands on the way as possible.</p>
-        
-          <a class="article-more-a" href="/2020/05/05/PAT-Advanced-1003-Emergency-25%E5%88%86/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">最短路</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Dijkstra</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -480,8 +449,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
