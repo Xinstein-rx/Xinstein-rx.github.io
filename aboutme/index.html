@@ -6,19 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>1037 Magic Coupon (25分) | Xinsteinのblog</title>
+  <title>关于我 | Xinsteinのblog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="The magic shop in Mars is offering some magic coupons. Each coupon has an integer N printed on it, meaning that when you use this coupon with a product, you may get N times the value of that product b">
-<meta property="og:type" content="article">
-<meta property="og:title" content="1037 Magic Coupon (25分)">
-<meta property="og:url" content="http://yoursite.com/2020/05/12/1037-Magic-Coupon-25%E5%88%86/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="关于我">
+<meta property="og:url" content="http://yoursite.com/aboutme/index.html">
 <meta property="og:site_name" content="Xinsteinのblog">
-<meta property="og:description" content="The magic shop in Mars is offering some magic coupons. Each coupon has an integer N printed on it, meaning that when you use this coupon with a product, you may get N times the value of that product b">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-05-12T05:34:40.000Z">
-<meta property="article:modified_time" content="2020-05-12T05:53:36.319Z">
+<meta property="article:published_time" content="2020-05-24T09:41:57.000Z">
+<meta property="article:modified_time" content="2020-05-24T09:42:25.951Z">
 <meta property="article:author" content="Xinstein">
-<meta property="article:tag" content="PAT-Advanced">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Xinsteinのblog" type="application/atom+xml">
@@ -165,20 +162,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-1037-Magic-Coupon-25分" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      1037 Magic Coupon (25分)
+      关于我
     </h1>
   
 
         
-        <a href="/2020/05/12/1037-Magic-Coupon-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-12T05:34:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-12</time>
+        <a href="/aboutme/index.html" class="archive-article-date">
+  	<time datetime="2020-05-24T09:41:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-24</time>
 </a>
         
       </header>
@@ -186,36 +183,12 @@
     <div class="article-entry" itemprop="articleBody">
 		
 			
-			<p>The magic shop in Mars is offering some magic coupons. Each coupon has an integer <em>N</em> printed on it, meaning that when you use this coupon with a product, you may get <em>N</em> times the value of that product back! What is more, the shop also offers some bonus product for free. However, if you apply a coupon with a positive <em>N</em> to this bonus product, you will have to pay the shop <em>N</em> times the value of the bonus product… but hey, magically, they have some coupons with negative <em>N</em>‘s!</p>
-<a id="more"></a>
-<p>For example, given a set of coupons { 1 2 4 −1 }, and a set of product values { 7 6 −2 −3 } (in Mars dollars $) where a negative value corresponds to a bonus product. You can apply coupon 3 (with <em>N</em> being 4) to product 1 (with value M$7) to get M​$28 back; coupon 2 to product 2 to get M​$12 back; and coupon 4 to product 4 to get M$3 back. On the other hand, if you apply coupon 3 to product 4, you will have to pay M​$12 to the shop.</p>
-<p>Each coupon and each product may be selected at most once. Your task is to get as much money back as possible.</p>
-<h4 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h4><p>Each input file contains one test case. For each case, the first line contains the number of coupons <em>N<sub>c</sub></em>, followed by a line with <em>N<sub>c</sub></em> coupon integers. Then the next line contains the number of products <em>N<sub>p</sub></em>, followed by a line with <em>N<sub>p</sub></em> product values. Here 1≤<em>N<sub>c</sub></em>,<em>N<sub>p</sub></em>≤10<sup>5</sup>, and it is guaranteed that all the numbers will not exceed 2<sup>30</sup>.</p>
-<h4 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h4><p>For each test case, simply print in a line the maximum amount of money you can get back.</p>
-<h4 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input:"></a>Sample Input:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">4</span><br><span class="line">1 2 4 -1</span><br><span class="line">4</span><br><span class="line">7 6 -2 -3</span><br></pre></td></tr></table></figure>
-<h4 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">43</span><br></pre></td></tr></table></figure>
-<h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><blockquote>
-<font color="LightCoral">这个题也不算难吧，刚开始想错了，有一个点没过，于是通过自己蹩脚的思考，蹩脚的写法，终于过了，然后题解给出的解答也是很简练，但是思路都是一样的，都是排序后前面的负数相乘，后面的正数相乘，只不过她通过控制while循环，控制着只是负数和负数相乘，在从后往前控制着正数和正数相乘，两个指针（因为并不清楚两个集合元素具体数目多少，所以需要定义两个指针，从前开始的话，有p < n, q < m来控制都是正数或都是负数的时候的情况，这样就避免了求到底哪个元素更少，然后遍历少的部分，然后从后往前的话，两个指针有利于找到各个集合最后一个元素的位置）v1[p] > 0 && v2[p] > 0控制着都是正数相乘，或者都是负数相乘，特殊的那种都是整数都是负数，集合元素不相等的情况就都包含在内了。</font>
-
-</blockquote>
-<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n1, n2, a;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v1, v2;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n1);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n1; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a);</span><br><span class="line">		v1.push_back(a);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n2);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n2; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a);</span><br><span class="line">		v2.push_back(a);</span><br><span class="line">	&#125;</span><br><span class="line">	sort(v1.<span class="built_in">begin</span>(), v1.<span class="built_in">end</span>());</span><br><span class="line">	sort(v2.<span class="built_in">begin</span>(), v2.<span class="built_in">end</span>());</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> p = <span class="number">0</span>, q = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(p &lt; v1.<span class="built_in">size</span>() &amp;&amp; q &lt; v2.<span class="built_in">size</span>())&#123;</span><br><span class="line">		<span class="keyword">if</span>(v1[p] &lt; <span class="number">0</span> &amp;&amp; v2[q] &lt; <span class="number">0</span>) &#123;</span><br><span class="line">			sum += v1[p] * v2[q];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">		p++;</span><br><span class="line">		q++; </span><br><span class="line">	&#125;</span><br><span class="line">	p = v1.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">	q = v2.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(p &gt;= <span class="number">0</span> &amp;&amp; q &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(v1[p] &gt; <span class="number">0</span> &amp;&amp; v2[q] &gt; <span class="number">0</span>)&#123;</span><br><span class="line">			sum += v1[p] * v2[q];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">		p--;q--;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; sum &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+			
 		
     </div>
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -266,7 +239,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/12/1037-Magic-Coupon-25%E5%88%86/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/aboutme/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -278,25 +251,6 @@
 </article>
 
   
-<nav id="article-nav">
-  
-    <a href="/2020/05/12/1039-Course-List-for-Student-25%E5%88%86/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          1039 Course List for Student (25分)
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/05/11/Tableau%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E5%88%86%E6%9E%90/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Tableau数据分析-用户留存分析</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -318,7 +272,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Input-Specification"><span class="toc-number">1.</span> <span class="toc-text">Input Specification:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Output-Specification"><span class="toc-number">2.</span> <span class="toc-text">Output Specification:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Input"><span class="toc-number">3.</span> <span class="toc-text">Sample Input:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Output"><span class="toc-number">4.</span> <span class="toc-text">Sample Output:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解题思路"><span class="toc-number">5.</span> <span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AC代码"><span class="toc-number">6.</span> <span class="toc-text">AC代码</span></a></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
@@ -360,7 +314,7 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
