@@ -185,8 +185,10 @@
       </header>
     
     <div class="article-entry" itemprop="articleBody">
-      
-        <p>People often have a preference among synonyms of the same word. For example, some may prefer “the police”, while others may prefer “the cops”. Analyzing such patterns can help to narrow down a speaker’s identity, which is useful when validating, for example, whether it’s still the same person behind an online avatar.</p>
+		
+
+			
+				<p>People often have a preference among synonyms of the same word. For example, some may prefer “the police”, while others may prefer “the cops”. Analyzing such patterns can help to narrow down a speaker’s identity, which is useful when validating, for example, whether it’s still the same person behind an online avatar.</p>
 <p>Now given a paragraph of text sampled from someone’s speech, can you find the person’s most commonly used word?</p>
 <a id="more"></a>
 <h4 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h4><p>Each input file contains one test case. For each case, there is one line of text no more than 1048576 characters in length, terminated by a carriage return <code>\n</code>. The input contains at least one alphanumerical character, i.e., one character from the set [<code>0-9 A-Z a-z</code>].</p>
@@ -200,30 +202,8 @@
 </blockquote>
 <h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt; </span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> tmp, m;</span><br><span class="line">	<span class="keyword">char</span> c;</span><br><span class="line">	<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; mp;</span><br><span class="line">	<span class="keyword">int</span> maxn = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>((c = getchar() )!= <span class="string">'\n'</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!<span class="built_in">isalnum</span>(c))&#123;</span><br><span class="line">			<span class="keyword">if</span>(tmp.<span class="built_in">size</span>() != <span class="number">0</span>)&#123;</span><br><span class="line">				mp[tmp]++;</span><br><span class="line">				tmp.<span class="built_in">clear</span>();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">if</span>(c &lt;= <span class="string">'Z'</span> &amp;&amp; c &gt;= <span class="string">'A'</span>) c = c - <span class="string">'A'</span> + <span class="string">'a'</span>;</span><br><span class="line">			tmp += c;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(tmp.<span class="built_in">size</span>() != <span class="number">0</span>) mp[tmp]++;</span><br><span class="line">	<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">	<span class="keyword">for</span>(it = mp.<span class="built_in">begin</span>(); it != mp.<span class="built_in">end</span>(); it++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(it -&gt; second &gt; maxn)&#123;</span><br><span class="line">			maxn = it -&gt; second;</span><br><span class="line">			m = it -&gt; first;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; m &lt;&lt; <span class="string">" "</span> &lt;&lt; maxn;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
+			
+		
     </div>
     <div class="article-info article-info-index">
       

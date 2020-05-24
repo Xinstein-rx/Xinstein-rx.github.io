@@ -185,8 +185,10 @@
       </header>
     
     <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a constant <em>K</em> and a singly linked list <em>L</em>, you are supposed to reverse the links of every <em>K</em> elements on <em>L</em>. For example, given <em>L</em> being 1→2→3→4→5→6, if <em>K</em>=3, then you must output 3→2→1→6→5→4; if <em>K</em>=4, you must output 4→3→2→1→5→6.</p>
+		
+
+			
+				<p>Given a constant <em>K</em> and a singly linked list <em>L</em>, you are supposed to reverse the links of every <em>K</em> elements on <em>L</em>. For example, given <em>L</em> being 1→2→3→4→5→6, if <em>K</em>=3, then you must output 3→2→1→6→5→4; if <em>K</em>=4, you must output 4→3→2→1→5→6.</p>
 <h4 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h4><a id="more"></a>
 <p>Each input file contains one test case. For each case, the first line contains the address of the first node, a positive <em>N</em> (≤10<sup>5</sup>) which is the total number of nodes, and a positive <em>K</em> (≤<em>N</em>) which is the length of the sublist to be reversed. The address of a node is a 5-digit nonnegative integer, and NULL is represented by -1.</p>
 <p>Then <em>N</em> lines follow, each describes a node in the format:</p>
@@ -201,30 +203,8 @@
 </blockquote>
 <h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> id, data, next;</span><br><span class="line">&#125;no[<span class="number">100001</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> head, n, k, id;</span><br><span class="line">	<span class="built_in">vector</span>&lt;node&gt; v;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; head &gt;&gt; n &gt;&gt; k;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;id);</span><br><span class="line">		no[id].id = id;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;no[id].data, &amp;no[id].next);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = head; i != <span class="number">-1</span>; i = no[i].next)&#123;</span><br><span class="line">		v.push_back(no[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> num = v.<span class="built_in">size</span>() / k;</span><br><span class="line">	<span class="keyword">int</span> pos = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">vector</span>&lt;node&gt; v2;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; i++)&#123;</span><br><span class="line">		pos = i * k - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = pos; j &gt;= (i - <span class="number">1</span>) * k; j--)&#123;</span><br><span class="line">			v2.push_back(v[j]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	pos = num * k;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = pos; i &lt; v.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">		v2.push_back(v[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v2.<span class="built_in">size</span>() - <span class="number">1</span>; i++)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%05d %d %05d\n"</span>, v2[i].id, v2[i].data, v2[i + <span class="number">1</span>].id);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%05d %d -1\n"</span>, v2[v2.<span class="built_in">size</span>() - <span class="number">1</span>].id, v2[v2.<span class="built_in">size</span>() - <span class="number">1</span>].data);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
+			
+		
     </div>
     <div class="article-info article-info-index">
       

@@ -184,8 +184,10 @@
       </header>
     
     <div class="article-entry" itemprop="articleBody">
-      
-        <p>At the beginning of every day, the first person who signs in the computer room will unlock the door, and the last one who signs out will lock the door. Given the records of signing in’s and out’s, you are supposed to find the ones who have unlocked and locked the door on that day.</p>
+		
+
+			
+				<p>At the beginning of every day, the first person who signs in the computer room will unlock the door, and the last one who signs out will lock the door. Given the records of signing in’s and out’s, you are supposed to find the ones who have unlocked and locked the door on that day.</p>
 <a id="more"></a>
 <h3 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h3><p>Each input file contains one test case. Each case contains the records for one day. The case starts with a positive integer <em>M</em>, which is the total number of records, followed by <em>M</em> lines, each in the format:</p>
 <p><code>ID_number Sign_**in**_time Sign_**out**_time</code>、</p>
@@ -200,30 +202,8 @@
 </blockquote>
 <h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="built_in">string</span> name, ans1, ans2;</span><br><span class="line">	<span class="keyword">int</span> a, b, c, d, e, f;</span><br><span class="line">	<span class="keyword">int</span> t1, t2, m1 = <span class="number">9999999</span>, m2 = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; name;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d:%d:%d %d:%d:%d"</span>, &amp;a, &amp;b, &amp;c, &amp;d, &amp;e, &amp;f);</span><br><span class="line">		t1 = a * <span class="number">3600</span> + b * <span class="number">60</span> + c;</span><br><span class="line">		t2 = d * <span class="number">3600</span> + e * <span class="number">60</span> + f;</span><br><span class="line">		<span class="keyword">if</span>(t1 &lt; m1) &#123;</span><br><span class="line">			m1 = t1;</span><br><span class="line">			ans1 = name;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(t2 &gt; m2)&#123;</span><br><span class="line">			m2 = t2;</span><br><span class="line">			ans2 = name;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; ans1 &lt;&lt; <span class="string">" "</span> &lt;&lt;ans2 &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
+			
+		
     </div>
     <div class="article-info article-info-index">
       
