@@ -16,7 +16,7 @@
 <meta property="og:description" content="Given an integer with no more than 9 digits, you are supposed to read it in the traditional Chinese way. Output Fu first if it is negative. For example, -123456789 is read as Fu yi Yi er Qian san Bai">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-24T07:43:01.000Z">
-<meta property="article:modified_time" content="2020-05-24T07:45:53.482Z">
+<meta property="article:modified_time" content="2020-05-24T08:23:55.997Z">
 <meta property="article:author" content="Xinstein">
 <meta property="article:tag" content="PAT-Advanced">
 <meta name="twitter:card" content="summary">
@@ -63,6 +63,8 @@
 				<li><a href="/">主页</a></li>
 	        
 				<li><a href="/tags">标签</a></li>
+	        
+				<li><a href="/">关于我</a></li>
 	        
 			</ul>
 		</nav>
@@ -122,6 +124,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -139,12 +143,14 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags">标签</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags">标签</a></li>
+		        
+					<li style="width: 33.333333333333336%"><a href="/">关于我</a></li>
 		        
 				</ul>
 			</nav>
@@ -187,7 +193,7 @@
 <h4 id="Sample-Output-1"><a href="#Sample-Output-1" class="headerlink" title="Sample Output 1:"></a>Sample Output 1:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Fu yi Yi er Qian san Bai si Shi wu Wan liu Qian qi Bai ba Shi jiu</span><br></pre></td></tr></table></figure>
 <h4 id="Sample-Input-2"><a href="#Sample-Input-2" class="headerlink" title="Sample Input 2:"></a>Sample Input 2:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">100800</span><br></pre></td></tr></table></figure>
 <h4 id="Sample-Output-2"><a href="#Sample-Output-2" class="headerlink" title="Sample Output 2:"></a>Sample Output 2:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yi Shi Wan ling ba Bai</span><br></pre></td></tr></table></figure>
-<blockquote>
+<h4 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h4><blockquote>
 <font color="LightCoral">哈哈哈哈哈哈哈哈，凭借我超强的毅力，改了又改，终于这个题一遍过，哈哈哈哈哈哈哈，太开心了，不容易啊，一开始都没有思路，后来主要是再输出数字方面遇到了很多问题，改了又改，写的很麻烦。看了题解，也是写的有点麻烦，emmm就先不掌握了，看不太懂。也是把它们分成了三部分，挨个部分输出。</font>
 
 </blockquote>
@@ -296,6 +302,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2020/05/24/1083-List-Grades-25%E5%88%86/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          1083 List Grades (25分)
+        
+      </div>
+    </a>
+  
   
     <a href="/2020/05/23/1071-Speech-Patterns-25%E5%88%86/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">1071 Speech Patterns (25分)</div>
@@ -325,7 +340,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Input-Specification"><span class="toc-number">1.</span> <span class="toc-text">Input Specification:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Output-Specification"><span class="toc-number">2.</span> <span class="toc-text">Output Specification:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Input-1"><span class="toc-number">3.</span> <span class="toc-text">Sample Input 1:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Output-1"><span class="toc-number">4.</span> <span class="toc-text">Sample Output 1:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Input-2"><span class="toc-number">5.</span> <span class="toc-text">Sample Input 2:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Output-2"><span class="toc-number">6.</span> <span class="toc-text">Sample Output 2:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AC代码"><span class="toc-number">7.</span> <span class="toc-text">AC代码</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Input-Specification"><span class="toc-number">1.</span> <span class="toc-text">Input Specification:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Output-Specification"><span class="toc-number">2.</span> <span class="toc-text">Output Specification:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Input-1"><span class="toc-number">3.</span> <span class="toc-text">Sample Input 1:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Output-1"><span class="toc-number">4.</span> <span class="toc-text">Sample Output 1:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Input-2"><span class="toc-number">5.</span> <span class="toc-text">Sample Input 2:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Output-2"><span class="toc-number">6.</span> <span class="toc-text">Sample Output 2:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路分析"><span class="toc-number">7.</span> <span class="toc-text">思路分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AC代码"><span class="toc-number">8.</span> <span class="toc-text">AC代码</span></a></li></ol>
                     </div>
                 </span>
             </div>
