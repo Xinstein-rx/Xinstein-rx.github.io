@@ -6,29 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>UML类图 | Xinsteinのblog</title>
+  <title>1093 Count PAT&#39;s (25分) | Xinsteinのblog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="UML关系UML关系主要分为：泛化（Generalization）、实现（Realization）、关联（Association）（又分为一般关联、聚合（Aggregation）、组合（Composition））、依赖（Dependency）">
+  <meta name="description" content="The string APPAPT contains two PAT‘s as substrings. The first one is formed by the 2nd, the 4th, and the 6th characters, and the second one is formed by the 3rd, the 4th, and the 6th characters. Now g">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UML类图">
-<meta property="og:url" content="http://yoursite.com/2020/05/10/drawUML/index.html">
+<meta property="og:title" content="1093 Count PAT&#39;s (25分)">
+<meta property="og:url" content="http://yoursite.com/2020/05/25/1093-Count-PAT-s-25%E5%88%86/index.html">
 <meta property="og:site_name" content="Xinsteinのblog">
-<meta property="og:description" content="UML关系UML关系主要分为：泛化（Generalization）、实现（Realization）、关联（Association）（又分为一般关联、聚合（Aggregation）、组合（Composition））、依赖（Dependency）">
+<meta property="og:description" content="The string APPAPT contains two PAT‘s as substrings. The first one is formed by the 2nd, the 4th, and the 6th characters, and the second one is formed by the 3rd, the 4th, and the 6th characters. Now g">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/2020/05/10/drawUML/a.jpg">
-<meta property="og:image" content="http://yoursite.com/2020/05/10/drawUML/b.jpg">
-<meta property="og:image" content="http://yoursite.com/2020/05/10/drawUML/c.jpg">
-<meta property="og:image" content="http://yoursite.com/2020/05/10/drawUML/d.jpg">
-<meta property="og:image" content="http://yoursite.com/2020/05/10/drawUML/e.jpg">
-<meta property="og:image" content="http://yoursite.com/2020/05/10/drawUML/f.jpg">
-<meta property="og:image" content="http://yoursite.com/2020/05/10/drawUML/g.jpg">
-<meta property="article:published_time" content="2020-05-10T14:07:43.000Z">
-<meta property="article:modified_time" content="2020-05-12T05:53:56.169Z">
+<meta property="article:published_time" content="2020-05-25T06:34:08.000Z">
+<meta property="article:modified_time" content="2020-05-25T06:39:02.482Z">
 <meta property="article:author" content="Xinstein">
-<meta property="article:tag" content="UML">
-<meta property="article:tag" content="软件工程">
+<meta property="article:tag" content="PAT-Advanced">
+<meta property="article:tag" content="智力题">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/05/10/drawUML/a.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Xinsteinのblog" type="application/atom+xml">
   
@@ -170,20 +162,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-drawUML" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-1093-Count-PAT-s-25分" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      UML类图
+      1093 Count PAT&#39;s (25分)
     </h1>
   
 
         
-        <a href="/2020/05/10/drawUML/" class="archive-article-date">
-  	<time datetime="2020-05-10T14:07:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-10</time>
+        <a href="/2020/05/25/1093-Count-PAT-s-25%E5%88%86/" class="archive-article-date">
+  	<time datetime="2020-05-25T06:34:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-25</time>
 </a>
         
       </header>
@@ -191,52 +183,18 @@
     <div class="article-entry" itemprop="articleBody">
 		
 			
-			<h3 id="UML关系"><a href="#UML关系" class="headerlink" title="UML关系"></a>UML关系</h3><p>UML关系主要分为：泛化（Generalization）、实现（Realization）、关联（Association）（又分为一般关联、聚合（Aggregation）、组合（Composition））、依赖（Dependency）</p>
+			<p>The string <code>APPAPT</code> contains two <code>PAT</code>‘s as substrings. The first one is formed by the 2nd, the 4th, and the 6th characters, and the second one is formed by the 3rd, the 4th, and the 6th characters.</p>
+<p>Now given any string, you are supposed to tell the number of <code>PAT</code>‘s contained in the string.</p>
 <a id="more"></a>
-<h3 id="类的简要画法"><a href="#类的简要画法" class="headerlink" title="类的简要画法"></a>类的简要画法</h3><p>一个类可以画成有三个单元格的矩形：</p>
-<ul>
-<li>第一格：类的名称</li>
-<li>第二格：属性名称</li>
-<li>第三格：方法名称</li>
-</ul>
-<p>访问修饰符的标注：</p>
-<ul>
-<li>public：+</li>
-<li>protected：#</li>
-<li>private：-</li>
-</ul>
-<h3 id="类之间的几种关系"><a href="#类之间的几种关系" class="headerlink" title="类之间的几种关系"></a>类之间的几种关系</h3><h4 id="1-泛化（Generalization）"><a href="#1-泛化（Generalization）" class="headerlink" title="1.泛化（Generalization）"></a>1.泛化（Generalization）</h4><p>是一种继承关系，用带空心的实线表示，箭头指向父类，如下图：</p>
-<p><img src="/2020/05/10/drawUML/a.jpg" alt="1"></p>
-<h4 id="2-实现（Realization）"><a href="#2-实现（Realization）" class="headerlink" title="2.实现（Realization）"></a>2.实现（Realization）</h4><p>是一种类与接口的关系，用带空心的箭头表示，箭头指向接口，如下图：</p>
-<p><img src="/2020/05/10/drawUML/b.jpg" alt="2"></p>
-<h4 id="3-关联（Association）"><a href="#3-关联（Association）" class="headerlink" title="3. 关联（Association）"></a>3. 关联（Association）</h4><p>（1）一般关联：</p>
-<ul>
-<li>关联关系是类与类之间的联结，它使一个类知道另一个类的属性和方法，指明了事务的对象之间的联系，如：老师学生。关联可以是单向的，也可以是双向的，还可以自身关联。</li>
-<li>用带普通箭头的实心线表示。双向的关联可以有两个箭头或者没有箭头，单向关联有一个箭头，如下图</li>
-</ul>
-<p><img src="/2020/05/10/drawUML/c.jpg" alt="3"></p>
-<p>端点的数字代表数量对应关系</p>
-<p>（2）聚合（Aggregation）</p>
-<ul>
-<li>代表整体与部分的关系，且部分离开整体可以单独存在，如车和轮胎，轮胎离开车仍然存在。聚合关系是关联关系的一种，是一种强关联关系。</li>
-<li>用带空心的菱形的实线表示，菱形指向整体，如下图</li>
-</ul>
-<p><img src="/2020/05/10/drawUML/d.jpg" alt="4"></p>
-<p>（3）组合（Composition）</p>
-<ul>
-<li>代表整体与部分的关系，且部分不能离开整体而单独存在，如鸟和翅膀的关系。组合关系是关联关系的一种，是比聚合关系还要强的一种关系，要求整体对象负责部分对象的生命周期。</li>
-<li>用带实心的菱形的实线表示，菱形指向整体，如下图</li>
-</ul>
-<p><img src="/2020/05/10/drawUML/e.jpg" alt="5"></p>
-<h4 id="4-依赖（Dependency）"><a href="#4-依赖（Dependency）" class="headerlink" title="4. 依赖（Dependency）"></a>4. 依赖（Dependency）</h4><ul>
-<li>类A的变化会影响类B，那么B和A是依赖关系。B依赖A。</li>
-<li>用带箭头的虚线表示，箭头指向被依赖的类，如下图：</li>
-</ul>
-<p><img src="/2020/05/10/drawUML/f.jpg" alt="6"></p>
-<h4 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h4><p>各种关系的强弱顺序为：<br></p>
-<p>泛化=实现&gt;组合&gt;聚合&gt;关联&gt;依赖<br></p>
-<p>下面是一张包含所有关系的UML类图，出自于《大话设计模式》</p>
-<p><img src="/2020/05/10/drawUML/g.jpg" alt="7"></p>
+<h4 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h4><p>Each input file contains one test case. For each case, there is only one line giving a string of no more than 105 characters containing only <code>P</code>, <code>A</code>, or <code>T</code>.</p>
+<h4 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h4><p>For each test case, print in one line the number of <code>PAT</code>‘s contained in the string. Since the result may be a huge number, you only have to output the result moded by 1000000007.</p>
+<h4 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input:"></a>Sample Input:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">APPAPT</span><br></pre></td></tr></table></figure>
+<h4 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+<h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><blockquote>
+<font color="LightCoral">这个题乙级里面有，但是还是不会做，hhhhh，不出十五分钟就看了题解emmmm，题解的思路是定位好A，则这个A前面P的个数*A后面T的个数，就是这个A可以组成的PAT的个数，虽然看完题解知道了，哦原来是这么回事，但是自己写还是不太会写，题解给出的写法是，先计数好T的个数，然后从前往后遍历，遇到T就--，遇到P就++，然后遇到A就相乘，这个题解把它归到了逻辑题里面，可能也是自己想的不够，一般这种思维题都不太会做。我还想到把字符串逆过来，定位T，看后面有多少A和P，然后乘起来，后来想了想不太行，这个题也为我们提供了一种思路，就是三个变量都在变，不如就定位中间那个，看两边，如果都不行，再换另外的试试。</font> 
+
+</blockquote>
+<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> p = <span class="number">0</span>, a = <span class="number">0</span>, t = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">string</span> s;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; s;</span><br><span class="line">	<span class="keyword">int</span> len = s.<span class="built_in">size</span>();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(s[i] == <span class="string">'T'</span>) t++;</span><br><span class="line">	&#125;</span><br><span class="line">	ll ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(s[i] == <span class="string">'P'</span>) p++;</span><br><span class="line">		<span class="keyword">if</span>(s[i] == <span class="string">'T'</span>) t--;</span><br><span class="line">		<span class="keyword">if</span>(s[i] == <span class="string">'A'</span>) ans = (ans + p * t % <span class="number">1000000007</span>) % <span class="number">1000000007</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; ans &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 		
     </div>
@@ -248,11 +206,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">UML</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">软件工程</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">智力题</a>
         		</li>
       		
 		</ul>
@@ -308,7 +266,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/10/drawUML/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/25/1093-Count-PAT-s-25%E5%88%86/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -322,18 +280,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/05/10/Linear-regression-with-one-variable/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          单变量线性回归
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/05/09/1010-Radix-25%E5%88%86/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">1010 Radix (25分)</div>
+    <a href="/2020/05/25/1085-Perfect-Sequence-25%E5%88%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">1085 Perfect Sequence (25分)</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -360,7 +309,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#UML关系"><span class="toc-number">1.</span> <span class="toc-text">UML关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类的简要画法"><span class="toc-number">2.</span> <span class="toc-text">类的简要画法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类之间的几种关系"><span class="toc-number">3.</span> <span class="toc-text">类之间的几种关系</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-泛化（Generalization）"><span class="toc-number">3.1.</span> <span class="toc-text">1.泛化（Generalization）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-实现（Realization）"><span class="toc-number">3.2.</span> <span class="toc-text">2.实现（Realization）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-关联（Association）"><span class="toc-number">3.3.</span> <span class="toc-text">3. 关联（Association）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-依赖（Dependency）"><span class="toc-number">3.4.</span> <span class="toc-text">4. 依赖（Dependency）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-总结"><span class="toc-number">3.5.</span> <span class="toc-text">5. 总结</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Input-Specification"><span class="toc-number">1.</span> <span class="toc-text">Input Specification:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Output-Specification"><span class="toc-number">2.</span> <span class="toc-text">Output Specification:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Input"><span class="toc-number">3.</span> <span class="toc-text">Sample Input:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Output"><span class="toc-number">4.</span> <span class="toc-text">Sample Output:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解题思路"><span class="toc-number">5.</span> <span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AC代码"><span class="toc-number">6.</span> <span class="toc-text">AC代码</span></a></li></ol>
                     </div>
                 </span>
             </div>
