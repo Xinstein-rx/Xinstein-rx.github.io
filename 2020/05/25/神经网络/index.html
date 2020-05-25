@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 机器学习 | Xinsteinのblog</title>
+  <title>神经网络 | Xinsteinのblog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Xinsteinのblog">
-<meta property="og:url" content="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html">
+  <meta name="description" content="基本概念代价函数我目前对于神经网络的理解，就是他是好几个 Logistic 回归符合起来的，然后一层一个 Logistic 回归，输出还可以有多个。 神经网络的代价函数有点复杂，复杂到我不太想写…… 就是这个魔鬼的函数  J(\theta)&#x3D;-\dfrac{1}{m}[\sum_{i&#x3D;1}^{m}\sum_{k&#x3D;1}^{K}y^{(i)}_klog(h_\theta(x^{(i)}))_k+(1-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="神经网络">
+<meta property="og:url" content="http://yoursite.com/2020/05/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/index.html">
 <meta property="og:site_name" content="Xinsteinのblog">
+<meta property="og:description" content="基本概念代价函数我目前对于神经网络的理解，就是他是好几个 Logistic 回归符合起来的，然后一层一个 Logistic 回归，输出还可以有多个。 神经网络的代价函数有点复杂，复杂到我不太想写…… 就是这个魔鬼的函数  J(\theta)&#x3D;-\dfrac{1}{m}[\sum_{i&#x3D;1}^{m}\sum_{k&#x3D;1}^{K}y^{(i)}_klog(h_\theta(x^{(i)}))_k+(1-">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/05/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/14.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/05/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/15.PNG">
+<meta property="article:published_time" content="2020-05-25T06:44:12.000Z">
+<meta property="article:modified_time" content="2020-05-25T07:23:02.890Z">
 <meta property="article:author" content="Xinstein">
+<meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/05/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/14.PNG">
   
     <link rel="alternative" href="/atom.xml" title="Xinsteinのblog" type="application/atom+xml">
   
@@ -156,36 +164,110 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-神经网络" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      神经网络
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="archive-article-date">
+
+        
+        <a href="/2020/05/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="archive-article-date">
   	<time datetime="2020-05-25T06:44:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-25</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">神经网络</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+		
+			
+			<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="代价函数"><a href="#代价函数" class="headerlink" title="代价函数"></a>代价函数</h4><p>我目前对于神经网络的理解，就是他是好几个 Logistic 回归符合起来的，然后一层一个 Logistic 回归，输出还可以有多个。</p>
+<p>神经网络的代价函数有点复杂，复杂到我不太想写…… 就是这个魔鬼的函数</p>
+<script type="math/tex; mode=display">
+J(\theta)=-\dfrac{1}{m}[\sum_{i=1}^{m}\sum_{k=1}^{K}y^{(i)}_klog(h_\theta(x^{(i)}))_k+(1-y^{(i)}_k)log(1-(h_\theta(x^{(i)}))_k)]+\frac{\lambda}{2m}\sum_{l=1}^{L-1}\sum_{i=1}^{s_l}\sum_{j=1}^{s_{l+1}}(\theta^{l}_{ij})^2</script><p>啊好长…….</p>
+<a id="more"></a>
+<h4 id="代价函数-1"><a href="#代价函数-1" class="headerlink" title="代价函数"></a>代价函数</h4><p>我们知道了神经网络的代价函数，就是对所有的输出单元与样本值的代价之和，然后正则项也是对所有参数的惩罚，下面要做的就是对这个代价函数最小化，利用梯度下降算法或者是其他更高级的算法。想要利用梯度下降算法就要使用偏导数，因此就要求偏导数。</p>
+<blockquote>
+<p>对偏导数的求法，就是利用反向传播来做的。反向传播就是把最后一层的误差往前传到前一层，而恰恰就是这个误差的积累，就把偏导数算出来了…… 这非常的amazing，我不能很懂嘤嘤嘤。</p>
+</blockquote>
+<p>这个误差的算法是这样的：</p>
+<p>对于最后一层的误差（假设这个神经网络有四层）：</p>
+<script type="math/tex; mode=display">
+\delta^{(4)}_j=a^{(i)}_j-y_j</script><p>然后对于前一层，将这个误差向前传播得到：</p>
+<script type="math/tex; mode=display">
+\delta^{(3)}=(\theta^{(3)})^T\delta^{(4)}.*g'(z^{(3)})</script><script type="math/tex; mode=display">
+\delta^{(2)}=(\theta^{(2)})^T\delta^{(3)}.*g'(z^{(2)})</script><p>上面的导数项经过推到可以得到</p>
+<script type="math/tex; mode=display">
+g'(z^{(3)})=a^{(3)}.*(1-a^{(3)})</script><p>那么算这些误差有什么用呢， 经过复杂的数学推导，在不是很严谨的情况下，我们可以说</p>
+<script type="math/tex; mode=display">
+\dfrac{\delta}{\delta \theta^{(l)}_{ij}}J(\theta)=a^{(l)}_j\delta^{(l+1)}_i</script><p>这样我们就通过这个误差算出了所有参数的偏导数项，进而就能用梯度下降了。观察下这个式子，就是每一层每个单元的激活值，乘上下一层对应单元的误差值。</p>
+<p>总结一下这个过程：</p>
+<blockquote>
+<p><strong>Definition 1</strong>  反向传播算法</p>
+<p>训练集为$\{(x^{(i)},y^{(i)}),…,(x^{(m)},y^{(m)})\}$</p>
+<p>set $\Delta^{(l)}_{ij}=0~(for~all~l,i,j)$</p>
+<p>For i=1 to m</p>
+<p>set $a^{(1)}=x^{(i)}$</p>
+<p>利用前向传播计算出每一层每一个单元的激活值</p>
+<p>从最后一层开始前向传播计算$\delta^{(l)}_{ij}$的值</p>
+<p>最后累加$\Delta$即：</p>
+<script type="math/tex; mode=display">
+\Delta^{(l)}_{ij}:=\Delta^{(l)}_{ij}+a^{(l)}_j\delta^{(l+1)}_i</script><p>最后得到计算偏导数的方法：</p>
+<script type="math/tex; mode=display">
+\left\{
+           \begin{array}{ll}
+           D^{(l)}_{ij}:=\frac{1}{m}\Delta^{(l)}_{ij}+\lambda\theta^{(l)}_{ij} & \text{if } j \ne 0,\\
+           D^{(l)}_{ij}:=\frac{1}{m}\Delta^{(l)}_{ij} & \text{if } j = 0
+           \end{array} \right.</script><p>这里的$\Delta$是用来计算偏导数的，是一个累计误差值</p>
+<script type="math/tex; mode=display">
+\dfrac{\delta}{\delta \theta^{(l)}_{ij}}J(\theta)=D^{(l)}_{ij}</script></blockquote>
+<h4 id="理解反向传播"><a href="#理解反向传播" class="headerlink" title="理解反向传播"></a>理解反向传播</h4><p>反向传播算法其实就是在想方设法算一个偏导数，最开始我们有一个复杂的公式来前向传播每一个误差项，但是其实有更简单的方法，如下图1</p>
+<div align="center">
+    <img src="/2020/05/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/14.PNG"> <br><br>
+    FIG1. 理解反向传播
+</div>
 
-        <div class="article-info info-on-right">
-          
+<p>从图上来看，计算的每一个单元的 $ \delta^{(l)}_j $项，就是对当前单元激活值求的偏导数（其实不太懂，可能是微积分学的不到位。。。），然后计算这些误差项的步骤不用再是那么麻烦的套用公式了，直接就是后一层误差项的加权和。</p>
+<h4 id="梯度检测"><a href="#梯度检测" class="headerlink" title="梯度检测"></a>梯度检测</h4><p>梯度检测是为了检查我的反向传播算法是不是正确的，因为很多的错误都是因为反向传播引起的。</p>
+<p>概括地来说梯度检测，就是用割线去近似那一点的切线（就是导数的数学定义），然后算出那一点的偏导数，再用反向传播得到的偏导数和计算出的近似偏导数作比较，如果两者近似相等，就说明反向传播算法是正确的，具体计算偏导数的过程如图2</p>
+<div align="center">
+    <img src="/2020/05/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/15.PNG"> <br><br>
+    FIG1. 计算偏导数
+</div>
+
+<blockquote>
+<p>还要注意的一点就是如果证明了反向传播算法是正确的，在进行训练的时候，就要关闭梯度检测的代码，因为梯度检测是个很慢的算法，一直检测的话会导致效率不高。</p>
+<p>写代码的时候一般是把矩阵形式的参数，展开成一个 n 维的向量，包括偏导数也是一个 n 维的向量，便于写代码。<em>ϵ</em> 一般来说，不会取的很小，因为会发生一些数值问题。</p>
+</blockquote>
+<h4 id="随机初始化"><a href="#随机初始化" class="headerlink" title="随机初始化"></a>随机初始化</h4><p>随机初始化的意思就是，把参数的值随机初始化到一个 [- <em>ϵ, ϵ</em>] 的区间里，使得每个参数都很接近 0，但不能所有的参数一开始都初始化为 0，这样会导致神经网络出现对称参数的问题，即所有相关的参数的更新都会以相同的方式，对于每一组参数，计算出的偏导数也相同（不同组不相同），使得网络出现大量冗余。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>网络结构选取时要注意</p>
+<ol>
+<li>一般来讲，只有一个隐藏层的网络是比较常见的</li>
+<li>要是想使用多个隐藏层的网络的话，建议隐藏层节点的数目都是相同的</li>
+<li>隐藏层单元的数目一般来说是越多越好，但是太多的话容易导致网络变慢，隐藏层单元的选择还要和输入匹配，可以和输入的维度相同，也可以是他的两倍，三倍等</li>
+</ol>
+<p>神经网络的一般步骤</p>
+<ol>
+<li>构建一个神经网络，然后初始化权重。通常把权重设置为很小的值，接近于零</li>
+<li>根据前向传播计算$h_\theta(x^{(i)})$</li>
+<li>计算$J(\theta)$</li>
+<li>利用反向传播，计算偏导数$\dfrac{\delta}{\delta \theta^{(l)}_{ij}}J(\theta)$</li>
+<li>进行梯度检测，比较反向传播得到的偏导数值，和数值方法得到的偏导数值，来保证反向传播算法的正确性。检查完之后记得关闭梯度检测。</li>
+<li>利用梯度下降或者是更高级的算法来实现参数的更新</li>
+</ol>
+<blockquote>
+<p>神经网络的代价函数不是一个凸函数，也是就说他会收敛到一个局部最优值，但这并不影响算法的实际效果。</p>
+</blockquote>
+
+		
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -197,179 +279,119 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/25/%E3%80%90%E8%AE%BA%E6%96%87%E7%A0%94%E8%AF%BB%E3%80%91-ImageNet-Classification-with-Deep-Convolutional-Neural-Networks/" class="archive-article-date">
-  	<time datetime="2020-05-25T05:34:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-25</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/25/1093-Count-PAT-s-25%E5%88%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">1093 Count PAT&#39;s (25分)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/25/%E3%80%90%E8%AE%BA%E6%96%87%E7%A0%94%E8%AF%BB%E3%80%91-ImageNet-Classification-with-Deep-Convolutional-Neural-Networks/">【论文研读】-ImageNet Classification with Deep Convolutional Neural Networks</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">论文研读</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机视觉</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本概念"><span class="toc-number">1.</span> <span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#代价函数"><span class="toc-number">1.1.</span> <span class="toc-text">代价函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代价函数-1"><span class="toc-number">1.2.</span> <span class="toc-text">代价函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#理解反向传播"><span class="toc-number">1.3.</span> <span class="toc-text">理解反向传播</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#梯度检测"><span class="toc-number">1.4.</span> <span class="toc-text">梯度检测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#随机初始化"><span class="toc-number">1.5.</span> <span class="toc-text">随机初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-number">1.6.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/%E6%AD%A3%E5%88%99%E5%8C%96/" class="archive-article-date">
-  	<time datetime="2020-05-16T14:07:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/%E6%AD%A3%E5%88%99%E5%8C%96/">正则化</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/" class="archive-article-date">
-  	<time datetime="2020-05-16T13:28:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/">Logistic 回归</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/10/Linear-regression-with-one-variable/" class="archive-article-date">
-  	<time datetime="2020-05-10T15:11:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/10/Linear-regression-with-one-variable/">单变量线性回归</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -392,9 +414,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
