@@ -158,6 +158,82 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-1094-The-Largest-Generation-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/26/1094-The-Largest-Generation-25%E5%88%86/">1094 The Largest Generation (25分)</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/26/1094-The-Largest-Generation-25%E5%88%86/" class="archive-article-date">
+  	<time datetime="2020-05-26T07:48:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+		
+			<p>A family hierarchy is usually presented by a pedigree tree where all the nodes on the same level belong to the same generation. Your task is to find the generation with the largest population.</p>
+<h4 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h4><p>Each input file contains one test case. Each case starts with two positive integers <em>N</em> (&lt;100) which is the total number of family members in the tree (and hence assume that all the members are numbered from 01 to <em>N</em>), and <em>M</em> (&lt;<em>N</em>) which is the number of family members who have children. Then <em>M</em> lines follow, each contains the information of a family member in the following format:</p>
+			
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">树</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">dfs</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-神经网络" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -393,11 +469,50 @@ J(\theta)=-\dfrac{1}{m}[\sum_{i=1}^{m}\sum_{k=1}^{K}y^{(i)}_klog(h_\theta(x^{(i)
     <div class="article-entry" itemprop="articleBody">
 		
 			
-			<h4 id="使用深度卷积神经网络对ImageNet图像分类"><a href="#使用深度卷积神经网络对ImageNet图像分类" class="headerlink" title="使用深度卷积神经网络对ImageNet图像分类"></a>使用深度卷积神经网络对ImageNet图像分类</h4><h4 id="AlexNet"><a href="#AlexNet" class="headerlink" title="AlexNet"></a>AlexNet</h4><ul>
+			<h2 id="使用深度卷积神经网络对ImageNet图像分类"><a href="#使用深度卷积神经网络对ImageNet图像分类" class="headerlink" title="使用深度卷积神经网络对ImageNet图像分类"></a>使用深度卷积神经网络对ImageNet图像分类</h2><h3 id="AlexNet"><a href="#AlexNet" class="headerlink" title="AlexNet"></a>AlexNet</h3><ul>
 <li>2012年ImageNet图像分类竟赛冠军</li>
 <li>首次将卷积神经网络CNN和深度学习DL用于大规模图像分类并且性能优异</li>
 </ul>
 <p>AlexNet之后的视觉模型，不管是图像分类、目标检测还是语义分割，都是在AlexNet的基础上，使用深度卷积神经网络提取图像深层特征。</p>
+<h3 id="abstract"><a href="#abstract" class="headerlink" title="abstract"></a>abstract</h3><h3 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h3><p>目前的图像识别方法都是基于传统的机器学习的，在小规模的数据集上，可以有很好的性能，但是到了现实世界中，机器学习的表现就不那么好了。因此，需要更大规模的数据集。卷积神经网络以其拥有的局部连接、权值共享、逐层堆叠、下采样、卷积核，和我们真实处理视觉的流程是比较类似的，局部连接和权值共享保留了相邻像素依赖性。因此卷积神经网络比较适合解决计算机视觉问题。</p>
+<p>当前的硬件能力已经实现了高度优化的二维卷积，以及足够庞大的ImageNet数据集，可以防止过拟合问题。</p>
+<h3 id="2-The-Dataset"><a href="#2-The-Dataset" class="headerlink" title="2 The Dataset"></a>2 The Dataset</h3><p>​    ImageNet是一个庞大的数据集，拥有1500万张标注好的高分辨率的图片，被分成了22000各类别。数据集是从网络上收集并进行人工标注的。在ImageNet中有两个评估模型的指标，top-1和top-5。top-1是网络预测最高的结果，就是正确标签的结果；top-5是网络预测率最高的前五个标签的结果，top-5看起来比较科学。</p>
+<p>ImageNet中图片的大小和分辨率都是不同的，单数卷积神经网络需要固定大小的图片，因此对图片进行下采样，将图片大小全部转换为256*256的正方形图片。方法是，将图片的短边重新rescaled到256像素，然后在图片中剪出一个patch。然后进行预处理，每个像素减去对应维度的统计平均值，即中心化处理。（一开始没有明白这里，从网上查了一下，这样做的原因是消除图片中的公共部分，凸显个体之间的特征和差异，即把图片中最有特征的东西保留下来，减少对噪声的敏感性）。</p>
+<h3 id="3-The-Architecture"><a href="#3-The-Architecture" class="headerlink" title="3 The Architecture"></a>3 The Architecture</h3><p>五个卷积层，三个全连接层。如图1</p>
+<div align="center">
+    <img src="/2020/05/25/%E3%80%90%E8%AE%BA%E6%96%87%E7%A0%94%E8%AF%BB%E3%80%91-ImageNet-Classification-with-Deep-Convolutional-Neural-Networks/1.PNG"> <br><br>
+    Fig1. AlexNet架构
+</div>
+
+<p>值得注意的地方是，上述图片中输入图片的大小224 x 224应该是227 x 227。图片之所以画成两部分，是因为以当时的计算水平，还无法在一GPU上进行训练，因此将网络分到了两个GPU上进行训练，GPU之间互相的进行信息传递。</p>
+<h4 id="ReLU-Nonlinearity"><a href="#ReLU-Nonlinearity" class="headerlink" title="ReLU Nonlinearity"></a>ReLU Nonlinearity</h4><p>AlexNet一个人创新的地方就是用了ReLU（修正线性单元）非线性激活函数。常用的sigmoid和tanh激活函数都有一个饱和问题，就是当输入很大或是很小的时候，经过激活函数得到的值，差别就会很小，这就可能会造成梯度消失问题。因此这两个激活函数，对于训练超大型的网络会有些困难。ReLU激活函数为ReLU(x) = max(0,x)，不存在饱和问题，因此在训练的时候就避免的梯度下降问题</p>
+<div align="center">
+    <img src="/2020/05/25/%E3%80%90%E8%AE%BA%E6%96%87%E7%A0%94%E8%AF%BB%E3%80%91-ImageNet-Classification-with-Deep-Convolutional-Neural-Networks/4.PNG"> <br><br>
+    Fig2. 4层CNN在CIFAR-10上训练收敛至训练误差为0.25时ReLU比tanh快6倍
+</div>
+
+<script type="math/tex; mode=display">
+ReLU(x)=max(0,x)</script><script type="math/tex; mode=display">
+tanh(x)=\dfrac{e^x-e^{-x}}{e^x+e^{-x}}</script><p>ReLU激活函数不仅可以防止过拟合，还可以加速训练。前人也曾使用$f(x)=|tanh(x)|$作为激活函数，并且在caltheh-101数据集上取得了不错的效果，但是由于ImageNet数据集很大，所以对速度要求就比较高。</p>
+<h4 id="3-2-Training-on-Multiple-GPUs"><a href="#3-2-Training-on-Multiple-GPUs" class="headerlink" title="3.2 Training on Multiple GPUs"></a>3.2 Training on Multiple GPUs</h4><p>两个GPU并行计算。由于当时的技术限制，每个显存只有3GB，对于训练如此大型的神经网络来说是不够的，因此将网络分配到两个GPU上，进行并行计算，GPU之间可以进行信息交流而不需要通过内存。分配的策略是，将一半的神经元分配到GPU中，有的层进行GPU之间的通信，有的层不需要进行信息的交互（如图1）。</p>
+<p>这样的并行计算分别把top-1和top-5的错误率降低了1.7%和1.2%。双CPU（全参数）比单GPU（半参数）训练时间更短。</p>
+<p>单GPU并不是将网络砍一半，因为我们要保证，最后一个卷积层和全连接层的参数数量与双GPU（全参数）相同，因此“半参数”并非真的只有一半的参数。</p>
+<h4 id="3-3-Local-Response-Normalization"><a href="#3-3-Local-Response-Normalization" class="headerlink" title="3.3 Local Response Normalization"></a>3.3 Local Response Normalization</h4><p>LRN局部对比度归一化：ReLU激活函数之后进行。它的作用时在同一个像素位置，防止很多的高激活。如果一个像素出现了高激活，他会对周围的像素进行抑制（类似于顶端优势），抑制他们的激活。</p>
+<p>对于其他的激活函数要进行normalize来避免输入信号达到饱和（其实就是防止过拟合），而ReLU不需要。ReLU神经元的值如果不是0，就可以进行学习，是0的话，就不能进行学习。但是我们发现，仍然可以用局部响应归一化帮助模型泛化，泛化的意思就是防止过拟合。LRN函数为</p>
+<div align="center">
+    <img src="/2020/05/25/%E3%80%90%E8%AE%BA%E6%96%87%E7%A0%94%E8%AF%BB%E3%80%91-ImageNet-Classification-with-Deep-Convolutional-Neural-Networks/5.PNG">
+</div>
+
+<p>直观的理解这个公式是，当前像素的值当作分子，在不同channel相同位置前后几个像素的平方和作为分母，也就是把周围邻近的几个channel考虑进来，起到了侧向抑制的作用。k是为了防止分母为0，n是邻近的通道数，$\alpha \beta$是常数，$a^i_{x,y}$是feature map上(x,y)的值，N是本层channel的数量。$(k,\alpha,\beta,n)=(0,1,1,N)$→普通的沿所有通道归一化；$(k,\alpha,\beta,n)=(2,10^{-4},0.75,5)$→AlexNet 。我们在某些层的ReLU之后使用了LRN局部响应归一化。</p>
+<p>其实在VGG的论文中，做了一个对比实验，证明了这个LRN层其实并没有什么实质的作用。在AlexNex论文中加入LRN层是会降低模型错误率的，但是现在基本不使用这个方法了。</p>
+<h4 id="3-4-Overlapping-Pooling"><a href="#3-4-Overlapping-Pooling" class="headerlink" title="3.4 Overlapping Pooling"></a>3.4 Overlapping Pooling</h4><p>重叠池化：池化步长小于池化窗口。一般来说，普通的池化是不进行重叠的。在论文中采用stride=2，size = 3的池化方法，将top-1和top-5的错误率降低了0.4%和0.3%。论文中也说这个方法其实也起到了正则化，防止过拟合的作用。但其实现在重叠池化这个操作也已经不再被使用了。</p>
+<h4 id="3-5-Overall-Architecture"><a href="#3-5-Overall-Architecture" class="headerlink" title="3.5 Overall Architecture"></a>3.5 Overall Architecture</h4><p>AlexNet的整体结构如图1。网络的目的是最大化一个多分类逻辑回归（softmax回归），其实就是最小化交叉熵损失函数，等效于最大化对数似然概率。我们要让所有的模型都被预测正确的概率乘积最大化，取个对数就是把和最大化，加上一个负号就是极大似然估计推出的交叉熵损失函数。 </p>
+<p>网络的2，4，5层是GPU间没有交互的，第3层是两个GPU可以互相通信的，全连接层也是可以互相通信的。第1，2层在ReLU之后使用了LRN局部相应归一化，在1，2，5层使用了最大池化，ReLU是每一层都用到的。</p>
+<p>原始图像大小为227 x 227.第一层卷积层是96个11 x 11 x 3的卷积核，步长为4；第二层卷积层是256个5 x 5 x 48 的卷积核；第三层卷积层是384个3 x 3 x 256的卷积核；第四层卷积层是384个3 x 3 x 192的卷积核；第五层卷积层是256个3 x 3 x 192的卷积核；全连接层每层4096个神经元。</p>
+<h3 id="Reducing-Overfitting"><a href="#Reducing-Overfitting" class="headerlink" title="Reducing Overfitting"></a>Reducing Overfitting</h3><p>网络有60万个参数，因此会容易出现过拟合的现象。</p>
+<h4 id="4-1-Data-Augmentation"><a href="#4-1-Data-Augmentation" class="headerlink" title="4.1 Data Augmentation"></a>4.1 Data Augmentation</h4><p>数据增强，人为扩充数据集。</p>
+<p>平移翻转：利用Python代码就可以在处理当前图片的时候，下一张扩充的图片已经准备好，不需要将图片存储在硬盘上，因此数据增强不会引起额外的时间开销。利用平移和水平翻转的方法我们可以将一张图片增加到2048（32 x 32 x 2)张图片，主要方法是，在一张256 x 256的图片上裁剪出许多224 * 224 的小patch，水平方向可以裁剪出32张图片，竖直方向也可以裁剪出32张图片，每个小patch又可以进行翻转。对于测试集，只需要裁剪出5个224 x 224 的patch就可以，然后每个patch还可以翻转一下，将这10个图片喂到网络里，得到10个结果，对10个结果进行融合得到最终的对这张图片的分类结果。</p>
+<p>颜色变换：利用主成分分析法（PCA）对图片进行颜色变换，对每一张图片，按照一定的方向，进行随机的颜色光度的变换，其实可以直接对原图进行光度变换，但是为了更接近自然，采取了主成分分析法，沿着主成分的方向，进行光度变换，是数据集更加贴近于自然图像。经过这样的训练，模型可以足够的鲁棒，对于不同光照的图片提取的更多是图片的语义信息，而不是空间信息。</p>
 
 		
     </div>
@@ -808,78 +923,6 @@ J(\theta)=-\dfrac{1}{m}[\sum_{i=1}^{m}\sum_{k=1}^{K}y^{(i)}_klog(h_\theta(x^{(i)
 
 
   
-    <article id="post-1063-Set-Similarity-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/19/1063-Set-Similarity-25%E5%88%86/">1063 Set Similarity (25分)</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/19/1063-Set-Similarity-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-19T06:27:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-		
-			<p>Given two sets of integers, the similarity of the sets is defined to be <em>N<sub>c</sub></em>/<em>N<sub>t</sub></em>×100%, where <em>N<sub>c</sub></em>is the number of distinct common numbers shared by the two sets, and <em>N<sub>t</sub></em> is the total number of distinct numbers in the two sets. Your job is to calculate the similarity of any given pair of sets.</p>
-<h4 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h4>
-			
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">集合</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1055,6 +1098,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">智力题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">dfs</a>
               </li>
             
             <div class="clearfix"></div>
