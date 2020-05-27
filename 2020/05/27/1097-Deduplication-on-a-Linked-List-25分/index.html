@@ -6,14 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020 | Xinsteinのblog</title>
+  <title>1097 Deduplication on a Linked List (25分) | Xinsteinのblog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Xinsteinのblog">
-<meta property="og:url" content="http://yoursite.com/archives/2020/page/2/index.html">
+  <meta name="description" content="Given a singly linked list L with integer keys, you are supposed to remove the nodes with duplicated absolute values of the keys. That is, for each value K, only the first node of which the value or a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1097 Deduplication on a Linked List (25分)">
+<meta property="og:url" content="http://yoursite.com/2020/05/27/1097-Deduplication-on-a-Linked-List-25%E5%88%86/index.html">
 <meta property="og:site_name" content="Xinsteinのblog">
+<meta property="og:description" content="Given a singly linked list L with integer keys, you are supposed to remove the nodes with duplicated absolute values of the keys. That is, for each value K, only the first node of which the value or a">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-27T00:29:29.000Z">
+<meta property="article:modified_time" content="2020-05-27T00:33:30.076Z">
 <meta property="article:author" content="Xinstein">
+<meta property="article:tag" content="PAT-Advanced">
+<meta property="article:tag" content="链表">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Xinsteinのblog" type="application/atom+xml">
@@ -156,78 +162,47 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-1097-Deduplication-on-a-Linked-List-25分" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/23/1055-The-World-s-Richest-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-23T06:32:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-23</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/23/1055-The-World-s-Richest-25%E5%88%86/">1055 The World&#39;s Richest (25分)</a>
+    <h1 class="article-title" itemprop="name">
+      1097 Deduplication on a Linked List (25分)
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/19/1074-Reversing-Linked-List-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-19T06:34:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
+        
+        <a href="/2020/05/27/1097-Deduplication-on-a-Linked-List-25%E5%88%86/" class="archive-article-date">
+  	<time datetime="2020-05-27T00:29:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-27</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/19/1074-Reversing-Linked-List-25%E5%88%86/">1074 Reversing Linked List (25分)</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+		
+			
+			<p>Given a singly linked list <em>L</em> with integer keys, you are supposed to remove the nodes with duplicated absolute values of the keys. That is, for each value <em>K</em>, only the first node of which the value or absolute value of its key equals <em>K</em> will be kept. At the mean time, all the removed nodes must be kept in a separate list. For example, given <em>L</em> being 21→-15→-15→-7→15, you must output 21→-15→-7, and the removed list -15→15.</p>
+<a id="more"></a>
+<h4 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h4><p>Each input file contains one test case. For each case, the first line contains the address of the first node, and a positive <em>N</em> (≤10<sup>5</sup>) which is the total number of nodes. The address of a node is a 5-digit nonnegative integer, and NULL is represented by −1.</p>
+<p>Then <em>N</em> lines follow, each describes a node in the format:</p>
+<p><code>Address Key Next</code></p>
+<p>where <code>Address</code> is the position of the node, <code>Key</code> is an integer of which absolute value is no more than 104, and <code>Next</code> is the position of the next node.</p>
+<h4 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h4><p>For each case, output the resulting linked list first, then the removed list. Each node occupies a line, and is printed in the same format as in the input.</p>
+<h4 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input:"></a>Sample Input:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">00100 5</span><br><span class="line">99999 -7 87654</span><br><span class="line">23854 -15 00000</span><br><span class="line">87654 15 -1</span><br><span class="line">00000 -15 99999</span><br><span class="line">00100 21 23854</span><br></pre></td></tr></table></figure>
+<h4 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">00100 21 23854</span><br><span class="line">23854 -15 99999</span><br><span class="line">99999 -7 -1</span><br><span class="line">00000 -15 87654</span><br><span class="line">87654 15 -1</span><br></pre></td></tr></table></figure>
+<h4 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h4><blockquote>
+<font color="LIghtCoral">这个题是自己一遍过的哦~，用了map因为没有看到题目中已经告诉data的值最大是10^4，所以用的map，其实用个数组标记也行，我是定义了两个向量，题解是在结构体中多加了一个num，用来记录当前节点是第几个不去重的节点，或者是第几个要去重的节点，两个变量cnt1， cnt2，不去掉的节点num = cnt1，cnt1++， 要去掉的链表num = maxn + cnt2，cnt2++，最后根据num排序，前这样就保证了前面cnt1个是不去掉的，从cnt1 + 1个到cnt1 + cnt2个是要去掉的。其中也是用了个数组来标记是否要去掉。</font>
 
-        <div class="article-info info-on-right">
-          
+</blockquote>
+<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> id, data, next;</span><br><span class="line">&#125;no[<span class="number">100001</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n, head, id;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; head &gt;&gt; n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;id);</span><br><span class="line">		no[id].id = id;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;no[id].data, &amp;no[id].next);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">vector</span>&lt;node&gt; v,v1, v2;</span><br><span class="line">	<span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; mp;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = head; i != <span class="number">-1</span>; i = no[i].next)&#123;</span><br><span class="line">		v.push_back(no[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(mp[<span class="built_in">abs</span>(v[i].data)] == <span class="number">0</span>)&#123;</span><br><span class="line">			v1.push_back(v[i]);</span><br><span class="line">			mp[<span class="built_in">abs</span>(v[i].data)] = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> v2.push_back(v[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(v1.<span class="built_in">size</span>() != <span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v1.<span class="built_in">size</span>() - <span class="number">1</span>; i++)&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%05d %d %05d\n"</span>, v1[i].id, v1[i].data, v1[i + <span class="number">1</span>].id);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%05d %d -1\n"</span>, v1[v1.<span class="built_in">size</span>() - <span class="number">1</span>].id, v1[v1.<span class="built_in">size</span>() - <span class="number">1</span>].data);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(v2.<span class="built_in">size</span>() != <span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v2.<span class="built_in">size</span>() - <span class="number">1</span>; i++)&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%05d %d %05d\n"</span>, v2[i].id, v2[i].data, v2[i + <span class="number">1</span>].id);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%05d %d -1\n"</span>, v2[v2.<span class="built_in">size</span>() - <span class="number">1</span>].id, v2[v2.<span class="built_in">size</span>() - <span class="number">1</span>].data);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+		
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -243,342 +218,118 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/27/1097-Deduplication-on-a-Linked-List-25%E5%88%86/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/19/1063-Set-Similarity-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-19T06:27:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/27/1004-Counting-Leaves-30%E5%88%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">1004 Counting Leaves (30分)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/19/1063-Set-Similarity-25%E5%88%86/">1063 Set Similarity (25分)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">集合</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Input-Specification"><span class="toc-number">1.</span> <span class="toc-text">Input Specification:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Output-Specification"><span class="toc-number">2.</span> <span class="toc-text">Output Specification:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Input"><span class="toc-number">3.</span> <span class="toc-text">Sample Input:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Output"><span class="toc-number">4.</span> <span class="toc-text">Sample Output:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路分析"><span class="toc-number">5.</span> <span class="toc-text">思路分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AC代码"><span class="toc-number">6.</span> <span class="toc-text">AC代码</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/%E6%AD%A3%E5%88%99%E5%8C%96/" class="archive-article-date">
-  	<time datetime="2020-05-16T14:07:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/%E6%AD%A3%E5%88%99%E5%8C%96/">正则化</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/" class="archive-article-date">
-  	<time datetime="2020-05-16T13:28:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/">Logistic 回归</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/1062-Talent-and-Virtue-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-16T06:21:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/1062-Talent-and-Virtue-25%E5%88%86/">1062 Talent and Virtue (25分)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/1040-Longest-Symmetric-String-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-16T06:16:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/1040-Longest-Symmetric-String-25%E5%88%86/">1040 Longest Symmetric String (25分)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/1052-Linked-List-Sorting-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-16T04:22:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/1052-Linked-List-Sorting-25%E5%88%86/">1052 Linked List Sorting (25分)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">链表</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/1048-Find-Coins-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-16T04:13:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/1048-Find-Coins-25%E5%88%86/">1048 Find Coins (25分)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/14/1047-Student-List-for-Course-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-14T02:55:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/14/1047-Student-List-for-Course-25%E5%88%86/">1047 Student List for Course (25分)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2020/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2020/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2020/page/3/">3</a><a class="page-number" href="/archives/2020/page/4/">4</a><a class="extend next" rel="next" href="/archives/2020/page/3/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -602,8 +353,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
