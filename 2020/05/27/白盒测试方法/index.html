@@ -8,18 +8,22 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>白盒测试方法 | Xinsteinのblog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="语句覆盖使程序中的每个可执行语句至少被执行一次。           Fig1. 语句覆盖  图1中的P1路径就把所有的语句都执行到了。  #### 判定覆盖  使程序中的每个判断分支真价值都可以取到。判定覆盖也称为分支覆盖。  #### 条件覆盖  使每个判断中每个条件都取过一遍真或者假。满足条件覆盖，不一定满足分支覆盖。  #### 判定条件覆盖  使判定覆盖和条件覆盖的组合，不仅每个分支都取">
+  <meta name="description" content="语句覆盖使程序中的每个可执行语句至少被执行一次。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="白盒测试方法">
 <meta property="og:url" content="http://yoursite.com/2020/05/27/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="Xinsteinのblog">
-<meta property="og:description" content="语句覆盖使程序中的每个可执行语句至少被执行一次。           Fig1. 语句覆盖  图1中的P1路径就把所有的语句都执行到了。  #### 判定覆盖  使程序中的每个判断分支真价值都可以取到。判定覆盖也称为分支覆盖。  #### 条件覆盖  使每个判断中每个条件都取过一遍真或者假。满足条件覆盖，不一定满足分支覆盖。  #### 判定条件覆盖  使判定覆盖和条件覆盖的组合，不仅每个分支都取">
+<meta property="og:description" content="语句覆盖使程序中的每个可执行语句至少被执行一次。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/2020/05/27/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/1.PNG">
 <meta property="og:image" content="http://yoursite.com/2020/05/27/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/2.PNG">
 <meta property="og:image" content="http://yoursite.com/2020/05/27/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/3.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/05/27/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/4.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/05/27/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/6.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/05/27/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/7.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/05/27/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/5.PNG">
 <meta property="article:published_time" content="2020-05-27T11:37:42.000Z">
-<meta property="article:modified_time" content="2020-05-27T13:47:27.773Z">
+<meta property="article:modified_time" content="2020-05-28T03:53:30.736Z">
 <meta property="article:author" content="Xinstein">
 <meta property="article:tag" content="白盒测试">
 <meta name="twitter:card" content="summary">
@@ -187,6 +191,7 @@
 		
 			
 			<h4 id="语句覆盖"><a href="#语句覆盖" class="headerlink" title="语句覆盖"></a>语句覆盖</h4><p>使程序中的每个可执行语句至少被执行一次。</p>
+<a id="more"></a>
 <div align="center">
     <img src="/2020/05/27/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/1.PNG"><br><br>
     Fig1. 语句覆盖
@@ -219,7 +224,45 @@
 
 <p>注意的是，条件组合覆盖并不是所有条件可能的排列组合，而是小分支中条件的排列组合，然后把他们拼接起来就好了，每个分支都是独立的。</p>
 <p>虽然上述已经考虑了很多的情况，但是还是没有满足所有的路径都走到。</p>
-<h4 id="基本路径覆盖"><a href="#基本路径覆盖" class="headerlink" title="基本路径覆盖"></a>基本路径覆盖</h4>
+<h4 id="路径覆盖"><a href="#路径覆盖" class="headerlink" title="路径覆盖"></a>路径覆盖</h4><p>设计的测试用例覆盖程序中所有可能的执行路径。</p>
+<h4 id="流图"><a href="#流图" class="headerlink" title="流图"></a>流图</h4><div align="center">
+    <img src="/2020/05/27/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/4.PNG"><br><br>
+    Fig4. 流图
+</div>
+
+<h4 id="流图中的复杂情况"><a href="#流图中的复杂情况" class="headerlink" title="流图中的复杂情况"></a>流图中的复杂情况</h4><p>若一个分支节点是符合条件的组合，流图可能会比较复杂，比如短路与判定：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(a &gt; <span class="number">0</span> &amp;&amp; b &gt; <span class="number">0</span>)&#123;</span><br><span class="line">	c = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> c = <span class="number">1</span>;</span><br><span class="line">d = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>上述代码的流图为：</p>
+<div align="center">
+    <img src="/2020/05/27/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/6.PNG"><br><br>
+    Fig5. 短路与
+</div>
+
+
+<p>短路或：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if(a &gt; 0 || b &gt; 0)&#123;</span><br><span class="line">	c &#x3D; 0;</span><br><span class="line">&#125;</span><br><span class="line">else c &#x3D; 1;</span><br><span class="line">d &#x3D; 1;</span><br></pre></td></tr></table></figure>
+<p>上述代码的流图为：</p>
+<div align="center">
+    <img src="/2020/05/27/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/7.PNG"><br><br>
+    Fig6. 短路或
+</div>
+
+
+
+<h4 id="独立路径"><a href="#独立路径" class="headerlink" title="独立路径"></a>独立路径</h4><p>程序中至少引进一个新的处理语句集合或者一个新条件的任一路径。采用流图的术语即，独立路径必须至少包含一条在定义路径之前未被用到的边。</p>
+<h4 id="基本路径"><a href="#基本路径" class="headerlink" title="基本路径"></a>基本路径</h4><p>两条路径不能走完全重复的分支，且所有的路径包含了可能的分支即可。基本路径数量，一般小于路径数量。</p>
+<p>找基本路径的方法可以利用翻转法，遇到分支节点，先走左路径，下一次的时候在这个地方翻转，走右路径。</p>
+<h4 id="圈复杂度"><a href="#圈复杂度" class="headerlink" title="圈复杂度"></a>圈复杂度</h4><p>卷复杂度的值就是程序基本集的独立路径的数量。</p>
+<p>计算圈复杂度的方法：</p>
+<ul>
+<li>流图中区域的数量（不要忘了开放区域）</li>
+<li>判定节点数+1</li>
+<li>流图中边的数量-节点数量+2</li>
+</ul>
+<div align="center">
+    <img src="/2020/05/27/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/5.PNG"><br><br>
+    Fig7. 导出测试用例的步骤
+</div>
 		
     </div>
     <div class="article-info article-info-index">
@@ -329,7 +372,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#语句覆盖"><span class="toc-number">1.</span> <span class="toc-text">语句覆盖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#条件组合测试"><span class="toc-number">2.</span> <span class="toc-text">条件组合测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基本路径覆盖"><span class="toc-number">3.</span> <span class="toc-text">基本路径覆盖</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#语句覆盖"><span class="toc-number">1.</span> <span class="toc-text">语句覆盖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#条件组合测试"><span class="toc-number">2.</span> <span class="toc-text">条件组合测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#路径覆盖"><span class="toc-number">3.</span> <span class="toc-text">路径覆盖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#流图"><span class="toc-number">4.</span> <span class="toc-text">流图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#流图中的复杂情况"><span class="toc-number">5.</span> <span class="toc-text">流图中的复杂情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#独立路径"><span class="toc-number">6.</span> <span class="toc-text">独立路径</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基本路径"><span class="toc-number">7.</span> <span class="toc-text">基本路径</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#圈复杂度"><span class="toc-number">8.</span> <span class="toc-text">圈复杂度</span></a></li></ol>
                     </div>
                 </span>
             </div>
