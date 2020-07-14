@@ -17,8 +17,26 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/16.PNG">
 <meta property="og:image" content="http://yoursite.com/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/17.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/18.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/19.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/20.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/21.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/22.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/23.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/24.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/25.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/26.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/27.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/28.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/29.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/30.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/31.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/32.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/33.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/34.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/35.PNG">
 <meta property="article:published_time" content="2020-06-01T07:34:57.000Z">
-<meta property="article:modified_time" content="2020-06-01T08:10:55.508Z">
+<meta property="article:modified_time" content="2020-07-14T05:47:57.994Z">
 <meta property="article:author" content="Xinstein">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
@@ -224,7 +242,140 @@
 <li>再将最后的结果输入到一个激活函数Relu函数$output=Relu(z^{[l]})$</li>
 <li>将最后得到的三维矩阵展开成一个向量，再做Logistic回归或者是softmax回归</li>
 </ol>
+<blockquote>
+<p>通过这种设置过滤器的方法，使得参数只是由过滤器决定，而不再由图片的大小决定，就避免了图片大，参数多，而过拟合的现象。</p>
+<p>将最后卷积网络输出的结果，即一个三维的矩阵，展开成一个向量，这些数字就是提取的特征，将这些特征输入到一个 Logistic 回归或者是 softmax 回归中，就可以做分类了。Logistic 回归是做二元分类，softmax 回归是做多元分类。</p>
+</blockquote>
+<h4 id="池化层"><a href="#池化层" class="headerlink" title="池化层"></a>池化层</h4><p>运用池化层的目的是，缩减模型大小，提高计算速度，提高所取特征的鲁棒性。池化分为两种，最大池化和平均池化。最大池化的意思是只要我在某个象限（也可以说是某个区域），发现了具有这个特征（每一个参数都代表一个特征，数字大就说明这个特征明显），就保留他的最大值，缩小模型，这个方法非常的有效，尽管可能不是很理解为什么这个样子，就可以做到高效。平均池化顾名思义，就是求每一个区域的平均值。下面是一个平均池化的例子（图3）</p>
+<div align="center">
+    <img src="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/18.PNG"><br><br>
+    Fig3. 平均池化
+</div>
 
+<p>池化过程和卷积过程是类似的，那最大池化来说，也是选择一个过滤器和图片做卷积，只不过不再需要线性相乘再相加，直接找出最大值就好，因此它不需要去学习什么参数。立体卷积的化，就每一个 channel 做池化运算，最后得出的结果也是立体的矩阵。</p>
+<p>一般来说，池化的参数 filter 的大小是 2*2，步长 stride 是 2，这是最常用的。</p>
+<h4 id="卷积网络案例"><a href="#卷积网络案例" class="headerlink" title="卷积网络案例"></a>卷积网络案例</h4><blockquote>
+<p>一般的卷积网络架构是这样的，<em>Conv</em>1 <em>→</em> <em>P ool</em> <em>→</em> <em>Conv</em>2 <em>→</em> <em>P ool</em> <em>→</em> <em>F C</em> <em>→</em> <em>F c</em> <em>→</em> <em>F C</em> <em>→</em> <em>sof tM ax</em></p>
+</blockquote>
+<p>具体过程图4所示</p>
+<div align="center">
+    <img src="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/19.PNG"><br><br>
+    Fig4. 卷积神经网络示例
+</div>
+
+<p>一般来讲，这些池化参数的确定最好不要自己设置，而是阅读大量文献，看看那些成功的案例都是怎么设置参数的，也可以直接把里面的参数应用到自己的案例当中。</p>
+<h4 id="为什么使用卷积"><a href="#为什么使用卷积" class="headerlink" title="为什么使用卷积"></a>为什么使用卷积</h4><p>和只用全连接相比，卷积可以做到参数共享和稀疏连接</p>
+<blockquote>
+<p>参数共享：参数共享的意思就是，将一个过滤器应用在图片的某个地方，可以很好的提取特征，同样的，在图片的其他地方，应用这个过滤器中的参数，同样可以做到提取特征，不需要设置新的参数。</p>
+<p>稀疏连接：卷积之后得到的矩阵中的每一个数字，只与原来图片中的某些像素连接，而不是和所有像素全连接。</p>
+</blockquote>
+<div align="center">
+    <img src="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/20.PNG"><br><br>
+    Fig5. 参数共享和稀疏连接
+</div>
+
+<p>通过这些办法，就可以减少参数的数量，一是加快了计算速度，二是避免了过拟合问题。</p>
+<h3 id="经典卷积神经网络"><a href="#经典卷积神经网络" class="headerlink" title="经典卷积神经网络"></a>经典卷积神经网络</h3><h4 id="LeNet-5-网络"><a href="#LeNet-5-网络" class="headerlink" title="LeNet-5 网络"></a><strong>LeNet-5</strong> 网络</h4><p>LeNet-5 网络主要用来处理灰度图像。这种网络的大致思想仍然被现在科学家们所使用，就是一个或多个卷积层后面跟着一个池化层，再跟着一个或多个卷积层，然后再跟着一个池化层，最后是全连接层。网络结构如图6，注意过滤器大小和步长的选取。</p>
+<div align="center">
+    <img src="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/21.PNG"><br><br>
+    Fig6. LeNet-5 网络
+</div>
+
+<h4 id="AlexNet"><a href="#AlexNet" class="headerlink" title="AlexNet"></a><strong>AlexNet</strong></h4><p>AlexNet 网络与 LeNet-5 网络相比，AlexNet 网络更加复杂，但是应用了 Relu激活函数 LeNet-5 用的激活函数是 sigmoid 函数。AlexNet 网络如图7</p>
+<div align="center">
+    <img src="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/22.PNG"><br><br>
+    Fig7. AlexNet 网络
+</div>
+
+<h4 id="VGG-16"><a href="#VGG-16" class="headerlink" title="VGG-16"></a><strong>VGG-16</strong></h4><p>这是一种只需要专注于构建卷积层的简单网络，16 这个数字指的是在这个网络包含 16个卷积层和全连接层。这是一个很大的网络，总共包含约 1.38 亿个参数。但是网络并不复杂，而且比较规整，都是几个卷积层后面跟着可以压缩图像的池化层。同时，卷积层过滤器数量存在着一定的规律性，具体结构如图8</p>
+<p>上述图片并没有把所有的卷积层都画出来，对于那些操作相同的网路就合并了。    </p>
+<div align="center">
+    <img src="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/23.PNG"><br><br>
+    Fig8. VGG-16 网络
+</div>
+
+<h3 id="残差网络"><a href="#残差网络" class="headerlink" title="残差网络"></a>残差网络</h3><p>一般来说，如果是网络的层数太多，就会存在梯度消失和梯度爆炸的问题。</p>
+<blockquote>
+<p><strong>Definition 11.1</strong> <em>skip connection/short cut</em>: 将某一层的激活值，迅速传递到更深的层中去。通过这种方法，就可以建立 ResNet 训练更深的网络。</p>
+<p>skip connection 的一个直观理解，就是尽量避免因为神经网络层数过多，而产生一种损失原信息的效应，通过这种把原信息往后传播的方法，可以尽量弥补在进行线性或者非线性变化过程中，损失的特征信息，从而可以训练更深的网络。ResNet 网络的构建方法就是把许多残差块堆积在一起，形成一个深度神经网络。</p>
+</blockquote>
+<div align="center">
+    <img src="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/24.PNG"><br><br>
+    Fig9. 残差块
+</div>
+
+<div align="center">
+    <img src="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/25.PNG"><br><br>
+    Fig10. ResNet
+</div>
+
+<p>理论上说，网络的层数越深，错误应该越少，但是在实际的应用中，随着网络层数的加深，错误先减少后增加，这是在没有 skip connection 的情况下，有了 skip connection 无论网络的层数有多少，效果都是不错的。两种方式见图11和图12</p>
+<div align="center">
+    <img src="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/26.PNG"><br><br>
+    Fig11. Plain
+</div>
+
+<div align="center">
+    <img src="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/27.PNG"><br><br>
+    Fig12. ResNet
+</div>
+
+<h3 id="1-1-卷积"><a href="#1-1-卷积" class="headerlink" title="1*1 卷积"></a><strong>1*1</strong> 卷积</h3><blockquote>
+<p>1*1 卷积就是过滤器的大小是 1*1 的，对于一个二维的图像来说，使用 1*1 过滤器也仅仅是把每个像素放大了，看似没什么用。但是到了一个三维的图片，利用 1*1过滤器，就相当于每个切片和过滤器做了一个全连接，再用 Relu 做一个非线性变换。其实讲到这里我还是不是很明白，这个 1*1 的卷积到底能用来干什么。视频中讲了一个用处就是用来压缩图片的 channel 数量。我们知道，利用池化操作，可以减少图片的宽度和高度，不能减少 channel，而 1*1 卷积则提供了这样一种方法，可以压缩channel 的数量，当然也可以增加 channel 的数量。当然了，在这个增加 channel 的过程中，并不是简单的增加数量，也对原来的结果做了一次非线性的变换，再增加channel。压缩 channel 的过程如图13</p>
+</blockquote>
+<div align="center">
+    <img src="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/28.PNG"><br><br>
+    Fig13. channel 压缩
+</div>
+
+<h3 id="inception-网络"><a href="#inception-网络" class="headerlink" title="inception 网络"></a><strong>inception</strong> 网络</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>inception 网络的作用就是，代替人工来确定卷积层中的过滤器类型，或者是否需要创建卷积层或池化层。</p>
+<blockquote>
+<p>当你不确定需要什么样的过滤器或者是是否需要池化层的时候，就可以利用inception 网络，把所有过滤器都应用一遍，然后把结果都连接起来，神经网络会自己学习需要什么样的过滤器以及是否需要池化层。具体过程如图14</p>
+</blockquote>
+<div align="center">
+    <img src="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/29.PNG"><br><br>
+    Fig14. inception 网络原理
+</div>
+
+<p>神经网络还有一个问题就是计算的代价，有时需要缩小计算代价，就要用一个1*1 的卷积神经网络，来缩小 channel 的值，减少计算量。做完 1*1 卷积之后的结果叫做瓶颈，这里并不是困难的意思，而是说一个瓶子当中最小的部分。事实证明，只要合理选取瓶颈的大小，并不会影响神经网络的性能。如15图示</p>
+<div align="center">
+    <img src="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/30.PNG"><br><br>
+    Fig15. 缩小 channel
+</div>
+
+<h4 id="具体实例"><a href="#具体实例" class="headerlink" title="具体实例"></a>具体实例</h4><p>通常 inception 网络是放在一个神经网络的中间部分的，并不是整个网络都是用inception 网络。下面来看一下一个 inception module 的例子，图16</p>
+<div align="center">
+    <img src="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/31.PNG"><br><br>
+    Fig16. inception module
+</div>
+
+<blockquote>
+<p>在讲的时候，我就有个疑惑，既然 3<em>3 和 5</em>5 的过滤器都需要经过一个 1*1 的卷积，那为啥不把这一步合并一下，经过一个 1*1 卷积，在进行两个 3*3 和 5*5 呢，原来是他们用的 1*1 卷积不相同。经过一个池化层，只能缩小高度和宽度，不能缩小 channel，这样就导致，channel 数量太多，因此，为了减少计算量，在池化层后面还会加一个 1*1 的卷积层，来缩小 channel。有个疑惑的问题搞不太懂，就是既然inception 网络，能自己决定用 3*3 过滤器还是 5*5 过滤器，那个这些过滤器的个数是怎么确定的呢，我看好像还是认为确定的 emmmm，难搞哦。</p>
+</blockquote>
+<p>有了基本的 inception module，就可以建立一个有 inception 网络的神经网络，如图17</p>
+<div align="center">
+    <img src="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/32.PNG"><br><br>
+    Fig17.  inception 网络
+</div>
+
+<blockquote>
+<p>图17这个网络，是由许多的 inception module 组成的，有的是直接利用前一层的激活值，有的是先把激活值做一次池化，缩小一下规模，在输入到一个 inception module 中。有个值得注意的细节就是，这个神经网络在中间也做了预测的输出，就是利用中间层的值，来预测结果。我想这样做的原因是，是为了防止层数过深而过拟合吧，就是他们也不确定这个层数是不是一个比较好的层数，于是就在中间层输出一下，看看结果。有个有趣的梗就是，inception 这个名字的由来是引自盗梦空间，表示科学家们立志要做出更深层次的网络。</p>
+</blockquote>
+<h3 id="数据增强"><a href="#数据增强" class="headerlink" title="数据增强"></a>数据增强</h3><p>有时候我们需要对数据进行一些变换，增加我们网络的鲁棒性。具体的一些操作方法如下</p>
+<div align="center">
+    <img src="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/33.PNG"><br><br>
+    Fig18.  Mirroring
+</div>
+
+<div align="center">
+    <img src="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/34.PNG"><br><br>
+    Fig19. Random Cropping
+</div>
+
+<div align="center">
+    <img src="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/35.PNG"><br><br>
+    Fig20.  Color Shifiting
+</div>
 		
     </div>
     <div class="article-info article-info-index">
@@ -343,7 +494,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#边缘检测示例"><span class="toc-number">1.</span> <span class="toc-text">边缘检测示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#卷积神经网络"><span class="toc-number">2.</span> <span class="toc-text">卷积神经网络</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#padding"><span class="toc-number">2.1.</span> <span class="toc-text">padding</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卷积步长"><span class="toc-number">2.2.</span> <span class="toc-text">卷积步长</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#立体卷积"><span class="toc-number">2.3.</span> <span class="toc-text">立体卷积</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单层卷积网络"><span class="toc-number">2.4.</span> <span class="toc-text">单层卷积网络</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#边缘检测示例"><span class="toc-number">1.</span> <span class="toc-text">边缘检测示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#卷积神经网络"><span class="toc-number">2.</span> <span class="toc-text">卷积神经网络</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#padding"><span class="toc-number">2.1.</span> <span class="toc-text">padding</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卷积步长"><span class="toc-number">2.2.</span> <span class="toc-text">卷积步长</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#立体卷积"><span class="toc-number">2.3.</span> <span class="toc-text">立体卷积</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单层卷积网络"><span class="toc-number">2.4.</span> <span class="toc-text">单层卷积网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#池化层"><span class="toc-number">2.5.</span> <span class="toc-text">池化层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卷积网络案例"><span class="toc-number">2.6.</span> <span class="toc-text">卷积网络案例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么使用卷积"><span class="toc-number">2.7.</span> <span class="toc-text">为什么使用卷积</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#经典卷积神经网络"><span class="toc-number">3.</span> <span class="toc-text">经典卷积神经网络</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#LeNet-5-网络"><span class="toc-number">3.1.</span> <span class="toc-text">LeNet-5 网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AlexNet"><span class="toc-number">3.2.</span> <span class="toc-text">AlexNet</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#VGG-16"><span class="toc-number">3.3.</span> <span class="toc-text">VGG-16</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#残差网络"><span class="toc-number">4.</span> <span class="toc-text">残差网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-卷积"><span class="toc-number">5.</span> <span class="toc-text">1*1 卷积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#inception-网络"><span class="toc-number">6.</span> <span class="toc-text">inception 网络</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本概念"><span class="toc-number">6.1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#具体实例"><span class="toc-number">6.2.</span> <span class="toc-text">具体实例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据增强"><span class="toc-number">7.</span> <span class="toc-text">数据增强</span></a></li></ol>
                     </div>
                 </span>
             </div>
