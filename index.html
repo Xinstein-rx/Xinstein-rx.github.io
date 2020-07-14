@@ -158,6 +158,164 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-目标检测" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">目标检测</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/14/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" class="archive-article-date">
+  	<time datetime="2020-07-14T05:49:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+		
+			
+			<h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><h4 id="目标定位"><a href="#目标定位" class="headerlink" title="目标定位"></a>目标定位</h4><p>简单的网络我们可以对一张图片进行分类，输出是否有猫，现在我们讨论的是，不仅要确定一张图片上是否有目标，而且这个目标的位置也要给出来。</p>
+<p>这里增加了几个约定，就是图片的左上角坐标为$(0,0)$，右下角坐标为 $(1,1)$，增加的目标位置的参数为 $b_x,b_y,b_h,b_w$ ，$b_x,b_y$是目标中心点的位置。拿这样一个例子来看，检测一个图片中是否有行人，汽车，摩托车，我们可以这样定义输出向量 </p>
+<script type="math/tex; mode=display">
+        y=\begin{bmatrix}
+        Pc\\
+        b_x\\
+        b_y\\
+        b_h\\
+        b_w\\
+        c_1\\
+        c_2\\
+        c_3
+        \end{bmatrix}</script><p>其中</p>
+<ol>
+<li>$Pc$是确定图片中是否有上述目标，要是有的话，输出1，对应的只有背景的话输出0</li>
+<li>具体是什么类型由一系列$c$输出</li>
+<li>代价函数：可以对这八个维度全部应用平方误差，这是在Pc=1的前提下，要是Pc=0，只计算着一个维度就好，不必关心其他的值。但一般对$c$不进行误差计算，对边界坐标应用平方误差或者类似的方法，对Pc应用Logistic回归。</li>
+</ol>
+<p>定位分类的直观感受，图1</p>
+<div align="center">
+    <img src="/2020/07/14/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/36.PNG"><br><br>
+    Fig1. 定位分类
+</div>
+
+<h4 id="特征点检测"><a href="#特征点检测" class="headerlink" title="特征点检测"></a>特征点检测</h4><p>所谓特征点检测，就是在图片上标注特征点，然后训练网络，输出这些特征点的位置，比如想识别人脸上眼镜的位置，就可以把眼角当作特征点，输出眼角的位置。还可以多增加几个特征点，比如嘴角的位置，下颌线的位置，通过这些就可以进行表情分析，判断一个人是皱眉，还是微笑。也可以应用到一张试别人体姿势的图片中，把手肘，胸腔中部，腿的位置等都设置为一个特征点，通过这些就可以识别图片上人的姿势。</p>
+<h4 id="目标检测"><a href="#目标检测" class="headerlink" title="目标检测"></a>目标检测</h4><p>目标检测是基于滑动窗口的。</p>
+<p>先输入一些带所检测目标的图片，作为训练集。然后再利用滑动窗口技术，遍历整张图片，检查每一个小窗口是不是含有目标，如图2。我的理解是，通过这种滑动窗口的技术，不仅可以确定图片中是不是有目标，而且根据窗口滑动到的位置，也可以确定目标的位置。</p>
+<div align="center">
+    <img src="/2020/07/14/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/37.PNG"><br><br>
+    Fig2. 滑动窗口
+</div>
+
+<div align="center">
+    <img src="/2020/07/14/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/38.PNG"><br><br>
+    Fig3. 汽车检测
+</div>
+
+<h4 id="滑动窗口的卷积应用"><a href="#滑动窗口的卷积应用" class="headerlink" title="滑动窗口的卷积应用"></a>滑动窗口的卷积应用</h4><p>滑动窗口的办法应用在卷积里有一个问题就是，窗口太多，输入到神经网络里，需要大量的计算，因此需要改进这个方法。</p>
+<p>第一步就是要知道把神经网络的全连接层，转化为一个卷积层。转化方法是，把全连接层前面的激活层放到一个等大的过滤器里面，全连接层有多少个参数，就有多少个过滤器，在数学上，其实这跟做一次全连接是一样的，每个激活值都做了一次线性变换。</p>
+<p>如果运行滑动窗口，把图片的不同部分分别输入到网络中，就会发现做了一些重复的计算，因为训练出网络了，参数就确定了，而滑动窗口则会有一部分重复，所以就多做了    计算。</p>
+<p>我们要做的就是把正常图片输入到网络中，然后最后输出的不同部分，就是每个滑动窗口的输出值。直观感受如图4</p>
+<pre><code>&lt;div align = center&gt;
+    &lt;img src = &quot;目标检测/39.PNG&quot;&gt;&lt;br&gt;&lt;br&gt;
+    Fig4. 滑动窗口直观感受
+&lt;/div&gt;
+</code></pre><h4 id="Bounding-Box-预测–YOLO-算法"><a href="#Bounding-Box-预测–YOLO-算法" class="headerlink" title="Bounding Box 预测–YOLO 算法"></a><strong>Bounding Box</strong> 预测<strong>–YOLO</strong> 算法</h4><p>上述减少滑动窗口计算的方法存在一个问题，他不能输出最精确的边框。</p>
+<p>解决这个问题的办法是使用 YOLO 算法。算法的思想是，将图片分割成 19*19（这里只是举个例子）的小方格，每个小方格运用图片分类和定位算法，即每个小方格都有一个 8维的向量输出，判断目标在那个格子里面，是看目标的中心点分到了哪一个格子里面，既是目标横跨了好多格子，也是按照中心点来划分。同样的，向上面的滑动窗口一样，我们不需要把每个格子输入到网络里，而是把整张图片输入到网络里，最后得出 19*19*8 的向量，因此这是一个高效的算法。</p>
+<div align="center">
+    <img src="/2020/07/14/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/40.PNG"><br><br>
+    Fig5. YOLO算法
+</div>
+
+<h4 id="交并化函数"><a href="#交并化函数" class="headerlink" title="交并化函数"></a>交并化函数</h4><p>交并化的英文是intersection over union，所以英文缩写是IoU，这是一种衡量预测准确度的函数。将神经网络预测出的bounding box与实际目标对应的bounding box分别做交运算和并运算，分别记为I和U，则$\frac{I}{U}$的值就是交并化后的值。直观上来感觉，就是预测的偏离实际的多少。</p>
+<h4 id="非极大值抑制"><a href="#非极大值抑制" class="headerlink" title="非极大值抑制"></a>非极大值抑制</h4><p>非极大值抑制，用来清理对一个目标的多个检测结果。</p>
+<p>一开始可能会有这样的疑惑，对于一个目标而言，运用了 YOLO 算法，不应该只有一个检测结果吗？因为中心点只能在一个格子里，这只是理论的想法，实际在运行算法的时候，中心点周围的格子也会认为自己检测到了目标。所以就出现了差错，非极大值抑制，就是来解决这个问题的。对目标只检测一次，而不是检测多次。</p>
+<p>算法的步骤是:我们之前讲过的$Pc$作为预测的概率，先把那些$pc \ne 0.6$的边框discard掉，然后从剩下的边框中选取$Pc$值最大的，也就是概率最高的，下一步是选择那些和这个最大概率边框交并化值最大的边框，也就是重复最多的边框，把这些discard掉。然后不断循环上述过程。官方ppt如图6</p>
+<div align="center">
+    <img src="/2020/07/14/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/41.PNG"><br><br>
+    Fig6. 非极大值抑制
+</div>
+
+<h4 id="Anchor-Boxes"><a href="#Anchor-Boxes" class="headerlink" title="Anchor Boxes"></a><strong>Anchor Boxes</strong></h4><p>Anchor Box 是用来处理一个格子里面（运动 YOLO 算法）有两个目标时候的情况，对于这种情况，之前的只输出一个 8 维向量的方法可能就不能准确预测了。</p>
+<p>其实我对这个 Anchor Box 的理解还不是很深入，就隐隐约约感觉，是把预测的输出向量扩大了，以前只能输出一类，现在把输出向量扩大一下，变成 16 维（假设有两个 AnchorBox），每 8 维作为一个盒子对应的输出，因为对每个格子，都要进行对应于不同盒子的预测，就可以确定一个格子里面有多个目标。盒子的选取也是有点疑惑，一般是通过手动选取，可能是观察一下图片中目标的形状，然后选取盒子的形状，还有更高级的算法，就是通过 k-means 方法，对形状聚类，然后分析都有哪些形状，太强了….</p>
+<blockquote>
+<p>判断预测结果到底和哪一个盒子最匹配，看的是预测的结果和盒子的交并化结果。解释如图7和图8</p>
+</blockquote>
+<div align="center">
+    <img src="/2020/07/14/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/42.PNG"><br><br>
+    Fig7. Anchor Box example
+</div>
+
+<div align="center">
+    <img src="/2020/07/14/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/43.PNG"><br><br>
+    Fig8. What is Anchor Box
+</div>
+
+<h4 id="RCN"><a href="#RCN" class="headerlink" title="RCN"></a>RCN</h4><p>R-CNN 带区域的卷积神经网络，之所以要选择区域是因为我们的卷积工作，经常在一些没有目标的图片上运行，其实这是没有意义的，R-CNN 就会利用图像分割算法，选择出不同的色块，在这些色块上进行卷积，这样要比遍历整张图片要少得多。</p>
+<p>R-CNN 的步骤就是，先通过某种算法得到候选区域，然后针对这些候选区域进行卷积算法。但这个方法有个问题就是太慢了，因此有人就提出了 Fast R-CNN 和 Faster R-CNN。</p>
+<div align="center">
+    <img src="/2020/07/14/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/44.PNG"><br><br>
+    Fig9. R-CNN 直观感受
+</div>
+
+<div align="center">
+    <img src="/2020/07/14/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/45.PNG"><br><br>
+    Fig10. 几种改进的 R-CNN
+</div>
+		
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">目标检测</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-1022-Digital-Library-30分-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -851,6 +1009,10 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">卷积神经网络</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -921,77 +1083,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT—Advanced</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-1137-Final-Grading-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/01/1137-Final-Grading-25%E5%88%86/">1137 Final Grading (25分)</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/01/1137-Final-Grading-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-06-01T06:31:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-		
-			<p>For a student taking the online course “Data Structures” on China University MOOC (<a href="http://www.icourse163.org/" target="_blank" rel="noopener">http://www.icourse163.org/</a>), to be qualified for a certificate, he/she must first obtain no less than 200 points from the online programming assignments, and then receive a final grade no less than 60 out of 100. The final grade is calculated by <em>G</em>=(<em>Gmid−term</em>×40%+<em>Gfinal</em>×60%) if <em>Gmid−term</em>&gt;<em>Gfinal</em>, or <em>Gfinal</em> will be taken as the final grade <em>G</em>. Here <em>Gmid−term</em> and <em>Gfinal</em> are the student’s scores of the mid-term and the final exams, respectively.</p>
-			
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
         		</li>
       		
 		</ul>
@@ -1250,6 +1341,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">map</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">目标检测</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">卷积神经网络</a>
               </li>
             
             <div class="clearfix"></div>
