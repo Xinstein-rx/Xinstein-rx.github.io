@@ -158,6 +158,259 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-循环神经网络-RNN" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-RNN/">循环序列模型(RNN)</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/14/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-RNN/" class="archive-article-date">
+  	<time datetime="2020-07-14T06:17:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+		
+			
+			<h3 id="循环神经网络"><a href="#循环神经网络" class="headerlink" title="循环神经网络"></a>循环神经网络</h3><h4 id="前向传播"><a href="#前向传播" class="headerlink" title="前向传播"></a>前向传播</h4><p>假设这样一种情况，要想对输入的一段文字，识别里面哪一个词是人名。有一个简单的想法，就是将这些单词，输入到一个神经网络中，让神经网络去做预测，但是这样有两个问题，一是输出的维度不同的句子是不一样的，二是不同的句子，输入的维度也是不一样的。而循环神经网络就很好的解决了这两个问题。</p>
+<blockquote>
+<p>循环神经网络和上述方法的不同之处在于，他不是将每一个句子输入到一个网络，而是将一个单词输入到一个网络中，每个单词都会输出一个y向量，这个向量对应一个字典，这个单词是什么，就在对应字典的位置输出1，然后向量的其他部分是0。再继续输入下一个单词，下一个单词和这个单词共享网络参数，上一层激活值的线性组合，加上，这一层数据的线性组合，输入到激活函数里，得到这一层的激活值。每一层网络叫做一个time-step。这个模型有一个缺点就是只用到了前面的信息（因为每一层的激活值都向后传播了），但没有用到后面的信息，就有时候会导致结果不正确。具体过程如图1</p>
+</blockquote>
+<div align="center">
+    <img src="/2020/07/14/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-RNN/46.PNG"><br><br>
+    Fig1. RNN 网络
+</div>
+
+<div align="center">
+    <img src="/2020/07/14/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-RNN/47.PNG"><br><br>
+    Fig2. 前向传播
+</div>
+
+<p>根据上图，我们可以得出以下激活值的计算过程</p>
+<blockquote>
+<p><strong>Definition 1 </strong> RNN 网络的前前向传播过程</p>
+<script type="math/tex; mode=display">
+a^{<t>}=g(W_{aa}a^{<t-1>}+W_{ax}x^{<t>}+b_a)\leftarrow tabh/Relu</script><p>有时$a^{<t>}$还可以写成</t></p>
+<script type="math/tex; mode=display">
+a^{<t>}=g(W_{a}[a^{<t-1>},x^{<t>}]+b_a)</script><script type="math/tex; mode=display">
+\hat{y}^{<t>}=g(W_{ya}a^{<t>}+b_y) \leftarrow    sigmoid/softmax</script></blockquote>
+<p>$\hat{y}$是输出了一个向量，表明这个单词在自己构成的字典当中的位置；计算激活值用的激活函数和计算预测值用的激活函数是不一样的。</p>
+<h4 id="反向传播过程"><a href="#反向传播过程" class="headerlink" title="反向传播过程"></a>反向传播过程</h4><p>提到反向传播，就得来看一下损失函数，RNN 当中的损失函数和我们之前定义的Logistic 回归的损失函数是一样的，下面是一个 time-step 的损失值 </p>
+<script type="math/tex; mode=display">
+L^{<t>}(\hat{y}^{<t>},y^{<t>})=-\hat{y}^{<t>}log(\hat{y}^{<t>})-(1-\hat{y}^{<t>})log(1-\hat{y}^{<t>})</script><p>其中，$\hat{y}^{<t>}$是一个概率，就是检测的目标和与真实值之间的差距</t></p>
+<p>进而得到总体的损失函数</p>
+<script type="math/tex; mode=display">
+L(\hat{y},y)=\sum_{t=1}^{T_y}L^{<t>}(\hat{y}^{<t>},y^{<t>})</script><p>有了这个损失函数的表达式，我们就可以通过前面讲过的计算偏导数的方法，反向传播计算出偏导数，然后利用梯度下降算法得到各个参数的值，这个过程也有一个很酷的名字backpropagation through time，emmm可能是我英语水平不够，暂时该没感觉出来这个名字酷在那里，嘤嘤嘤。图示的反向传播如图3</p>
+<div align="center">
+    <img src="/2020/07/14/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-RNN/48.PNG"><br><br>
+    Fig3. backpropagation through time
+</div>
+
+<h4 id="几种架构"><a href="#几种架构" class="headerlink" title="几种架构"></a>几种架构</h4><p>循环神经网络并不总是和上面所讲的那样，输入和输出是对应相等的，下面是一些常见的循环神经网络的例子。</p>
+<blockquote>
+<p>图4严格来说不算是一个循环神经网络，就是一个简单的神经元；图5一对多的例子主要用于音乐的生成以及序列的生成上，这个网络有个特点就是上一层的预测值会作为下一层的输入继续进行计算；图6多对一的例子适用于情感类文本分析，将文本输入网络，判断是消极情绪，还是积极情绪，或者是给电影打了几分；图7多对多的例子就是我们之前看的那个，输入和输出是对应的；图8这一个多对多的例子就与前面的不同了，这个例子的输入与输出是不同的，比如是文字的翻译工作，先将文字输入进网络，不产生任何的输出，最后再将翻译的结果输出。</p>
+</blockquote>
+<div align="center">
+    <img src="/2020/07/14/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-RNN/49.PNG"><br><br>
+    Fig4. One to one
+</div>
+
+<div align="center">
+    <img src="/2020/07/14/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-RNN/50.PNG"><br><br>
+    Fig5. One to many
+</div>
+
+<div align="center">
+    <img src="/2020/07/14/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-RNN/51.PNG"><br><br>
+    Fig6. Many to one
+</div>
+
+<div align="center">
+    <img src="/2020/07/14/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-RNN/52.PNG"><br><br>
+    Fig7. Many to many
+</div>
+
+<div align="center">
+    <img src="/2020/07/14/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-RNN/53.PNG"><br><br>
+    Fig8. Many to many
+</div>
+
+<h4 id="RNN-构建语言模型"><a href="#RNN-构建语言模型" class="headerlink" title="RNN 构建语言模型"></a><strong>RNN</strong> 构建语言模型</h4><p>有一个问题是这样的，我对一个语音识别系统说一句话“The apple and pear salad.”，那他到底能不能识别出这句话，因为有个和 pear 发音很像的一个词 pair，也就是说会不会把这句话识别成“The apple and pair salad.”。语言模型就是来解决这个问题的。</p>
+<p>一个语言模型会把输出上述句子的概率计算一下，然后取概率大的那个作为输出。</p>
+<blockquote>
+<p>语言模型的建立 (Cats average 15 hours of sleep a day.)：</p>
+<ol>
+<li>建立一个语言资料库，收录着常用的句子，作为训练集。</li>
+<li>选取一个句子，把他Tokenize，就是标记化。所谓标记化，就是对句子里面的每个单词生成一个向量，他对应着设置的字典里的单词的位置。要不要对句子的结尾标记化，取决于自己，我们通常用<EOS>作为句子的结尾。有时候会发生这种情况，就是句子里面的词不一定存在于我们的字典当中，因为字典很可能是最常见的10000个单词，这时候会把这个单词标记化为<UNK>，表示为止的意思。</UNK></EOS></li>
+<li>把零向量作为第一层网络的输入，通过softmax做一些预测，来计算出第一个词可能会是什么，输出的$\hat{y}^{<1>}$是一个和字典中单词个数相同的向量，每个值代表着字典中这个位置的词是句子中第一个词的概率是多少，这样就完成了一次预测。</1></li>
+<li>接下来，把上一层输出的预测，作为本层的输入，继续做上面的预测。实际的含义就是，在第一个词是Cat的前提下，第二个词是什么,即$P(average|cats)$</li>
+<li>一直重复上述过程，直到处理到句子结束。</li>
+</ol>
+<p>这个语言模型一个单词的损失函数我们定义为</p>
+<script type="math/tex; mode=display">
+L^{<t>}(\hat{y}^{<t>},y^{<t>})=-\sum_{i}^{}y^{<t>}_ilog(\hat{y}^{<t>}_i)</script><p>总的损失为</p>
+<script type="math/tex; mode=display">
+L=\sum_{t}^{}L^{<t>}(\hat{y}^{<t>},y^{<t>})</script><p>最后，输出一个句子的概率是这样定义的（假设一个句子只有三个单词）</p>
+<script type="math/tex; mode=display">
+P(y^{<1>},y^{<2>},y^{<3>})=P(y^{<1>})\cdot P(y^{<2>}|y^{<1>})\cdot P(y^{<3>}|y^{<1>},y^{<2>})</script><p>最后就是概率的叠加，然后取概率最大的那个。</p>
+</blockquote>
+<p>其实到现在（2020/4/17）有一个不太明白的地方就是，最开始计算第一个单词的概率的时候，明明什么都没有输入啊，怎么就预测出 Cats 来了呢？还有后面的预测，也没有输入有关的单词啊，怎么就预测出是 average 了呢？</p>
+<p>用 RNN 构建语言模型如图9</p>
+<div align="center">
+    <img src="/2020/07/14/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-RNN/54.PNG"><br><br>
+    Fig9. RNN 建立语言模型
+</div>
+
+<h4 id="对新序列采样"><a href="#对新序列采样" class="headerlink" title="对新序列采样"></a>对新序列采样</h4><p>采样的方法与上述语言模型的方法，唯一不一样的地方就是，建立语言模型的时候，我们是把上一个 timestep 的预测值，作为下一个 timestep 的预测值，而采样，是一开始把输入设置为 0 向量，预测出一个结果，然后从预测的向量中随机选取一个值作为预测结果，然后把这个 one-hot 向量输入到下一个 timestep 中，而不是单单的把全部的值输入到下一步中。判断句子结束的方法有两种，一是不断地随机选择，直到选择到了 <EOS> 标记，第二个是自己规定步长，比如选取 20 个单词就停止。</EOS></p>
+<p>现在的大部分语言模型都是基于词汇的，当然了也有基于字符的语言模型，基于字符的语言模型既有优点，又有缺点，优点是不会出现像未知字符这样的情况，缺点就是计算量太大了。</p>
+<p>视频最后给出了两个例子，就是用新闻文章训练过的语言模型，最后采样得到的文章也很像一片新闻文章，要是用莎士比亚的文章来训练模型的话，采样得到的就会是一篇莎士比亚风格的文章，其实这里有点搞不懂，就是明明是随机生成的，怎么会出现不同风格呢？大概的原因可能是我还没真正理解这个基于 RNN 的语言模型。</p>
+<p>值得说明一下的是，又看了一遍视频，上述不明白的地方其实是自己对 numpy.random.choice这个函数没理解到位，这个函数也不是随机选择的，是按照概率去选择的，这就能解释，生成的文字可以有不同的风格了。</p>
+<div align="center">
+    <img src="/2020/07/14/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-RNN/55.PNG"><br><br>
+    Fig10. 训练模型
+</div>
+
+<div align="center">
+    <img src="/2020/07/14/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-RNN/56.PNG"><br><br>
+    Fig11. 采样模型
+</div>
+
+<h4 id="梯度消失问题"><a href="#梯度消失问题" class="headerlink" title="梯度消失问题"></a>梯度消失问题</h4><p>所谓梯度消失，就是在反向传播的过程中，后面的误差，很难影响到前面的参数。网络层数太深的话，会出现这种情况，因此有人发明了 ResNet。</p>
+<p>针对于 RNN 当中的梯度消失问题，体现在网络很难记住，前面的单词对后面单词会出现什么影响，比如说有这样两个句子</p>
+<p>The cat,which already ate apple,…,was full.</p>
+<p>The cats,which already ate apple,…,were full.</p>
+<p>观察上面两个句子就会发现，主语的单复数不同，决定了后面是用 was 还是 were，但是在预测的过程中，因为梯度消失问题，网络很难记住前面到底是单数还是复数，这就出了问题。</p>
+<p>当然也会出现梯度爆炸的问题，梯度爆炸就是参数会增长的特别大，甚至出现了 NaN的情况，解决的办法是梯度修剪，当参数值超过一定的阈值的时候，就缩小他。这个方法还是比较有鲁棒性的，但是梯度消失问题比较难解决。</p>
+<h4 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a><strong>GRU</strong></h4><p>GRU 改变了 RNN 的隐藏层，使其可以更好的捕捉深层链接，并且改善了梯度消失问题。</p>
+<p>GRU增加了一个记忆细胞c，记忆细胞提供了一种记忆的能力，比如说cat还是cats。在简单的GRN单元中，我们把$a^{<t>}$赋值给$c^{<t>}$，然后用如下的公式计算出一个候选值$\tilde{c}^{<t>}$，用来更新$c^{<t>}$的值</t></t></t></t></p>
+<script type="math/tex; mode=display">
+\tilde{c}^{<t>}=tanh(W_c[c^{<t-1>},x^{<t>}]+b_c)</script><p>GRU里面的主要是想就是增加了一个门$\Gamma_u$，这是一个取值为0到1之间的数字，为了直观理解，可以把$\Gamma_u$看成是一个一直是0或者1的值，计算$\Gamma_u$的方法如下</p>
+<script type="math/tex; mode=display">
+\Gamma_u=\sigma(W_u[c^{<t-1>},x^{<t>}]+b_u)</script><p>其中，$\sigma$是$sigmoid$函数</p>
+<p>GRU的关键部分是$\tilde{c}^{<t>}$用来更新$c^{<t>}$的值，然后设置了一个门$\Gamma_u$，他的取值0还是1取决了要不要更新$c^{<t>}$，或者说什么时候更新$c^{<t>}$，当然了0还是1只是一个直观理解，实际上不会是真的是0或者1的，是一个近似值。更新$c^{<t>}$的公式如下</t></t></t></t></t></p>
+<script type="math/tex; mode=display">
+c^{<t>}=\Gamma_u*\tilde{c}^{<t>}+(1-\Gamma_u)*c^{<t-1>}</script><p>一个直观感受的理解，假设在cat的地方设置了$c^{<t>}=1$，也就说明这里是个单数，通过GRU的记忆作用，它可以一直向前传播到很深的地方，比如选取was还是were的时候，这个办法也很好地解决了梯度消失问题，因为前面的信息被很好的保存了。当然了，实际中$\Gamma_u$是一个向量，我们可以选择将其中的一部分数字变为0或者是1，来决定到底更新那一部分，保留哪一部分。比如用其中一个bit来表示是单数还是复数，其他的bit来表示我在谈论什么。也就是说，可以在某些时间点只更新一些bit。</t></p>
+<p>上述过程只是一个简化的GRN，真正的GRU是通过下面的过程来更新的</p>
+<script type="math/tex; mode=display">
+\tilde{c}^{<t>}=tanh(W_c[\Gamma_r*c^{<t-1>},x^{<t>}]+b_c)</script><p>$\Gamma_r$的更新如下</p>
+<script type="math/tex; mode=display">
+\Gamma_r=\sigma(W_r[c^{<t-1>},x^{<t>}]+b_r)</script><p>其中，$\Gamma_r$是一个相关系数，可以认为成，$\tilde{c}^{<t>}$与$c^{<t-1>}$有多大的相关性。</t-1></t></p>
+<p>其他的更新$\Gamma_u$和$c^{<t>}$的方法是相同的。图12是一个应用 GRU 单元的例子。</t></p>
+<div align="center">
+    <img src="/2020/07/14/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-RNN/57.PNG"><br><br>
+    Fig12. GRU 的应用
+</div>
+
+<p>图13是一个简化的 GRU 单元内部过程。</p>
+<div align="center">
+    <img src="/2020/07/14/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-RNN/58.PNG"><br><br>
+    Fig13. 简化的 GRU 单元
+</div>
+
+<p>其实写到这里，我只是对这个计算过程理解了，但是这个计算过程背后的含义，我还不是很能理解，到底为啥这样做，还可以准确的预测，因为把前面的值传给后面，后面单词本身发挥的作用不就小了吗？（2020/4/18）</p>
+<h4 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a><strong>LSTM</strong></h4><p>LSTM 的更新公式如下图14</p>
+<div align="center">
+    <img src="/2020/07/14/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-RNN/59.PNG"><br><br>
+    Fig14. LSTM 过程
+</div>
+
+<p>从上图可以看出，LSTM 和 GRU 还是有区别的，u和之前的概念是一样的，f代表forget门，o代表输出门，这里也不仅仅是把$a^{<t>}$的值赋给$c^{<t>}$了，他们的值是不一样的。在计算门的值的时候，有时候还会用到上一个time-step的记忆细胞的值，这个过程叫做peephole connection，如果是一个向量的话，这里的peephole connection连接并不会像激活值一样，乘上参数，做一个全连接，而是每一个bit位，影响着每一个bit位。</t></t></p>
+<p>LSTM 单元如图15</p>
+<div align="center">
+    <img src="/2020/07/14/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-RNN/60.PNG"><br><br>
+    Fig15. LSTM 单元
+</div>
+
+<p>整个的 LSTM 过程见图16</p>
+<div align="center">
+    <img src="/2020/07/14/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-RNN/61.PNG"><br><br>
+    Fig16. LSTM 过程
+</div>
+
+<blockquote>
+<p>在实际的操作中，到底是选择 GRU 还是 LSTM，没有什么固定的规则。GRU更加简单，适合建立更大的网络，而 LSTN 更加灵活强大，现在的人们在选择的时候，一般也是用 LSTM。</p>
+</blockquote>
+<h4 id="双向-RNN–BRNN"><a href="#双向-RNN–BRNN" class="headerlink" title="双向 RNN–BRNN"></a>双向 <strong>RNN–BRNN</strong></h4><p>提出双向 RNN 的原因是，假设有一个预测是否是人名的网络，存在这样两个句子</p>
+<p>He said,”Teedy bears are on the sale.”</p>
+<p>He said,”Teedy Roosevelt was a great President.”</p>
+<p>在预测 Teedy 是不是个人名的时候如果不考虑上下文的话，就会出现问题，解决这个问题的办法是用双向 RNN 模型，即把句子后面的信息也加进来，基本的 BRNN 模型如图17</p>
+<div align="center">
+    <img src="/2020/07/14/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-RNN/62.PNG"><br><br>
+    Fig17. BRNN
+</div>
+
+<blockquote>
+<p>双向传播的过程：</p>
+<ol>
+<li>首先进行前向传播，计算每一个单元的激活值。</li>
+<li>扫描到最后一个单词，即前向传播进行完了之后，进行反向的前向传播，注意下，这里的反向传播并不是计算偏导数值，然后梯度下降，而是前向传播的一个反过程，用来计算激活值的。</li>
+<li>计算出前向和反向的激活值，就可以根据这两个激活值，通过一个激活函数，来综合前后的信息做出预测.</li>
+</ol>
+<p>值得注意的地方是，BRNN 当中的单元可以是普通的 RNN 单元，也可以是一个GRU 和 LSTM 单元。现在实际中 BRNN+LSTM 一般来说是最多的选择。</p>
+<p>BRNN 的一个缺点就是，需要完整的数据序列才能预测任意的位置，即如果想做一个语音的预测，我们需要等那个人把话说完，才能预测。</p>
+</blockquote>
+<h4 id="深层-RNN-网络"><a href="#深层-RNN-网络" class="headerlink" title="深层 RNN 网络"></a>深层 <strong>RNN</strong> 网络</h4><p>深层的 RNN 网络就是把许多个隐含层连接起来，但一般不超过三个，如图 18。一般来说，在输出 y 的时候，还会经过许多个隐藏层，但是这些隐藏层在水平方向上不是连接的，即不属于 RNN 的部分，只是用来预测。</p>
+<div align="center">
+    <img src="/2020/07/14/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-RNN/63.PNG"><br><br>
+    Fig18. 深层 RNN
+</div>
+		
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">循环序列模型</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-目标检测" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -276,11 +529,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">目标检测</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">目标检测</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
         		</li>
       		
 		</ul>
@@ -810,7 +1063,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">卷积神经网络</a>
+      <a class="article-title" href="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">卷积神经网络(CNN)</a>
     </h1>
   
 
@@ -1007,82 +1260,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">卷积神经网络</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-1133-Splitting-A-Linked-List-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/01/1133-Splitting-A-Linked-List-25%E5%88%86/">1133 Splitting A Linked List (25分)</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/01/1133-Splitting-A-Linked-List-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-06-01T06:57:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-		
-			<p>Given a singly linked list, you are supposed to rearrange its elements so that all the negative values appear before all of the non-negatives, and all the values in [0, K] appear before all those greater than K. The order of the elements inside each class must not be changed. For example, given the list being 18→7→-4→0→5→-6→10→11→-2 and K being 10, you must output -4→-6→-2→7→0→5→10→18→11.</p>
-			
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">链表</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT—Advanced</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CNN</a>
         		</li>
       		
 		</ul>
@@ -1348,7 +1530,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">卷积神经网络</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">循环序列模型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CNN</a>
               </li>
             
             <div class="clearfix"></div>
