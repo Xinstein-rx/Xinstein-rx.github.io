@@ -158,6 +158,233 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-1012-The-Best-Rank-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/11/1012-The-Best-Rank-25%E5%88%86/">1012 The Best Rank (25分)</a>
+    </h1>
+  
+
+        
+        <a href="/2020/12/11/1012-The-Best-Rank-25%E5%88%86/" class="archive-article-date">
+  	<time datetime="2020-12-11T14:08:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+		
+			
+			<h3 id="1012-The-Best-Rank-25分"><a href="#1012-The-Best-Rank-25分" class="headerlink" title="1012 The Best Rank (25分)"></a><strong>1012</strong> <strong>The Best Rank</strong> (25分)</h3><p>To evaluate the performance of our first year CS majored students, we consider their grades of three courses only: <code>C</code> - C Programming Language, <code>M</code> - Mathematics (Calculus or Linear Algrbra), and <code>E</code> - English. At the mean time, we encourage students by emphasizing on their best ranks — that is, among the four ranks with respect to the three courses and the average grade, we print the best rank for each student.</p>
+<p>For example, The grades of <code>C</code>, <code>M</code>, <code>E</code> and <code>A</code> - Average of 4 students are given as the following:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">StudentID  C  M  E  A</span><br><span class="line">310101     98 85 88 90</span><br><span class="line">310102     70 95 88 84</span><br><span class="line">310103     82 87 94 88</span><br><span class="line">310104     91 91 91 91</span><br></pre></td></tr></table></figure>
+<p>Then the best ranks for all the students are No.1 since the 1st one has done the best in C Programming Language, while the 2nd one in Mathematics, the 3rd one in English, and the last one in average.</p>
+<h3 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h3><p>Each input file contains one test case. Each case starts with a line containing 2 numbers <em>N</em> and <em>M</em> (≤2000), which are the total number of students, and the number of students who would check their ranks, respectively. Then <em>N</em> lines follow, each contains a student ID which is a string of 6 digits, followed by the three integer grades (in the range of [0, 100]) of that student in the order of <code>C</code>, <code>M</code> and <code>E</code>. Then there are <em>M</em> lines, each containing a student ID.</p>
+<h3 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h3><p>For each of the <em>M</em> students, print in one line the best rank for him/her, and the symbol of the corresponding rank, separated by a space.</p>
+<p>The priorities of the ranking methods are ordered as <code>A</code> &gt; <code>C</code> &gt; <code>M</code> &gt; <code>E</code>. Hence if there are two or more ways for a student to obtain the same best rank, output the one with the highest priority.</p>
+<p>If a student is not on the grading list, simply output <code>N/A</code>.</p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input:"></a>Sample Input:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">5 6</span><br><span class="line">310101 98 85 88</span><br><span class="line">310102 70 95 88</span><br><span class="line">310103 82 87 94</span><br><span class="line">310104 91 91 91</span><br><span class="line">310105 85 90 90</span><br><span class="line">310101</span><br><span class="line">310102</span><br><span class="line">310103</span><br><span class="line">310104</span><br><span class="line">310105</span><br><span class="line">999999</span><br></pre></td></tr></table></figure>
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1 C</span><br><span class="line">1 M</span><br><span class="line">1 E</span><br><span class="line">1 A</span><br><span class="line">3 A</span><br><span class="line">N&#x2F;A</span><br></pre></td></tr></table></figure>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<font color="LightCoral">这个题当时自己写了一遍，用了四个sort，更新了四遍rank，最后样例也过了，但是交上去之后还是三个错误emmmm，于是就看了题解，题解不愧是题解，其实也是四个sort，但是写了一个函数，唯一不一样的是，他把分数和排名都设置成了一个数组，然后设置一个flag，表示当前是那门课，排序的时候return a.score[flag] > b.score[flag]这样就把四个sort归为了一个sort来写，然后对于每门课程都记录一个排名，最后遍历排名记录下最好排名的下标，这个下表就用来后来输出排名和科目。还设置了一个exist数组，记录每个id是否存在，如果存在就把他标记为学生在数组的位置+1，这样就可以根据exist数组来间接访问储存学生的数组了，就不用担心id与下标不匹配了，这也是个好方法，得记住！还有需要不同的sort函数但形式差不多的时候，也可以考虑把他们设置为数组，通过一个flag的方式给他们排序，还有记录最好排名的下标而不是最好排名和科目，这也是一个自己以前不能想到的方法。总之，这个题学了很多啦~~</font>
+
+</blockquote>
+<h3 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">    <span class="built_in">string</span> id;</span><br><span class="line">    <span class="keyword">int</span> grade[<span class="number">4</span>];</span><br><span class="line">    <span class="keyword">int</span> bestgrade;</span><br><span class="line">    <span class="keyword">int</span> oldra;</span><br><span class="line">    <span class="keyword">int</span> ra;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">int</span> p = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(node a, node b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.grade[p] &gt; b.grade[p];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, m;</span><br><span class="line">    <span class="built_in">string</span> id;</span><br><span class="line">    <span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; mp;</span><br><span class="line">    <span class="built_in">vector</span>&lt;node&gt; v;</span><br><span class="line">    node t;</span><br><span class="line">    <span class="keyword">char</span> course[<span class="number">4</span>] = &#123;<span class="string">'A'</span>,<span class="string">'C'</span>, <span class="string">'M'</span>, <span class="string">'E'</span> &#125;;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; id;</span><br><span class="line">        t.id = id;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d %d %d"</span>, &amp;t.grade[<span class="number">1</span>], &amp;t.grade[<span class="number">2</span>], &amp;t.grade[<span class="number">3</span>]);</span><br><span class="line">        t.grade[<span class="number">0</span>] = t.grade[<span class="number">1</span>] + t.grade[<span class="number">2</span>] + t.grade[<span class="number">3</span>];</span><br><span class="line">        t.oldra = <span class="number">9999999</span>;</span><br><span class="line">        mp[id] = <span class="number">1</span>;</span><br><span class="line">        v.push_back(t);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)&#123;</span><br><span class="line">        sort(v.<span class="built_in">begin</span>(), v.<span class="built_in">end</span>(), cmp);</span><br><span class="line">        v[<span class="number">0</span>].ra = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(v[<span class="number">0</span>].ra &lt; v[<span class="number">0</span>].oldra)&#123;</span><br><span class="line">            v[<span class="number">0</span>].bestgrade = p;</span><br><span class="line">            v[<span class="number">0</span>].oldra = v[<span class="number">0</span>].ra;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(v[i].grade[p] == v[i - <span class="number">1</span>].grade[p])&#123;</span><br><span class="line">                v[i].ra = v[i - <span class="number">1</span>].ra;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> v[i].ra = i + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(v[i].ra &lt; v[i].oldra)&#123;</span><br><span class="line">                v[i].bestgrade = p;</span><br><span class="line">                v[i].oldra = v[i].ra;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        p++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; mpp;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">        mpp[v[i].id] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; id;</span><br><span class="line">        <span class="keyword">if</span>(mp[id] == <span class="number">0</span>) <span class="built_in">cout</span> &lt;&lt; <span class="string">"N/A"</span> &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> pos = mpp[id];</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; v[pos].oldra &lt;&lt; <span class="string">" "</span> &lt;&lt; course[v[pos].bestgrade] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+		
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-1059-Prime-Factors-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/11/1059-Prime-Factors-25%E5%88%86/">1059 Prime Factors (25分)</a>
+    </h1>
+  
+
+        
+        <a href="/2020/12/11/1059-Prime-Factors-25%E5%88%86/" class="archive-article-date">
+  	<time datetime="2020-12-11T13:41:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+		
+			<h3 id="1059-Prime-Factors-25分"><a href="#1059-Prime-Factors-25分" class="headerlink" title="1059 Prime Factors (25分)"></a>1059 Prime Factors (25分)</h3><p>Given any positive integer <em>N</em>, you are supposed to find all of its prime factors, and write them in the format <em>N</em> = <em>p</em><sub>1</sub><sup><em>k</em>1</sup>×<em>p</em><sub>2</sub><sup><em>k</em>2</sup>×⋯×<em>p</em><sub><em>m</em></sub><sup><em>km</em></sup>.</p>
+<h3 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h3><p>Each input file contains one test case which gives a positive integer <em>N</em> in the range of <strong>long int</strong>.</p>
+			
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">思维</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-相机标定原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/19/%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A%E5%8E%9F%E7%90%86/">相机标定原理</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/19/%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A%E5%8E%9F%E7%90%86/" class="archive-article-date">
+  	<time datetime="2020-11-19T02:17:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+		
+			
+			<h2 id="相机标定原理"><a href="#相机标定原理" class="headerlink" title="相机标定原理"></a>相机标定原理</h2>
+		
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机视觉</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-循环神经网络-RNN" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -687,231 +914,9 @@
 
 
   
-    <article id="post-1125-Chain-the-Ropes-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/03/1125-Chain-the-Ropes-25%E5%88%86/">1125 Chain the Ropes (25分)</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/03/1125-Chain-the-Ropes-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-06-03T01:02:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-		
-			<p>Given some segments of rope, you are supposed to chain them into one rope. Each time you may only fold two segments into loops and chain them into one piece, as shown by the figure. The resulting chain will be treated as another segment of rope and can be folded again. After each chaining, the lengths of the original two segments will be halved.</p>
-<p><img src="https://images.ptausercontent.com/46293e57-aa0e-414b-b5c3-7c4b2d5201e2.jpg" alt="rope.jpg"></p>
-			
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">优先队列</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-卷积神经网络" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">卷积神经网络(CNN)</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="archive-article-date">
-  	<time datetime="2020-06-01T07:34:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-		
-			<h3 id="边缘检测示例"><a href="#边缘检测示例" class="headerlink" title="边缘检测示例"></a>边缘检测示例</h3><p>将一张图像以灰度值矩阵的方式展现出来，然后与一个过滤器（这里的过滤器也是一个特殊的矩阵）做卷积运算，类似于一个滑动窗口，就能得到一个新的矩阵，这个新的矩阵亮度大的地方就是原图片边缘的地方。具体过程如图1</p>
-<div align="center">
-    <img src="/2020/06/01/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/16.PNG"><br><br>
-    Fig1. 卷积边缘检测
-</div>
-
-<blockquote>
-<p>卷积运算提供了一个方便的发现图像中垂直边缘的例子，要想计算出水平边缘，将过滤器转置一下就可以了。里面数字的选择也是不同的，有很多版本。卷积神经网络，就是将这九个数看成参数，利用反向传播算法，学习出这些参数的值，就可以检测更复杂的边缘了，不仅仅是垂直水平边缘。</p>
-</blockquote>
-			
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CNN</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-1133-Splitting-A-Linked-List-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/01/1133-Splitting-A-Linked-List-25%E5%88%86/">1133 Splitting A Linked List (25分)</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/01/1133-Splitting-A-Linked-List-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-06-01T06:57:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-		
-			<p>Given a singly linked list, you are supposed to rearrange its elements so that all the negative values appear before all of the non-negatives, and all the values in [0, K] appear before all those greater than K. The order of the elements inside each class must not be changed. For example, given the list being 18→7→-4→0→5→-6→10→11→-2 and K being 10, you must output -4→-6→-2→7→0→5→10→18→11.</p>
-			
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">链表</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT—Advanced</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1148,6 +1153,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CNN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">思维</a>
               </li>
             
             <div class="clearfix"></div>
