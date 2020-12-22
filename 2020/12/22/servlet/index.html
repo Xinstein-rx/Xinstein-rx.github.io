@@ -6,21 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>1071 Speech Patterns (25分) | Xinsteinのblog</title>
+  <title>servlet | Xinsteinのblog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="People often have a preference among synonyms of the same word. For example, some may prefer “the police”, while others may prefer “the cops”. Analyzing such patterns can help to narrow down a speaker">
+  <meta name="description" content="Servletservlet的生命周期若web.xml文件里面不配置 ，则从第一次请求开始，初始化servlet，讲servlet加载进内存，此后无论有多少请求，都不再重新初始化，一直到服务器关闭。若web.xml文件里面配置了，则从服务器启动，servlet就加载进了内存，生命周期一直到服务器关闭。servlet处理请求的三大方法service()：post和get请求都可以处理，并且三种方法都">
 <meta property="og:type" content="article">
-<meta property="og:title" content="1071 Speech Patterns (25分)">
-<meta property="og:url" content="http://yoursite.com/2020/05/23/1071-Speech-Patterns-25%E5%88%86/index.html">
+<meta property="og:title" content="servlet">
+<meta property="og:url" content="http://yoursite.com/2020/12/22/servlet/index.html">
 <meta property="og:site_name" content="Xinsteinのblog">
-<meta property="og:description" content="People often have a preference among synonyms of the same word. For example, some may prefer “the police”, while others may prefer “the cops”. Analyzing such patterns can help to narrow down a speaker">
+<meta property="og:description" content="Servletservlet的生命周期若web.xml文件里面不配置 ，则从第一次请求开始，初始化servlet，讲servlet加载进内存，此后无论有多少请求，都不再重新初始化，一直到服务器关闭。若web.xml文件里面配置了，则从服务器启动，servlet就加载进了内存，生命周期一直到服务器关闭。servlet处理请求的三大方法service()：post和get请求都可以处理，并且三种方法都">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-05-23T06:38:57.000Z">
-<meta property="article:modified_time" content="2020-05-23T06:41:45.383Z">
+<meta property="og:image" content="http://yoursite.com/2020/12/22/servlet/Servlet.PNG">
+<meta property="article:published_time" content="2020-12-22T01:24:01.000Z">
+<meta property="article:modified_time" content="2020-12-22T01:26:55.135Z">
 <meta property="article:author" content="Xinstein">
-<meta property="article:tag" content="PAT-Advanced">
-<meta property="article:tag" content="字符串">
+<meta property="article:tag" content="servlet">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/12/22/servlet/Servlet.PNG">
   
     <link rel="alternative" href="/atom.xml" title="Xinsteinのblog" type="application/atom+xml">
   
@@ -162,20 +163,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-1071-Speech-Patterns-25分" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-servlet" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      1071 Speech Patterns (25分)
+      servlet
     </h1>
   
 
         
-        <a href="/2020/05/23/1071-Speech-Patterns-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-23T06:38:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-23</time>
+        <a href="/2020/12/22/servlet/" class="archive-article-date">
+  	<time datetime="2020-12-22T01:24:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-22</time>
 </a>
         
       </header>
@@ -183,19 +184,58 @@
     <div class="article-entry" itemprop="articleBody">
 		
 			
-			<p>People often have a preference among synonyms of the same word. For example, some may prefer “the police”, while others may prefer “the cops”. Analyzing such patterns can help to narrow down a speaker’s identity, which is useful when validating, for example, whether it’s still the same person behind an online avatar.</p>
-<p>Now given a paragraph of text sampled from someone’s speech, can you find the person’s most commonly used word?</p>
-<a id="more"></a>
-<h4 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h4><p>Each input file contains one test case. For each case, there is one line of text no more than 1048576 characters in length, terminated by a carriage return <code>\n</code>. The input contains at least one alphanumerical character, i.e., one character from the set [<code>0-9 A-Z a-z</code>].</p>
-<h4 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h4><p>For each test case, print in one line the most commonly occurring word in the input text, followed by a space and the number of times it has occurred in the input. If there are more than one such words, print the lexicographically smallest one. The word should be printed in all lower case. Here a “word” is defined as a continuous sequence of alphanumerical characters separated by non-alphanumerical characters or the line beginning/end.</p>
-<p>Note that words are case <strong>insensitive</strong>.</p>
-<h4 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input:"></a>Sample Input:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Can1: &quot;Can a can can a can?  It can!&quot;</span><br></pre></td></tr></table></figure>
-<h4 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">can 5</span><br></pre></td></tr></table></figure>
-<blockquote>
-<font color="LIghtCoral">这个题用map做很简单，但是有几个点比较坑，我用的是isstream这个头文件，自动分割字符，然后第一遍第三个点没过，想了半天也不知道为啥，上网去查了查原来是这种情况，比如ee.....eeee,这时候应该输ee 1， 而运行结果却是，eeeeee 1，这是因为，只要有不是字母的字符就把它当成单词分隔符，例子是两个单词，但是把它当成一个单词处理了，而不是有一个空格才是一个单词，柳婼的题解，是给了一次遍历，每次遇到不是字母或数字，判断字符串是不是空的，如果不是就map，然后clear，继续遍历，这个方法也挺好的，很容易地就把单词分割出来了。Here a "word" is defined as a continuous sequence of alphanumerical characters separated by non-alphanumerical characters or the line beginning/end.哎，题目中明明有告诉，就是没看见呢~另外还学到一个函数是isalnum(),判断是不是字母和数字字符，在cctype里面。</font>
+			<h1 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h1><h2 id="servlet的生命周期"><a href="#servlet的生命周期" class="headerlink" title="servlet的生命周期"></a>servlet的生命周期</h2><h3 id="若web-xml文件里面不配置-，则从第一次请求开始，初始化servlet，讲servlet加载进内存，此后无论有多少请求，都不再重新初始化，一直到服务器关闭。"><a href="#若web-xml文件里面不配置-，则从第一次请求开始，初始化servlet，讲servlet加载进内存，此后无论有多少请求，都不再重新初始化，一直到服务器关闭。" class="headerlink" title="若web.xml文件里面不配置 ，则从第一次请求开始，初始化servlet，讲servlet加载进内存，此后无论有多少请求，都不再重新初始化，一直到服务器关闭。"></a>若web.xml文件里面不配置 <load-on-startup>，则从第一次请求开始，初始化servlet，讲servlet加载进内存，此后无论有多少请求，都不再重新初始化，一直到服务器关闭。</load-on-startup></h3><h3 id="若web-xml文件里面配置了，则从服务器启动，servlet就加载进了内存，生命周期一直到服务器关闭。"><a href="#若web-xml文件里面配置了，则从服务器启动，servlet就加载进了内存，生命周期一直到服务器关闭。" class="headerlink" title="若web.xml文件里面配置了，则从服务器启动，servlet就加载进了内存，生命周期一直到服务器关闭。"></a>若web.xml文件里面配置了<load-on-startup>，则从服务器启动，servlet就加载进了内存，生命周期一直到服务器关闭。</load-on-startup></h3><h2 id="servlet处理请求的三大方法"><a href="#servlet处理请求的三大方法" class="headerlink" title="servlet处理请求的三大方法"></a>servlet处理请求的三大方法</h2><h3 id="service-：post和get请求都可以处理，并且三种方法都有的时候，优先调用service-。写service-时，eclipse会自动加上super-service-，调用父亲的service-方法，一般这句话是不需要的，因为加上这句话必须对doGet-和doPost-进行重写，如果没有重写，就会报405错误（请求方式不支持），因为父类的这个函数就是去调用子类的doGet-或者doPost"><a href="#service-：post和get请求都可以处理，并且三种方法都有的时候，优先调用service-。写service-时，eclipse会自动加上super-service-，调用父亲的service-方法，一般这句话是不需要的，因为加上这句话必须对doGet-和doPost-进行重写，如果没有重写，就会报405错误（请求方式不支持），因为父类的这个函数就是去调用子类的doGet-或者doPost" class="headerlink" title="service()：post和get请求都可以处理，并且三种方法都有的时候，优先调用service()。写service()时，eclipse会自动加上super.service()，调用父亲的service()方法，一般这句话是不需要的，因为加上这句话必须对doGet()和doPost()进行重写，如果没有重写，就会报405错误（请求方式不支持），因为父类的这个函数就是去调用子类的doGet()或者doPost()"></a>service()：post和get请求都可以处理，并且三种方法都有的时候，优先调用service()。写service()时，eclipse会自动加上super.service()，调用父亲的service()方法，一般这句话是不需要的，因为加上这句话必须对doGet()和doPost()进行重写，如果没有重写，就会报405错误（请求方式不支持），因为父类的这个函数就是去调用子类的doGet()或者doPost()</h3><h3 id="doGet-：只能处理get方式的请求。get方式就是提交的表单数据，是被附加在URL后用？分隔的。"><a href="#doGet-：只能处理get方式的请求。get方式就是提交的表单数据，是被附加在URL后用？分隔的。" class="headerlink" title="doGet()：只能处理get方式的请求。get方式就是提交的表单数据，是被附加在URL后用？分隔的。"></a>doGet()：只能处理get方式的请求。get方式就是提交的表单数据，是被附加在URL后用？分隔的。</h3><h3 id="doPost-：只能处理post方式的请求。post方式的请求，有专门的请求实体，表单数据不会在URL中出现。"><a href="#doPost-：只能处理post方式的请求。post方式的请求，有专门的请求实体，表单数据不会在URL中出现。" class="headerlink" title="doPost()：只能处理post方式的请求。post方式的请求，有专门的请求实体，表单数据不会在URL中出现。"></a>doPost()：只能处理post方式的请求。post方式的请求，有专门的请求实体，表单数据不会在URL中出现。</h3><h2 id="servlet的常见错误"><a href="#servlet的常见错误" class="headerlink" title="servlet的常见错误"></a>servlet的常见错误</h2><h3 id="404：资源未找到。servlet未找到。"><a href="#404：资源未找到。servlet未找到。" class="headerlink" title="404：资源未找到。servlet未找到。"></a>404：资源未找到。servlet未找到。</h3><ul>
+<li>请求地址中servlet名字书写错误</li>
+<li>请求地址中虚拟项目名称书写错误。</li>
+</ul>
+<h3 id="500：内部服务器错误。"><a href="#500：内部服务器错误。" class="headerlink" title="500：内部服务器错误。"></a>500：内部服务器错误。</h3><ul>
+<li>service()方法中，代码出现逻辑错误</li>
+<li>web.xml文件中，servlet全限定路径拼写错误</li>
+</ul>
+<h3 id="405：请求方式不支持。"><a href="#405：请求方式不支持。" class="headerlink" title="405：请求方式不支持。"></a>405：请求方式不支持。</h3><ul>
+<li>尽量使用service()方法，并且service()方法中，尽量不要调用父类的service()</li>
+</ul>
+<h2 id="response"><a href="#response" class="headerlink" title="response"></a>response</h2><h3 id="定义：用来将父服务器响应的数据发送到浏览器的对象"><a href="#定义：用来将父服务器响应的数据发送到浏览器的对象" class="headerlink" title="定义：用来将父服务器响应的数据发送到浏览器的对象"></a>定义：用来将父服务器响应的数据发送到浏览器的对象</h3><h3 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h3><ul>
+<li><p>响应头</p>
+<ul>
+<li>http协议里的键</li>
+</ul>
+</li>
+<li><p>响应状态码</p>
+<ul>
+<li>直接给出404或者405错误。当在service()方法里面，调用父类的service()方法，而没有对doGet()和doPost()进行重写，就会调用父类的doGet()和doPost()，在这两个函数里面，就会直接响应一个405状态码，sendError()。</li>
+</ul>
+</li>
+<li><p>响应实体</p>
+<ul>
+<li>对用户提交的数据进行响应</li>
+</ul>
+</li>
+</ul>
+<h2 id="request"><a href="#request" class="headerlink" title="request"></a>request</h2><h3 id="定义：存储了浏览器向服务器发送的请求数据，是一个对象。服务器每接收到一个请求，就创建一个request对象。"><a href="#定义：存储了浏览器向服务器发送的请求数据，是一个对象。服务器每接收到一个请求，就创建一个request对象。" class="headerlink" title="定义：存储了浏览器向服务器发送的请求数据，是一个对象。服务器每接收到一个请求，就创建一个request对象。"></a>定义：存储了浏览器向服务器发送的请求数据，是一个对象。服务器每接收到一个请求，就创建一个request对象。</h3><h3 id="请求数据"><a href="#请求数据" class="headerlink" title="请求数据"></a>请求数据</h3><ul>
+<li><p>请求头数据</p>
+<ul>
+<li>请求方式</li>
+<li>请求URL地址</li>
+<li>请求协议</li>
+</ul>
+</li>
+<li><p>请求行数据</p>
+<ul>
+<li>是键值对的形式，主要是http协议的内容</li>
+</ul>
+</li>
+<li><p>用户数据</p>
+<ul>
+<li>用户提交的表单数据，不区分post和get，无论哪种方式，用户提交的表单数据，都会被封装在request对象中</li>
+</ul>
+</li>
+</ul>
+<div align="center">
+    <img src="/2020/12/22/servlet/Servlet.PNG">
+    Fig.1 思维导图
+</div>
 
-</blockquote>
-<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt; </span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> tmp, m;</span><br><span class="line">	<span class="keyword">char</span> c;</span><br><span class="line">	<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; mp;</span><br><span class="line">	<span class="keyword">int</span> maxn = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>((c = getchar() )!= <span class="string">'\n'</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!<span class="built_in">isalnum</span>(c))&#123;</span><br><span class="line">			<span class="keyword">if</span>(tmp.<span class="built_in">size</span>() != <span class="number">0</span>)&#123;</span><br><span class="line">				mp[tmp]++;</span><br><span class="line">				tmp.<span class="built_in">clear</span>();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">if</span>(c &lt;= <span class="string">'Z'</span> &amp;&amp; c &gt;= <span class="string">'A'</span>) c = c - <span class="string">'A'</span> + <span class="string">'a'</span>;</span><br><span class="line">			tmp += c;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(tmp.<span class="built_in">size</span>() != <span class="number">0</span>) mp[tmp]++;</span><br><span class="line">	<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">	<span class="keyword">for</span>(it = mp.<span class="built_in">begin</span>(); it != mp.<span class="built_in">end</span>(); it++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(it -&gt; second &gt; maxn)&#123;</span><br><span class="line">			maxn = it -&gt; second;</span><br><span class="line">			m = it -&gt; first;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; m &lt;&lt; <span class="string">" "</span> &lt;&lt; maxn;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 		
     </div>
@@ -207,11 +247,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">字符串</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">servlet</a>
         		</li>
       		
 		</ul>
@@ -267,7 +303,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/23/1071-Speech-Patterns-25%E5%88%86/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/12/22/servlet/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -281,18 +317,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/05/24/1082-Read-Number-in-Chinese-25%E5%88%86/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          1082 Read Number in Chinese (25分)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/05/23/1055-The-World-s-Richest-25%E5%88%86/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">1055 The World&#39;s Richest (25分)</div>
+    <a href="/2020/12/11/1012-The-Best-Rank-25%E5%88%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">1012 The Best Rank (25分)</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -319,7 +346,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Input-Specification"><span class="toc-number">1.</span> <span class="toc-text">Input Specification:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Output-Specification"><span class="toc-number">2.</span> <span class="toc-text">Output Specification:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Input"><span class="toc-number">3.</span> <span class="toc-text">Sample Input:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sample-Output"><span class="toc-number">4.</span> <span class="toc-text">Sample Output:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AC代码"><span class="toc-number">5.</span> <span class="toc-text">AC代码</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Servlet"><span class="toc-number">1.</span> <span class="toc-text">Servlet</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#servlet的生命周期"><span class="toc-number">1.1.</span> <span class="toc-text">servlet的生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#若web-xml文件里面不配置-，则从第一次请求开始，初始化servlet，讲servlet加载进内存，此后无论有多少请求，都不再重新初始化，一直到服务器关闭。"><span class="toc-number">1.1.1.</span> <span class="toc-text">若web.xml文件里面不配置 ，则从第一次请求开始，初始化servlet，讲servlet加载进内存，此后无论有多少请求，都不再重新初始化，一直到服务器关闭。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#若web-xml文件里面配置了，则从服务器启动，servlet就加载进了内存，生命周期一直到服务器关闭。"><span class="toc-number">1.1.2.</span> <span class="toc-text">若web.xml文件里面配置了，则从服务器启动，servlet就加载进了内存，生命周期一直到服务器关闭。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#servlet处理请求的三大方法"><span class="toc-number">1.2.</span> <span class="toc-text">servlet处理请求的三大方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#service-：post和get请求都可以处理，并且三种方法都有的时候，优先调用service-。写service-时，eclipse会自动加上super-service-，调用父亲的service-方法，一般这句话是不需要的，因为加上这句话必须对doGet-和doPost-进行重写，如果没有重写，就会报405错误（请求方式不支持），因为父类的这个函数就是去调用子类的doGet-或者doPost"><span class="toc-number">1.2.1.</span> <span class="toc-text">service()：post和get请求都可以处理，并且三种方法都有的时候，优先调用service()。写service()时，eclipse会自动加上super.service()，调用父亲的service()方法，一般这句话是不需要的，因为加上这句话必须对doGet()和doPost()进行重写，如果没有重写，就会报405错误（请求方式不支持），因为父类的这个函数就是去调用子类的doGet()或者doPost()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#doGet-：只能处理get方式的请求。get方式就是提交的表单数据，是被附加在URL后用？分隔的。"><span class="toc-number">1.2.2.</span> <span class="toc-text">doGet()：只能处理get方式的请求。get方式就是提交的表单数据，是被附加在URL后用？分隔的。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#doPost-：只能处理post方式的请求。post方式的请求，有专门的请求实体，表单数据不会在URL中出现。"><span class="toc-number">1.2.3.</span> <span class="toc-text">doPost()：只能处理post方式的请求。post方式的请求，有专门的请求实体，表单数据不会在URL中出现。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#servlet的常见错误"><span class="toc-number">1.3.</span> <span class="toc-text">servlet的常见错误</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#404：资源未找到。servlet未找到。"><span class="toc-number">1.3.1.</span> <span class="toc-text">404：资源未找到。servlet未找到。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#500：内部服务器错误。"><span class="toc-number">1.3.2.</span> <span class="toc-text">500：内部服务器错误。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#405：请求方式不支持。"><span class="toc-number">1.3.3.</span> <span class="toc-text">405：请求方式不支持。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#response"><span class="toc-number">1.4.</span> <span class="toc-text">response</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义：用来将父服务器响应的数据发送到浏览器的对象"><span class="toc-number">1.4.1.</span> <span class="toc-text">定义：用来将父服务器响应的数据发送到浏览器的对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#响应"><span class="toc-number">1.4.2.</span> <span class="toc-text">响应</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#request"><span class="toc-number">1.5.</span> <span class="toc-text">request</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义：存储了浏览器向服务器发送的请求数据，是一个对象。服务器每接收到一个请求，就创建一个request对象。"><span class="toc-number">1.5.1.</span> <span class="toc-text">定义：存储了浏览器向服务器发送的请求数据，是一个对象。服务器每接收到一个请求，就创建一个request对象。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请求数据"><span class="toc-number">1.5.2.</span> <span class="toc-text">请求数据</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
