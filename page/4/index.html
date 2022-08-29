@@ -154,6 +154,83 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-目标检测" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">目标检测</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/14/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" class="archive-article-date">
+  	<time datetime="2020-07-14T05:49:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+		
+			<h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><h4 id="目标定位"><a href="#目标定位" class="headerlink" title="目标定位"></a>目标定位</h4><p>简单的网络我们可以对一张图片进行分类，输出是否有猫，现在我们讨论的是，不仅要确定一张图片上是否有目标，而且这个目标的位置也要给出来。</p>
+<p>这里增加了几个约定，就是图片的左上角坐标为$(0,0)$，右下角坐标为 $(1,1)$，增加的目标位置的参数为 $b_x,b_y,b_h,b_w$ ，$b_x,b_y$是目标中心点的位置。拿这样一个例子来看，检测一个图片中是否有行人，汽车，摩托车，我们可以这样定义输出向量<br>$$<br>        y&#x3D;\begin{bmatrix}<br>        Pc\<br>        b_x\<br>        b_y\<br>        b_h\<br>        b_w\<br>        c_1\<br>        c_2\<br>        c_3<br>        \end{bmatrix}<br>$$<br>其中</p>
+<ol>
+<li>$Pc$是确定图片中是否有上述目标，要是有的话，输出1，对应的只有背景的话输出0</li>
+<li>具体是什么类型由一系列$c$输出</li>
+<li>代价函数：可以对这八个维度全部应用平方误差，这是在Pc&#x3D;1的前提下，要是Pc&#x3D;0，只计算着一个维度就好，不必关心其他的值。但一般对$c$不进行误差计算，对边界坐标应用平方误差或者类似的方法，对Pc应用Logistic回归。</li>
+</ol>
+			
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">目标检测</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-1067-Sort-with-Swap-0-i-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -805,78 +882,6 @@
 
 
   
-    <article id="post-1141-PAT-Ranking-of-Institutions-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/01/1141-PAT-Ranking-of-Institutions-25%E5%88%86/">1141 PAT Ranking of Institutions (25分)</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/01/1141-PAT-Ranking-of-Institutions-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-06-01T06:26:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-		
-			<p>After each PAT, the PAT Center will announce the ranking of institutions based on their students’ performances. Now you are asked to generate the ranklist.</p>
-<h4 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h4><p>Each input file contains one test case. For each case, the first line gives a positive integer N (≤10<sup>5</sup>), which is the number of testees. Then N lines follow, each gives the information of a testee in the following format:</p>
-			
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
@@ -1020,10 +1025,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">连通分量</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1180,6 +1181,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
               </li>
             
             <div class="clearfix"></div>

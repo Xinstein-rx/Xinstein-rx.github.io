@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>test | Xinsteinのblog</title>
+  <title>二叉树的非递归遍历 | Xinsteinのblog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://yoursite.com/2022/08/25/test/index.html">
+  <meta name="description" content="&#x2F;* 右边为最终生成文件的预览。  此样式，主要用于设置整体背景，内容的内、外边框等， 侧重于文档整体框架的样式。 可任意修改样式，或恢复预设值，保存后生效 *&#x2F; body{&#x2F;*文档整体的属性*&#x2F;        width: 100%;        margin:0;        padding:0; }  #export_content{&#x2F;*文档内容的整体属性*&#x2F;        margi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二叉树的非递归遍历">
+<meta property="og:url" content="http://yoursite.com/2022/08/29/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%9D%9E%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86/index.html">
 <meta property="og:site_name" content="Xinsteinのblog">
+<meta property="og:description" content="&#x2F;* 右边为最终生成文件的预览。  此样式，主要用于设置整体背景，内容的内、外边框等， 侧重于文档整体框架的样式。 可任意修改样式，或恢复预设值，保存后生效 *&#x2F; body{&#x2F;*文档整体的属性*&#x2F;        width: 100%;        margin:0;        padding:0; }  #export_content{&#x2F;*文档内容的整体属性*&#x2F;        margi">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-08-25T03:07:23.000Z">
-<meta property="article:modified_time" content="2022-08-25T03:07:23.098Z">
+<meta property="article:published_time" content="2022-08-29T02:55:19.000Z">
+<meta property="article:modified_time" content="2022-08-29T04:14:47.571Z">
 <meta property="article:author" content="Xinstein">
+<meta property="article:tag" content="二叉树">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Xinsteinのblog" type="application/atom+xml">
@@ -154,20 +157,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-test" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-二叉树的非递归遍历" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      test
+      二叉树的非递归遍历
     </h1>
   
 
         
-        <a href="/2022/08/25/test/" class="archive-article-date">
-  	<time datetime="2022-08-25T03:07:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-25</time>
+        <a href="/2022/08/29/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%9D%9E%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86/" class="archive-article-date">
+  	<time datetime="2022-08-29T02:55:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-29</time>
 </a>
         
       </header>
@@ -175,12 +178,69 @@
     <div class="article-entry" itemprop="articleBody">
 		
 			
-			
+			<style>
+/*
+右边为最终生成文件的预览。
+
+此样式，主要用于设置整体背景，内容的内、外边框等，
+侧重于文档整体框架的样式。
+可任意修改样式，或恢复预设值，保存后生效
+*/
+body{/*文档整体的属性*/
+       width: 100%;
+       margin:0;
+       padding:0;
+}
+
+#export_content{/*文档内容的整体属性*/
+       margin: 40px 20%;
+       padding:20px;
+       border: 1px solid rgb(149, 155, 111);
+       background:#ffffff;
+}
+</style>
+
+
+<h2 id="二叉树的定义"><a href="#二叉树的定义" class="headerlink" title="二叉树的定义"></a>二叉树的定义</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">struct TreeNode&#123;</span><br><span class="line">    int val;</span><br><span class="line">    TreeNode* left;</span><br><span class="line">    TreeNode* right;</span><br><span class="line">    TreeNode() : val(0), left(NULL), right(NULL)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    TreeNode(int x) : val(x), left(NULL), right(NULL)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h2><ol>
+<li>非递归遍历的前序遍历很好想，可以先考虑递归遍历，在递归函数调用过程中，其实隐藏使用了栈这种数据结构，那在非递归遍历的时候，也可以借助栈来实现。</li>
+<li>前序遍历是根左右的方式，在入栈的时候，要先把右孩子入栈，再把左孩子入栈，这样得到的结果就是前序遍历的结果了。</li>
+</ol>
+<span id="more"></span>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; preorderTraversal(TreeNode* root)&#123;</span><br><span class="line">    stack&lt;TreeNode*&gt; s;</span><br><span class="line">    vector&lt;int&gt; ans;</span><br><span class="line">    if(root == NULL) return ans;</span><br><span class="line">    s.push(root);</span><br><span class="line">    while(!s.empty())&#123;</span><br><span class="line">        TreeNode* node = s.top();</span><br><span class="line">        s.pop();</span><br><span class="line">        ans.push_back(node -&gt; val);</span><br><span class="line">        if(node -&gt; right) s.push(node -&gt; right);</span><br><span class="line">        if(node -&gt; left) s.push(node -&gt; left);</span><br><span class="line">    &#125;</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h2><ol>
+<li>中序遍历比较麻烦一些，主要原因是要加入答案的节点和要遍历的节点不是一个，所以处理起来有些麻烦</li>
+<li>需要通过一个while循环不断的去遍历左节点，遍历过程中不断的把遍历到的节点push到栈里，然后遍历到空节点的时候，就把栈中的元素弹出来</li>
+<li>弹出来的元素，其实相当于弹出了这个节点为根节点，他的左子树已经遍历完了，把当前节点加入到答案序列，再继续遍历右节点，然后如果右节点还有左子树的话，再继续去遍历左子树</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; inorderTraversal(TreeNode* root)&#123;</span><br><span class="line">    stack&lt;TreeNode*&gt; s;</span><br><span class="line">    vector&lt;int&gt; ans;</span><br><span class="line">    TreeNode* cur = root;</span><br><span class="line">    while(cur != NULL || !s.empty())&#123;</span><br><span class="line">        while(cur != NULL)&#123;</span><br><span class="line">            s.push(cur);</span><br><span class="line">            cur = cur -&gt; left;</span><br><span class="line">        &#125;</span><br><span class="line">        cur = s.top();</span><br><span class="line">        s.pop();</span><br><span class="line">        ans.push_back(cur -&gt; val);</span><br><span class="line">        cur = cur -&gt; right;</span><br><span class="line">    &#125;</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h2><ol>
+<li>后序遍历reverse一下，可以看成是一个根右左的前序遍历</li>
+<li>所以上述前序遍历的代码，写成根右左的形式，即先把左孩子放入栈，再把右孩子放入栈，最后遍历的顺序就是根右左的形式</li>
+<li>把最后的顺序reverse一下，就是后序遍历的结果了</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; postorderTraversal(TreeNode* root)&#123;</span><br><span class="line">    stack&lt;TreeNode*&gt; s;</span><br><span class="line">    vector&lt;int&gt; ans;</span><br><span class="line">    if(root == NULL) return ans;</span><br><span class="line">    s.push(root);</span><br><span class="line">    while(!s.empty())&#123;</span><br><span class="line">        TreeNode8 node = s.top();</span><br><span class="line">        s.pop();</span><br><span class="line">        ans.push_back(node -&gt; val);</span><br><span class="line">        if(node -&gt; left) s.push(node -&gt; left);</span><br><span class="line">        if(node -&gt; right) s.push(node -&gt; right);</span><br><span class="line">    &#125;</span><br><span class="line">    reverse(ans.begin(), ans.end());</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 		
     </div>
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">二叉树</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -231,7 +291,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2022/08/25/test/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2022/08/29/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%9D%9E%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -244,6 +304,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2022/08/29/%E3%80%90%E9%93%BE%E8%A1%A8%E6%80%BB%E7%BB%93%E3%80%91%E5%BF%AB%E6%85%A2%E6%8C%87%E9%92%88%E5%B0%B1%E6%98%AF%E7%89%9B%EF%BD%9E/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          【链表总结】快慢指针就是牛～
+        
+      </div>
+    </a>
   
   
     <a href="/2022/08/25/%E3%80%90%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E3%80%91%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%E7%B3%BB%E5%88%97%E4%BA%8C%EF%BC%9A%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
@@ -274,7 +343,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.</span> <span class="toc-text">二叉树的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">2.</span> <span class="toc-text">前序遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">3.</span> <span class="toc-text">中序遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">4.</span> <span class="toc-text">后序遍历</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -435,10 +504,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">树的直径</a>
               </li>
              
@@ -592,6 +657,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
               </li>
             
             <div class="clearfix"></div>
