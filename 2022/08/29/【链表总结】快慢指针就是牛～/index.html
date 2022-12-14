@@ -17,7 +17,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/%E3%80%90%E9%93%BE%E8%A1%A8%E6%80%BB%E7%BB%93%E3%80%91%E5%BF%AB%E6%85%A2%E6%8C%87%E9%92%88%E5%B0%B1%E6%98%AF%E7%89%9B%EF%BD%9E/lianbiao.png">
 <meta property="article:published_time" content="2022-08-29T04:27:12.000Z">
-<meta property="article:modified_time" content="2022-08-29T04:44:06.562Z">
+<meta property="article:modified_time" content="2022-08-31T05:16:20.061Z">
 <meta property="article:author" content="Xinstein">
 <meta property="article:tag" content="链表">
 <meta name="twitter:card" content="summary">
@@ -471,6 +471,8 @@ a[href^="#"] sup
 <li>但是可以用双指针的思想，快慢指针，快指针先走n+1步，慢指针开始走，这样快指针为NULL时，慢指针到了要删除节点的上一个节点位置</li>
 <li>到达上一个节点位置的原因是方便删除</li>
 </ol>
+<span id="more"></span>
+
 <h2 id="链表相交"><a href="#链表相交" class="headerlink" title="链表相交"></a>链表相交</h2><p>题目链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/">https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/</a></p>
 <ol>
 <li>这道题一开始的思路是用哈希，第一次遍历第一个链表，用哈希的方法记录下经过对的节点，第二次遍历，如果遇到之前已经走过的节点（哈希值为1），则就是公共节点</li>
@@ -492,9 +494,8 @@ a[href^="#"] sup
 <p> 图片摘自代码随想录：<a target="_blank" rel="noopener" href="https://www.programmercarl.com/0142.%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II.html#%E6%80%9D%E8%B7%AF">https://www.programmercarl.com/0142.环形链表II.html#思路</a></p>
 </li>
 <li><p>假设快指针比慢指针多走了一圈到了相遇节点，慢指针走了x+y步，快指针走了<code>x+y+z +y</code>步，由于快指针走的步数是慢指针的两倍，则</p>
-<pre><code> 2（x+y）= x+y+z+y
- 化简一下得到x=z，则上面的说法是成立的   
-</code></pre>
+<p>   2（x+y）&#x3D; x+y+z+y</p>
+<p>   化简一下得到x&#x3D;z，则上面的说法是成立的   </p>
 </li>
 <li><p>更普遍的情况，快指针比慢指针多走了n圈到了相遇节点，则最后化简的式子为<code>x = （n - 1）（y + z） + z</code>，也就是后来定义的两个指针相遇之前，从相遇节点开始的那个指针，多走了n圈</p>
 </li>
@@ -583,6 +584,15 @@ a[href^="#"] sup
 
   
 <nav id="article-nav">
+  
+    <a href="/2022/12/14/%E3%80%90OS%E3%80%91%E7%AC%AC%E4%B8%80%E5%A4%A9-%E4%BB%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%93%E6%9E%84%E5%88%B0%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E5%85%A5%E9%97%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          【OS】第一天 从计算机结构到汇编程序入门
+        
+      </div>
+    </a>
   
   
     <a href="/2022/08/29/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%9D%9E%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86/" id="article-nav-older" class="article-nav-link-wrap">
@@ -931,6 +941,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">小玩具</a>
               </li>
             
             <div class="clearfix"></div>

@@ -154,6 +154,382 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-【OS】第三天-进入32位模式并导入c语言" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/12/14/%E3%80%90OS%E3%80%91%E7%AC%AC%E4%B8%89%E5%A4%A9-%E8%BF%9B%E5%85%A532%E4%BD%8D%E6%A8%A1%E5%BC%8F%E5%B9%B6%E5%AF%BC%E5%85%A5c%E8%AF%AD%E8%A8%80/">【OS】第三天 进入32位模式并导入c语言</a>
+    </h1>
+  
+
+        
+        <a href="/2022/12/14/%E3%80%90OS%E3%80%91%E7%AC%AC%E4%B8%89%E5%A4%A9-%E8%BF%9B%E5%85%A532%E4%BD%8D%E6%A8%A1%E5%BC%8F%E5%B9%B6%E5%AF%BC%E5%85%A5c%E8%AF%AD%E8%A8%80/" class="archive-article-date">
+  	<time datetime="2022-12-14T00:31:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+		
+			
+			<h1 id="制作真正的IPL：编写了第二个扇区的内容"><a href="#制作真正的IPL：编写了第二个扇区的内容" class="headerlink" title="制作真正的IPL：编写了第二个扇区的内容"></a>制作真正的IPL：编写了第二个扇区的内容</h1><ol>
+<li>前两天制作的IPL只是在屏幕上成功显示了字符，真正的IPL还涉及一些对磁盘柱面等的一些初始化内容。</li>
+<li>这一部分进行了一个读盘操作，读取了第二个扇区的内容，并将它加载到内存中，这个加载到内存中的过程是BIOS实现的，我们只需要调用0x13函数，就能实现读取磁盘第二个扇区的内容，并加载到内存</li>
+<li>0x13函数，会给寄存器赋一些值，这些值指定了柱面、扇区、磁头等信息，还给出了加载到内存哪个位置的信息，ES:BX 用两个寄存器来表示内存地址，这样内存地址的范围就变大了。第一个ES是一个段寄存器，使用段寄存器时，以ES:BX这种方式来表示地址，写成“MOV AL,[ES:BX]”，它代表ES×16+BX的内存地址。可以把它理解成先用ES寄存器指定一个大致的地址，然后再用BX来指定其中一个具体地址。<ol>
+<li>不管指定内存的什么，都需要指定段寄存器，一般默认的寄存器为DS，“MOV CX,[1234]”，其实是“MOV CX,[DS:1234]”的意思，但是因为简洁原因，可以省略DS，因为有这样的规则，所以DS 必须预先指定为0</li>
+</ol>
+</li>
+<li>指定ES&#x3D;0x0820，BX&#x3D;0，所以软盘的数据将被装载到内存中0x8200到0x83ff的地方。0x8000～0x81ff这512字节是留给启动区的，要将启动区的内容读到那里，而启动区代码存放在0x7c00～0x7dff用于启动区。</li>
+<li>1张软盘有80个柱面，2个磁头，18个扇区，且一个扇区有512字节</li>
+<li>新出现指令：JC，Jump if carry，如果进位标志是1，则跳转，进位标志存放在只有一位的寄存器中</li>
+</ol>
+<h1 id="试错"><a href="#试错" class="headerlink" title="试错"></a>试错</h1><ol>
+<li>软盘有时候会出错，因此设定一个容错值，当出错次数大于等于5时才跳转到error，SI寄存器里面的值不断+1</li>
+<li>新出现的汇编指令<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. JNC，Jump if not carry，进位标志是0跳转，后面跟地址或标号</span><br><span class="line">2. JAE，Jump if above or equal，大于或等于跳转，后面跟地址或标号</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="读到18扇区"><a href="#读到18扇区" class="headerlink" title="读到18扇区"></a>读到18扇区</h1><ol>
+<li><p>新出现的汇编指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1. JBE，Jump if below or equal，小于等于则跳转</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>上面读的是第二个扇区，这次要读下一个扇区，不断增加CL的值，通过跳转的方式实现循环读入</p>
+<ol>
+<li>其实INT 0x13可以指定读入的扇区数，不用循环直接读入指定的扇区数，但是据说会出现错误</li>
+</ol>
+</li>
+<li><p>通过上述过程，已经把磁盘上C0-H0-S2到C0-H0-S18的512×17&#x3D;8 704字节的内容，装载到了内存的0x8200～0xa3ff处。</p>
+</li>
+</ol>
+<h1 id="读入10个柱面"><a href="#读入10个柱面" class="headerlink" title="读入10个柱面"></a>读入10个柱面</h1><ol>
+<li>上面将第一个柱面的18个扇区都出来了，这次要继续读10个扇区</li>
+<li>新出现的汇编指令<ol>
+<li>JB， Jump if below， 如果小于则跳转</li>
+<li>EQU，equal，相当于c语言的#define命令，用来声明常数，CYLS EQU 10，意思是CYLS &#x3D; 10</li>
+</ol>
+</li>
+<li>柱面号和磁头号都用寄存器表示，用专门一段程序来进行柱面、磁头的加减，内存的移动，以及边界（是否换磁头，是否换柱面）的判断</li>
+<li>到目前为止，界面上还没有任何的变化，但是已经完成了启动区的编写，就是从磁盘中读取10个柱面的内容到内存中。</li>
+</ol>
+<h1 id="着手开发操作系统：确认一个文件写到磁盘里内容是怎么样的"><a href="#着手开发操作系统：确认一个文件写到磁盘里内容是怎么样的" class="headerlink" title="着手开发操作系统：确认一个文件写到磁盘里内容是怎么样的"></a>着手开发操作系统：确认一个文件写到磁盘里内容是怎么样的</h1><ol>
+<li>一般向一个空软盘保存文件时，<ol>
+<li>文件名会写在0x002600以后的地方；</li>
+<li>文件的内容会写在0x004200以后的地方。</li>
+</ol>
+</li>
+<li>将操作系统本身的内容写到名为haribote.sys文件中，再把它保存到磁盘映像里，然后从启动区执行这个haribote.sys就行了</li>
+</ol>
+<h1 id="从启动区执行操作系统"><a href="#从启动区执行操作系统" class="headerlink" title="从启动区执行操作系统"></a>从启动区执行操作系统</h1><ol>
+<li>现在启动区有专门的文件，名为ipl.nas，功能是从磁盘上读入10个柱面</li>
+<li>后续开发的操作系统文件名字为haribote.nas，要在启动区里去执行这个文件</li>
+<li>如何做到上述执行过程呢？<ol>
+<li>文件被保存成磁盘映像后，文件内容会写在0x4200以后的地方，而启动区会被加载到内存0x8000的地方，所以磁盘0x4200的内容应该位于内存的0x8000+0x4200 &#x3D; 0xc200处（疑问：明明启动区是被加载到内存0x7c00去了，和0x8000差了1024也就是两个扇区的内容</li>
+<li>在ipl.nas处理最后加上JMP 0xc200这个指令</li>
+</ol>
+</li>
+</ol>
+<h1 id="确认操作系统的执行情况"><a href="#确认操作系统的执行情况" class="headerlink" title="确认操作系统的执行情况"></a>确认操作系统的执行情况</h1><ol>
+<li>为了确认写的操作系统是不是正确执行的，所以用显卡BIOS程序，以VGA显卡，320x200x8位彩色模式显示画面，如果画面模式切换正常，画面应该会变为一片漆黑，如果不是黑色，说明出现了错误</li>
+<li>将要读入的柱面值存到内存地址0x0ff0位置</li>
+<li>因为毫无区分的读入了10个柱面，所以启动区里与我们写的操作系统没关系的前后部分也读了进来</li>
+</ol>
+<h1 id="32位模式前期准备"><a href="#32位模式前期准备" class="headerlink" title="32位模式前期准备"></a>32位模式前期准备</h1><ol>
+<li>到现在，汇编语言的开发告一段落，要开始以C语言为主进行开发了</li>
+<li>编译好的c代码是32位的，不能和16位兼容，两种模式下指令代码也是不一样的。但是使用32位模式，就不能调用BIOS了，因为BIOS是用16位机器语言写的。如果有什么事情想用BIOS来做，那就全部都放在开头先做，因为一旦进入32位模式就不能调用BIOS函数了</li>
+<li>要使用BIOS做的事情<ol>
+<li>调用显卡相关的函数，进行画面模式设定</li>
+<li>从BIOS获得键盘状态</li>
+</ol>
+</li>
+<li>设置BOOT_INFO<ol>
+<li>定义变量读入柱面的个数(CYLS)，键盘LED灯的指示状态(LEDS)，颜色的位数(VMODE)，分辨率X(SCRNX)，分辨率Y(SCRNY)，图像缓冲区开始地址（VRAM),这些变量里存的都是内存地址，在0x0ff0附近，这一部分还没有被使用，需要用MOV指令给这些地址赋值。</li>
+<li>VRAM指的是显卡内存（video RAM），也就是用来显示画面的内存，它的各个地址都对应着画面上的像素，可以利用这一机制在画面上绘制出五彩缤纷的图案。这里VRAM的值设置的是0xa0000，参考BIOS说明，这个值与画面模式有关，不用的画面模式VRAM的地址是不一样的</li>
+</ol>
+</li>
+</ol>
+<h1 id="开始导入C语言"><a href="#开始导入C语言" class="headerlink" title="开始导入C语言"></a>开始导入C语言</h1><ol>
+<li>目前写的os前半部分是汇编语言，后半部分是c语言</li>
+<li>c文件变成机器语言的过程<ol>
+<li>C编译器会将.c文件变成汇编语言源程序</li>
+<li>利用汇编语言编译器，将汇编源程序编译成二进制机器语言，后缀名为.obj，这时候还不是可执行的二进制文件</li>
+<li>要将上述.obj文件与其他文件链接（link）后，才可能成为可执行文件<ol>
+<li>为什么要链接？C语言作者认识到C语言还是有局限性的，不能用C语言编写所有的程序，其中有一部分必须用汇编来编写，然后链接到C语言写的程序上</li>
+<li>那就需要将这部分汇编语言变成obj文件，与其他的obj文件链接</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="实现HLT"><a href="#实现HLT" class="headerlink" title="实现HLT"></a>实现HLT</h1><ol>
+<li>用汇编语言编写了一个函数_io_hlt，实现HLT，汇编编译成obj目标文件，链接后c语言可以调用汇编语言编写的这个函数，需要链接的函数用GLOBAL声明，在作者的汇编编译器下，函数名前面都需要加“_”，否则不能链接起来</li>
+<li>naskfunc.nas前面部分介绍一些文件属性信息，包括制作目标文件的模式，生成多少位的机器语言，源文件名信息，程序中包含的函数名等</li>
+<li>新出现汇编指令<ol>
+<li>RET，return，相当于return语句</li>
+</ol>
+</li>
+<li>也就是说，c语言可以和汇编语言联动，调用汇编语言编写的函数，只要做好链接</li>
+</ol>
+
+		
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小玩具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-【OS】第二天-汇编语言学习与makefile入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/12/14/%E3%80%90OS%E3%80%91%E7%AC%AC%E4%BA%8C%E5%A4%A9-%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B8%8Emakefile%E5%85%A5%E9%97%A8/">【OS】第二天 汇编语言学习与makefile入门</a>
+    </h1>
+  
+
+        
+        <a href="/2022/12/14/%E3%80%90OS%E3%80%91%E7%AC%AC%E4%BA%8C%E5%A4%A9-%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B8%8Emakefile%E5%85%A5%E9%97%A8/" class="archive-article-date">
+  	<time datetime="2022-12-14T00:26:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+		
+			
+			<h1 id="继续开发"><a href="#继续开发" class="headerlink" title="继续开发"></a>继续开发</h1><p>（不用DB二进制，而是用能看懂的汇编语言，让计算机在屏幕上显示字符）</p>
+<ol>
+<li><p>寄存器：用的都是16位寄存器，也有32位寄存器，就是在每个寄存器的名字前面加E，意为扩展，AX、CX、DX、BX寄存器高八位和低八位都可以单独使用，为AL和AH，这里数据的低位存放低地址，高位存放在高地址</p>
+</li>
+<li><p>之所以可以用“JMP entry”来代替“JMP 0x7c50”，是因为entry就是0x7c50。在汇编语言中，所有标号都仅仅是单纯的数字。每个标号对应的数字，是由汇编语言编译器根据ORG指令计算出来的。编译器计算出的“标号的地方对应的内存地址”就是那个标号的值。那么“MOV SI,msg”会怎么样呢？由于在这里msg的地址是0x7c74，所以这个指令就是把0x7c74代入到SI寄存器中去。</p>
+</li>
+<li><p>在寄存器或者数字外面加中括号，比如MOV AL, [BX]，表示这个内存地址种的数字，[BX]就表示内存地址为BX种存放的数字，赋值给AX。虽然我们可以用寄存器来指定内存地址，但可作此用途的寄存器非常有限，只有BX、BP、SI、DI这几个。剩下的AX、CX、DX、SP不能用来指定内存地址，这是因为CPU没有处理这种指令的电路，或者说没有表示这种处理的机器语言。</p>
+</li>
+<li><p>常见汇编指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1. ORG（origin）指令：告诉汇编编译器，把机器语言装载到内存的什么地址开始执行，$符号含义也改变为读入的内存地址。</span><br><span class="line">2. ADD，加法指令，ADD SI, 1指令，将SI里的内容加1，并将结果保存到SI里</span><br><span class="line">3. MOV，赋值指令，MOV AX, BX，将BX的内容赋值给AX，并保存在AX里</span><br><span class="line">4. CMP，比较指令，CMP AX，CX，比较二者的内容，比较结果存入AX，根据比较结构执行不同指令</span><br><span class="line">5. JMP，跳转指令之一，jump</span><br><span class="line">6. JE，跳转指令之一，Jump if equal，如果相等就跳转</span><br><span class="line">7. INT，软件中断指令，interrupt，中途打断程序执行，去调用BIOS已经写好的程序</span><br><span class="line">8. HLT，HLT是让CPU停止动作的指令，进入待机状态，halt，只要外部发生变化，比如按下键盘，或是移动鼠标，CPU可以继续执行程序</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>BIOS（basic input output system），基本输入输出系统，出厂时就组装在电脑主板上的ROM单元里。电脑厂家在BIOS中预先写入了操作系统开发人员经常会用到的一些程序，是为操作系统开发人员准备的各种函数的集合。</p>
+</li>
+<li><p>而INT就是用来调用这些函数的指令。INT的后面是个数字，使用不同的数字可以调用不同的函数。比如想要显示字符，就要调用显卡相关的函数，0x10（即16号函数）</p>
+<p> 显示一个字符</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> AH=0x0e;</span><br><span class="line"></span><br><span class="line"> AL=character code;</span><br><span class="line"></span><br><span class="line"> BH=0;</span><br><span class="line"></span><br><span class="line"> BL=color code;</span><br></pre></td></tr></table></figure>
+<p>如果往寄存器里写入上述值，调用INT，就可以在屏幕上显示出一个字符</p>
+<ol start="7">
+<li>内存分配问题，内存不是所有的空间都是可用的，<ol>
+<li>内存的0号地址，也就是最开始的部分，是BIOS程序用来实现各种不同功能的地方，如果我们随便使用的话，就会与BIOS发生冲突，结果不只是BIOS会出错</li>
+<li>在内存的0xf0000号地址附近，还存放着BIOS程序本身，那里我们也不能使用</li>
+<li>启动区装载地址，<strong>0x00007c00-0x00007dff，</strong>为什么规定0x7c00，可能与当时设计的时代背景有关，具体为啥无从得知</li>
+</ol>
+</li>
+</ol>
+<h1 id="先制作启动区"><a href="#先制作启动区" class="headerlink" title="先制作启动区"></a>先制作启动区</h1><ol>
+<li>一开始写入了整个软盘，但是后续的内容可以先不写在文件里，可以只写512字节，就是启动区的内容，所以从汇编文件到写入磁盘映像的步骤变成<ol>
+<li>asm（编译汇编语言）</li>
+<li>makeimg，以编译好的汇编文件为基础，制作磁盘映像文件，是用了作者开发的磁盘映像管理工具edimg.exe，先读入一个空白的磁盘映像文件，然后在开头写入编译好的汇编语言ipl.bin，最后将结果输出磁盘映像文件。</li>
+<li>run，运行这个磁盘映像文件</li>
+</ol>
+</li>
+</ol>
+<h1 id="Makefile入门"><a href="#Makefile入门" class="headerlink" title="Makefile入门"></a>Makefile入门</h1><ol>
+<li>Makefile就像是一个非常聪明的批处理文件，利用make工具，可以将很多的bat批处理文件，写到一个文件里，make.exe不仅仅判断输入文件是否存在，还会判断文件的更新日期，并据此来决定是否需要重新生成输出文件，有了Makefile，它会自动跳过没有必要的命令，在管理很多文件的时候，Makefile很有用</li>
+<li>Makefile有一定的语法规则，比如ipl.bin : ipl.nas Makefile的意思是，如果想要制作文件ipl.bin，就先检查一下ipl.nas和Makefile这两个文件是否都准备好了，如果准备好了，make工具就会去执行Makefile下一行</li>
+<li>如果：后面什么都不加，就表示一个标号，当运行命令的时候，输入这个标号，就会执行标号的下一行内容</li>
+</ol>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1>
+		
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小玩具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-【OS】第一天-从计算机结构到汇编程序入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/12/14/%E3%80%90OS%E3%80%91%E7%AC%AC%E4%B8%80%E5%A4%A9-%E4%BB%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%93%E6%9E%84%E5%88%B0%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E5%85%A5%E9%97%A8/">【OS】第一天 从计算机结构到汇编程序入门</a>
+    </h1>
+  
+
+        
+        <a href="/2022/12/14/%E3%80%90OS%E3%80%91%E7%AC%AC%E4%B8%80%E5%A4%A9-%E4%BB%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%93%E6%9E%84%E5%88%B0%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E5%85%A5%E9%97%A8/" class="archive-article-date">
+  	<time datetime="2022-12-14T00:20:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+		
+			
+			<h1 id="先动手操作"><a href="#先动手操作" class="headerlink" title="先动手操作"></a>先动手操作</h1><p>用二进制编辑器，编辑了一段二进制，保存成img格式，存入软盘，用这个软盘启动电脑，可以在电脑屏幕上显示一行文字，文字显示内容和输入的二进制有关。也可以不使用软盘，用一个名叫qume的模拟器运行img文件。qume模拟器的运行用bat批处理文件来管理的。</p>
+<h1 id="究竟做了什么"><a href="#究竟做了什么" class="headerlink" title="究竟做了什么"></a>究竟做了什么</h1><p>主要解释，cpu是个只能处理0&#x2F;1序列的机器，计算里所有的功能到了cpu那里都变成了01序列。4 位二进制对应1位16进制。</p>
+<h1 id="初次体验汇编程序"><a href="#初次体验汇编程序" class="headerlink" title="初次体验汇编程序"></a>初次体验汇编程序</h1><ol>
+<li>汇编语言编译器是用的nask，与NASM差不多，只不过多了些优化的功能</li>
+<li>用汇编语言的DB（define byte，往文件里直接写入一个字节）命令，把刚才的二进制文件重新写了一遍</li>
+<li>由于一个一个字符写比较麻烦，所以引入了RESB（reserve byte，从现在的地址开始，预定或者是空出XX个字节）命令</li>
+<li>用nask进行编译，并且对RESB预定的字节都填入0</li>
+</ol>
+<h1 id="加工润色"><a href="#加工润色" class="headerlink" title="加工润色"></a>加工润色</h1><ol>
+<li>将上面只用DB命令写16进制数的汇编文件，改成了易读模式<ol>
+<li>DB命令直接写入字符，不再写十六进制数，汇编语言，会自动地查找字符串中每一个字符所对应的编码</li>
+<li>新加入指令DW（define word）和DD（define double-word），word指的是“16位”的意思，也就是2个字节。“double-word”是“32位”的意思，也就是4个字节。</li>
+<li>变量‘$’的引入，汇编语言表示当前这一行的字节数。编程思想的启示：如果想要在程序里定义一个const写死的值，一定要考虑有没有将这个值写成变量的方法推导出来，因为谁也不能保证以后的程序逻辑不会改变，写死的值会导致以后修改产生麻烦。</li>
+<li>必须保证软盘的第510字节（即第0x1fe字节）开始的地方是55 AA，emmm说实话没怎么懂为什么</li>
+</ol>
+</li>
+</ol>
+<h1 id="专门术语解释"><a href="#专门术语解释" class="headerlink" title="专门术语解释"></a>专门术语解释</h1><ol>
+<li>启动区：软盘的第一个扇区被称为启动区，有512字节，计算机读写时一个扇区一个扇区的读写。一张软盘1440KB，1440KB &#x2F; 512B &#x3D; 2880个扇区。计算机从第一个扇区开始读盘，会检查这个扇区最后两个字节是不是55 AA，<ol>
+<li>如果不是，计算机会认为这张盘上没有所需的启动程序，会报一个不能启动的错误。55 AA是当时计算机设计者自己随便定的（可能）</li>
+<li>如果是55 AA，计算机则认为这个扇区的开头是启动程序，并开始执行这个程序</li>
+</ol>
+</li>
+<li>IPL：initial program loader启动程序加载器。几乎所有的操作系统，都是把加载操作系统本身的程序放在启动区里的。所以一开始的512字节，是用来加载操作系统这个程序的，所以有时也将启动区称作IPL。</li>
+</ol>
+
+		
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小玩具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-【链表总结】快慢指针就是牛～" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -174,7 +550,6 @@
     
     <div class="article-entry" itemprop="articleBody">
 		
-			
 			<style>
     /*可任意修改样式，或恢复预设值，保存后生效
 相对“默认样式”而作的修改会用  红色 标注*/
@@ -466,40 +841,7 @@ a[href^="#"] sup
 <li>但是可以用双指针的思想，快慢指针，快指针先走n+1步，慢指针开始走，这样快指针为NULL时，慢指针到了要删除节点的上一个节点位置</li>
 <li>到达上一个节点位置的原因是方便删除</li>
 </ol>
-<h2 id="链表相交"><a href="#链表相交" class="headerlink" title="链表相交"></a>链表相交</h2><p>题目链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/">https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/</a></p>
-<ol>
-<li>这道题一开始的思路是用哈希，第一次遍历第一个链表，用哈希的方法记录下经过对的节点，第二次遍历，如果遇到之前已经走过的节点（哈希值为1），则就是公共节点</li>
-<li>但其实可以让这两个链表在一个循环里遍历，第一个链表到达结尾后，就从第二个链表开始遍历，这样他们第一次相遇的地方，就是链表的交点处，把两条链表拉直，组成一条整体链表，画一下图就能看出来了</li>
-</ol>
-<h2 id="环形链表"><a href="#环形链表" class="headerlink" title="环形链表"></a>环形链表</h2><p>题目链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/">https://leetcode.cn/problems/linked-list-cycle-ii/</a></p>
-<ol>
-<li><p>如何找到链表中的环？</p>
-<ol>
-<li>利用快慢指针，快指针每次走两步，慢指针每次都一步，如果链表中有环的话，那快慢指针一定会相遇。</li>
-<li>可以这样来理解这个问题，如果快慢指针都进入环了，那就相当于快指针每次一步一步的追赶慢指针，那当然就会相遇了。</li>
-</ol>
-</li>
-<li><p>找到环之后，入口在哪里？</p>
-<ol>
-<li>在找到环之后，记录下相遇的位置，再定义两个指针，一个指向链表的头节点，一个指向之前快慢节点相遇的地方，然后同时以步长为1往前走，相遇的地方就是链表环的入口</li>
-</ol>
-<p> <img src="/./%E3%80%90%E9%93%BE%E8%A1%A8%E6%80%BB%E7%BB%93%E3%80%91%E5%BF%AB%E6%85%A2%E6%8C%87%E9%92%88%E5%B0%B1%E6%98%AF%E7%89%9B%EF%BD%9E/lianbiao.png" alt="avatar"></p>
-<p> 图片摘自代码随想录：<a target="_blank" rel="noopener" href="https://www.programmercarl.com/0142.%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II.html#%E6%80%9D%E8%B7%AF">https://www.programmercarl.com/0142.环形链表II.html#思路</a></p>
-</li>
-<li><p>假设快指针比慢指针多走了一圈到了相遇节点，慢指针走了x+y步，快指针走了<code>x+y+z +y</code>步，由于快指针走的步数是慢指针的两倍，则</p>
-<pre><code> 2（x+y）= x+y+z+y
- 化简一下得到x=z，则上面的说法是成立的   
-</code></pre>
-</li>
-<li><p>更普遍的情况，快指针比慢指针多走了n圈到了相遇节点，则最后化简的式子为<code>x = （n - 1）（y + z） + z</code>，也就是后来定义的两个指针相遇之前，从相遇节点开始的那个指针，多走了n圈</p>
-</li>
-</ol>
-<h2 id="反转链表"><a href="#反转链表" class="headerlink" title="反转链表"></a>反转链表</h2><p>题目链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-linked-list/">https://leetcode.cn/problems/reverse-linked-list/</a></p>
-<ol>
-<li>原地反转链表，最重要的是记录三个变量值，cur、pre、next，三个变量来回倒腾就好了hhh</li>
-</ol>
-
-		
+			
     </div>
     <div class="article-info article-info-index">
       
@@ -999,222 +1341,9 @@ body{/*文档整体的属性*/
 
 
   
-    <article id="post-1056-Mice-and-Rice-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/06/16/1056-Mice-and-Rice-25%E5%88%86/">1056 Mice and Rice 25分</a>
-    </h1>
-  
-
-        
-        <a href="/2022/06/16/1056-Mice-and-Rice-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2022-06-16T11:24:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-		
-			<p>Mice and Rice is the name of a programming contest in which each programmer must write a piece of code to control the movements of a mouse in a given map. The goal of each mouse is to eat as much rice as possible in order to become a FatMouse.</p>
-			
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-1068-Find-More-Coins-30分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/06/16/1068-Find-More-Coins-30%E5%88%86/">1068 Find More Coins 30分</a>
-    </h1>
-  
-
-        
-        <a href="/2022/06/16/1068-Find-More-Coins-30%E5%88%86/" class="archive-article-date">
-  	<time datetime="2022-06-16T03:12:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-		
-			<p>Eva loves to collect coins from all over the universe, including some other planets like Mars. One day she visited a universal shopping mall which could accept all kinds of coins as payments. However, there was a special requirement of the payment: for each bill, she must pay the exact amount. Since she has as many as 10<sup>4</sup>coins with her, she definitely needs your help. You are supposed to tell her, for any given amount of money, whether or not she can find some coins to pay for it.</p>
-			
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">动态规划</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-1044-Shopping-in-Mars-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/06/13/1044-Shopping-in-Mars-25%E5%88%86/">1044 Shopping in Mars 25分</a>
-    </h1>
-  
-
-        
-        <a href="/2022/06/13/1044-Shopping-in-Mars-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2022-06-13T13:59:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-		
-			<p>Shopping in Mars is quite a different experience. The Mars people pay by chained diamonds. Each diamond has a value (in Mars dollars M). When making the payment, the chain can be cut at any position for only once and some of the diamonds are taken off the chain one by one. Once a diamond is off the chain, it cannot be taken back. For example, if we have a chain of 8 diamonds with values M$3, 2, 1, 5, 4, 6, 8, 7, and we must pay M$15. We may have 3 options:</p>
-			
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">二分</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1515,6 +1644,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">小玩具</a>
               </li>
             
             <div class="clearfix"></div>
