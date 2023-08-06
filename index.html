@@ -150,6 +150,98 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-机器人聊天应用：ChatGPT流式响应机器人和普通对话机器人的通信协议选择" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/08/06/%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%81%8A%E5%A4%A9%E5%BA%94%E7%94%A8%EF%BC%9AChatGPT%E6%B5%81%E5%BC%8F%E5%93%8D%E5%BA%94%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%92%8C%E6%99%AE%E9%80%9A%E5%AF%B9%E8%AF%9D%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E9%80%89%E6%8B%A9/">机器人聊天应用：ChatGPT流式响应机器人和普通对话机器人的通信协议选择</a>
+    </h1>
+  
+
+        
+        <a href="/2023/08/06/%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%81%8A%E5%A4%A9%E5%BA%94%E7%94%A8%EF%BC%9AChatGPT%E6%B5%81%E5%BC%8F%E5%93%8D%E5%BA%94%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%92%8C%E6%99%AE%E9%80%9A%E5%AF%B9%E8%AF%9D%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E9%80%89%E6%8B%A9/" class="archive-article-date">
+  	<time datetime="2023-08-06T05:17:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+		
+			
+			<h1 id="ChatGPT与普通聊天机器人"><a href="#ChatGPT与普通聊天机器人" class="headerlink" title="ChatGPT与普通聊天机器人"></a>ChatGPT与普通聊天机器人</h1><p>目前市面上有很多的聊天对话机器人，比如微软小冰，QQ小冰，客服机器人等。在ChatGPT出来之前，这些机器人的回复消息，都是一次性回复给用户的，然而ChatGPT是流式回复的，这是因为ChatGPT在聊天过程中，是需要不断的去预测下一句话是什么，要是等全部预测完才返回给用户，那用户体验肯定不好，所以他们采取了预测一部分就返回给用户，剩下的内容等生成出来再推送给用户。</p>
+<p>这里就涉及到了服务器主动推送的技术。</p>
+<p>可以有很多方式实现服务器的主动推送</p>
+<h3 id="轮询"><a href="#轮询" class="headerlink" title="轮询"></a>轮询</h3><pre><code>轮询是客户端以特定的时间间隔，向服务端发送请求，询问是否有新的数据。这种方式的缺点很明显，浏览器需要不断的向服务器发出请求，增加服务器负担。
+</code></pre>
+<h3 id="长轮询"><a href="#长轮询" class="headerlink" title="长轮询"></a>长轮询</h3><pre><code>长轮询与轮询相比，区别在于客户端发起一个请求到服务器端，服务器端一直保持连接打开，直到有数据数据可发送给客户端，客户端收到服务器端返回的数据后，处理数据，并立马发起一个新的请求。
+
+虽然这种方式减少了请求，但是服务端需要维持链接，由于一个服务器能够处理的连接数有限，当达到服务器处理的上限的时候，服务器将无法响应新的请求
+</code></pre>
+<p>现在已经很少有应用使用轮询的方式来处理主动推送的功能了，更多的是使用SSE和WebSocket技术。</p>
+<h3 id="SSE"><a href="#SSE" class="headerlink" title="SSE"></a>SSE</h3><pre><code>Server-Sent Events (SSE) 是一种基于HTTP协议的服务器推送技术，它允许服务器向客户端发送数据和信息。但与WebSocket不同，SSE是一种单向通信方式，只有服务器可以向客户端推送消息。严格地说，HTTP协议是没有办法做服务器推送的，但是当服务器向客户端声明接下来要发送流信息时，客户端就会保持连接打开，即HTTP响应头中的Content-Type为text/event-stream。
+</code></pre>
+<h3 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h3><pre><code>WebSocket是与HTTP同级别的一个协议，建立在TCP协议之上，可以实现服务端向客户端主动发送消息。WebSocket的连接是持久的，他通过在客户端和服务器之间保持全双工连接，服务器的更新可以被及时推送给客户端，而不需要客户端以一定时间间隔去轮询。
+</code></pre>
+<h1 id="WebSocket-与-SSE的区别"><a href="#WebSocket-与-SSE的区别" class="headerlink" title="WebSocket 与 SSE的区别"></a>WebSocket 与 SSE的区别</h1><p>一开始以为ChatGPT是用的WebSocket技术，但是其实他用的是SSE技术，那WebSocket 与 SSE有啥区别呢？</p>
+<p>SSE 是单向通道，只能服务器向客户端发送消息，如果客户端需要向服务器发送消息，则需要一个新的 HTTP 请求；WebSocket是全双工通道的，一旦建立连接，以后只用这一个链接收发数据。</p>
+<p>SSE 属于轻量级，使用简单；WebSocket 协议相对复杂。</p>
+<p>SSE 默认支持断线重连，WebSocket 需要自己实现断线重连。</p>
+<p>对于那些实时性要求高的场景：社交聊天、弹幕、多玩家游戏、协同编辑等，适合WebSocket协议，因为SSE如果想要客户端再次发消息，是要重新建立HTTP连接的，连接的建立需要时间，对实时性有一定的影响。</p>
+<h1 id="SSE就不能实现全双工通信了吗？"><a href="#SSE就不能实现全双工通信了吗？" class="headerlink" title="SSE就不能实现全双工通信了吗？"></a>SSE就不能实现全双工通信了吗？</h1><p>以前限制SSE发展的一个原因是SSE只能实现服务端向客户端推送消息，那种需要客户端向服务端发消息的全双工场景，还是依赖于WebSocket来实现。但是其实有别的办法实现SSE的双向通信。</p>
+<h3 id="HTTP-x2F-2"><a href="#HTTP-x2F-2" class="headerlink" title="HTTP&#x2F;2"></a>HTTP&#x2F;2</h3><p>HTTP&#x2F;2相对于HTTP&#x2F;1.1做出了很大的改进：头部压缩、二进制格式、并发传输、服务器主动推送资源。其中的并发传输，和服务器主动推送资源的功能，极大的提高了HTTP&#x2F;2的传输效率，也使得HTTP&#x2F;2实现了全双工的通信方式。</p>
+<p>HTTP&#x2F;2允许服务器主动地发送资源到客户端缓存中。但是，并不允许直接发送数据到客户端应用程序中，服务器推送的内容只能被浏览器处理，SSE技术在这时候就派上了用场。SSE是基于HTTP协议的，天然亲和HTTP&#x2F;2，因此可以组合二者，以吸取各自精华：HTTP&#x2F;2通过多路复用流来提高传输层的效率，SSE则为客户端应用程序提供了接收推送的API。</p>
+<p>以前双向通信能力的缺失成为了SSE相对于WebSocket的主要缺陷，但通过HTTP&#x2F;2和SSE技术，客户端代码可以监听到服务器推送，可以进行双向的通信。</p>
+<h1 id="HTTP-x2F-2-SSE与WebSocket应该怎么选？"><a href="#HTTP-x2F-2-SSE与WebSocket应该怎么选？" class="headerlink" title="HTTP&#x2F;2 + SSE与WebSocket应该怎么选？"></a>HTTP&#x2F;2 + SSE与WebSocket应该怎么选？</h1><p>尽管HTTP&#x2F;2 + SSE的方式可以实现双向的通信，但是WebSocket还是有自己独特的优势的，比如更少的头部信息。一般而言，当需要真正的低延迟，希望客户端和服务器能有接近实时的连接，就使用WebSocket；对实时性要求没那么高的应用比如推送新闻消息，更新股票信息等，可以用SSE的方式。</p>
+
+		
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ChatGPT</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-C-STL之upper-bound和lower-bound" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1293,81 +1385,6 @@ body{/*文档整体的属性*/
 
 
   
-    <article id="post-【动态规划】动态规划总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/06/21/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%91%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%80%BB%E7%BB%93/">【动态规划】动态规划总结</a>
-    </h1>
-  
-
-        
-        <a href="/2022/06/21/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%91%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2022-06-21T03:35:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-		
-			<p>动态规划专题耗时一个月看完，收获比较大的部分是背包部分和最后的子序列部分。</p>
-<ul>
-<li><p>背包部分可以说是把背包问题理解的比较透彻了，01背包，完全背包以及他们的应用，有些题目会有“竟然背包可以做”的感觉；</p>
-</li>
-<li><p>子序列部分的收获是最长公共子序列的求法，他们的一些变式题，编辑距离这些，还有如何求一个回文串回文序列之类；</p>
-</li>
-<li><p>打家劫舍学到了树形dp的一些思想，还有简单动态规划的一些感觉；</p>
-</li>
-</ul>
-			
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">动态规划</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1675,6 +1692,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ChatGPT</a>
               </li>
             
             <div class="clearfix"></div>
