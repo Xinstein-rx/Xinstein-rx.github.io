@@ -150,6 +150,73 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Logistic-回归" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/">Logistic 回归</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/16/Logistic-%E5%9B%9E%E5%BD%92/" class="archive-article-date">
+  	<time datetime="2020-05-16T13:28:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+		
+			<h2 id="为什么不用线性回归"><a href="#为什么不用线性回归" class="headerlink" title="为什么不用线性回归"></a>为什么不用线性回归</h2><p>Logistic 回归是一种分类算法。一开始我们也想把线性回归用于这种分类的算法，给线性回归函数设置一个阈值，大于这个值的所有 <em>x</em> 归为一类值，小于的归为另一类。但是线性回归不总是能找出一条合适的直线和阈值，如图3.1所示，并且分类一般的取值都是 0，1，线性回归的函数值有可能比 0 小很多，也可能比 1 大很多，这样看起来很奇怪，于是得用 Logistic 回归，Logistic 函数的函数值固定在 [0,1] 之间。</p>
+			
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-1062-Talent-and-Virtue-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -779,94 +846,6 @@
 
 
   
-    <article id="post-1036-Boys-vs-Girls-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/11/1036-Boys-vs-Girls-25%E5%88%86/">1036 Boys vs Girls (25分)</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/11/1036-Boys-vs-Girls-25%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-05-11T05:58:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-		
-			
-			<p>This time you are asked to tell the difference between the lowest grade of all the male students and the highest grade of all the female students.</p>
-<h4 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h4><p>Each input file contains one test case. Each case contains a positive integer <em>N</em>, followed by <em>N</em> lines of student information. Each line contains a student’s <code>name</code>, <code>gender</code>, <code>ID</code> and <code>grade</code>, separated by a space, where <code>name</code> and <code>ID</code> are strings of no more than 10 characters with no space, <code>gender</code> is either <code>F</code> (female) or <code>M</code> (male), and <code>grade</code> is an integer between 0 and 100. It is guaranteed that all the grades are distinct.</p>
-<h4 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h4><p>For each test case, output in 3 lines. The first line gives the name and ID of the female student with the highest grade, and the second line gives that of the male student with the lowest grade. The third line gives the difference <em>gradeF</em>−<em>gradeM</em>. If one such kind of student is missing, output <code>Absent</code> in the corresponding line, and output <code>NA</code> in the third line instead.</p>
-<h4 id="Sample-Input-1"><a href="#Sample-Input-1" class="headerlink" title="Sample Input 1:"></a>Sample Input 1:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">Joe M Math990112 89</span><br><span class="line">Mike M CS991301 100</span><br><span class="line">Mary F EE990830 95</span><br></pre></td></tr></table></figure>
-
-<h4 id="Sample-Output-1"><a href="#Sample-Output-1" class="headerlink" title="Sample Output 1:"></a>Sample Output 1:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mary EE990830</span><br><span class="line">Joe Math990112</span><br><span class="line">6</span><br></pre></td></tr></table></figure>
-
-<h4 id="Sample-Input-2"><a href="#Sample-Input-2" class="headerlink" title="Sample Input 2:"></a>Sample Input 2:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">Jean M AA980920 60</span><br></pre></td></tr></table></figure>
-
-<h4 id="Sample-Output-2"><a href="#Sample-Output-2" class="headerlink" title="Sample Output 2:"></a>Sample Output 2:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Absent</span><br><span class="line">Jean AA980920</span><br><span class="line">NA</span><br></pre></td></tr></table></figure>
-
-<h4 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h4><blockquote>
-<p><font color  = LightCoral>一遍过的呜呜呜，真的哭了，终于遇到了传说中的水题，就是简单的排序吧，但是自己做的很常规。题解给出了一种很好的解决方法，他并没有存信息，也没有sort，而是边输入边把最大和最小找出来了，然后因为输出的都是字符串，所以就用两个字符串来存最终的男孩和女孩的姓名以及id，（male &#x3D; name + “ “ + id)神奇哦。</font></p>
-</blockquote>
-<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line">	<span class="type">char</span> name[<span class="number">11</span>];</span><br><span class="line">	<span class="type">char</span> id[<span class="number">11</span>];</span><br><span class="line">	<span class="type">int</span> g;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp1</span><span class="params">(node a, node b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a.g &gt; b.g;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp2</span><span class="params">(node a, node b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a.g &lt; b.g;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> n;</span><br><span class="line">	node t;</span><br><span class="line">	vector&lt;node&gt; v1, v2;</span><br><span class="line">	<span class="type">char</span> c;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%s %c %s %d&quot;</span>, &amp;t.name, &amp;c, &amp;t.id, &amp;t.g);</span><br><span class="line">		<span class="keyword">if</span>(c == <span class="string">&#x27;M&#x27;</span>) v1.<span class="built_in">push_back</span>(t);</span><br><span class="line">		<span class="keyword">if</span>(c == <span class="string">&#x27;F&#x27;</span>) v2.<span class="built_in">push_back</span>(t);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> flag = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">sort</span>(v1.<span class="built_in">begin</span>(), v1.<span class="built_in">end</span>(), cmp2);</span><br><span class="line">	<span class="built_in">sort</span>(v2.<span class="built_in">begin</span>(), v2.<span class="built_in">end</span>(), cmp1);</span><br><span class="line">	<span class="keyword">if</span>(v2.<span class="built_in">size</span>() == <span class="number">0</span>)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;Absent\n&quot;</span>);</span><br><span class="line">		flag = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;%s %s\n&quot;</span>, v2[<span class="number">0</span>].name, v2[<span class="number">0</span>].id);</span><br><span class="line">	<span class="keyword">if</span>(v1.<span class="built_in">size</span>() == <span class="number">0</span>)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;Absent\n&quot;</span>);</span><br><span class="line">		flag = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;%s %s\n&quot;</span>, v1[<span class="number">0</span>].name, v1[<span class="number">0</span>].id);</span><br><span class="line">	<span class="keyword">if</span>(flag == <span class="number">1</span>) <span class="built_in">printf</span>(<span class="string">&quot;NA\n&quot;</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, v2[<span class="number">0</span>].g - v1[<span class="number">0</span>].g);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-
-
-		
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/7/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/9/">Next &amp;raquo;</a>
@@ -1178,6 +1157,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ChatGPT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
               </li>
             
             <div class="clearfix"></div>

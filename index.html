@@ -150,6 +150,83 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-浅浅析分布式场景下WebSocket消息转发的解决方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/08/14/%E6%B5%85%E6%B5%85%E6%9E%90%E5%88%86%E5%B8%83%E5%BC%8F%E5%9C%BA%E6%99%AF%E4%B8%8BWebSocket%E6%B6%88%E6%81%AF%E8%BD%AC%E5%8F%91%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">浅浅析分布式场景下WebSocket消息转发的解决方案</a>
+    </h1>
+  
+
+        
+        <a href="/2023/08/14/%E6%B5%85%E6%B5%85%E6%9E%90%E5%88%86%E5%B8%83%E5%BC%8F%E5%9C%BA%E6%99%AF%E4%B8%8BWebSocket%E6%B6%88%E6%81%AF%E8%BD%AC%E5%8F%91%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="archive-article-date">
+  	<time datetime="2023-08-14T00:33:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+		
+			
+			<h2 id="WebSocket长链接"><a href="#WebSocket长链接" class="headerlink" title="WebSocket长链接"></a>WebSocket长链接</h2><p>WebSocket是一种基于TCP协议实现的双向通信协议，允许客户端和服务器之问进行实时通信。与HTTP协议不同的是，WebSocket协议是一个持久化的协议，建立连接后会一直保持连接，直到客户端或者服务器端关闭连接或发生异常。WebSocket的优点在于实时性、高效性和跨平台性，以及最重要的，可以支持服务端向客户端推送数据，大部分应用选择WebSocket的原因都是因为这个。即时通讯IM系统就是-个很好的应用场景。</p>
+<h2 id="长链接面临的问题"><a href="#长链接面临的问题" class="headerlink" title="长链接面临的问题"></a>长链接面临的问题</h2><p>成熟的一套IM解決方案，相应的服务器势必一定是集群式。那问题来了，分布式场景下，如何解决client之间的消息共享的问题呢？首先排除通过共享websocketSession的方案，因为本身websocketSession和本身连接有关系，是无法序列化以及被复用的。也就是说当建立起一个长连接之后，后续这个client的通讯(断线前)都是由最初建立连接的这台server负责。</p>
+<h2 id="一些解决方案"><a href="#一些解决方案" class="headerlink" title="一些解决方案"></a>一些解决方案</h2><p>解決方案（我看过的）目的都是为了解決如何找到维护相应连接的server。</p>
+<h3 id="一个简单的取模或哈希"><a href="#一个简单的取模或哈希" class="headerlink" title="一个简单的取模或哈希"></a>一个简单的取模或哈希</h3><p>这种方式就是选取用户ID后两位取模，模就是集群机器的个数。那么当发送消息的时候，根据用户id就能找到对应client的连接在哪个server上。优点是：找到对应server的开销极小，免除了维护路由表的同步问题。 但这种方式非常粗暴，缺点很明显，client选择server的规则受server数量的影响。假设我们目前有5台服务器，运行的好好的，非常开心。其中一台服务器挂了，现在服务器只有四台了，取模的结果就不一致了。如果不去更新路由表，那就找不到正确的server了。</p>
+<p>所以以进阶版的方式是不用取模，用一致性哈希算法：一致性哈希算法很好的改善了分布式系统中大量映射结果不随系统里服务器缩容扩容改变的问题。当机器有宕机时，只会影响一部分的数据而不是所有的数据。</p>
+<p>这种方案的局限性在于，选取的server建立长连接就和负载均衡无关了，某一个时刻很容易出现某一台server建立了超过最大负载的长连接数，会影响到该服务器已在维护的连接的稳定性，最坏的结果就是宕机，websocket的连接会全部断开，对与系统的可用性来说，这是不可接受的。</p>
+<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>这种方式就是采用缓存存储中心路由表，维护会话：Server的关系，当需要转发消息时，需要先去缓存中查询相应路由表中的对应server。这种方式每次client与server建立连接时，server在缓存中储存一对key ServerId，断开连接时根据会话唯一标识删除serverId。但是网络不稳定时，可能出现频繁websocket断连，发生频繁的重连，如果新连接建立时保存会话的唯一标识key时，之前连接断开的删除key操作还未完成，会导致删除操作发生时新的key被删除。所以可能出现在这个过程中出现消息发送延迟甚至失败的情况，所以对应的一个比较好的方法是加锁。来保证同一时间路由表中serverId的一致性。同时加入消息的重试机制，发送失败就每次都查询路由表中的最新serverId，多试几次。</p>
+<h3 id="消息中间件"><a href="#消息中间件" class="headerlink" title="消息中间件"></a>消息中间件</h3><p>这种方式其实就是使用MQ来作为消息转发的路由表具体来说，每个Server本地会维护连接到当前Server的所有连接信息。当有一条消息需要转发时，先讲消息发送到MQ中，由MQ广播给所有Server,是自己维护的连接就负责处理并发送，不是就直接丢弃好了。不得不说，这样做非常省力。细想一下，这样相当于系统的可靠性基本强依赖于中间件MQ的可靠性了，尤其是遇到大促等突然吞吐量激增的场景下，系统稳定性还是不应该过度依赖外部中间件。</p>
+<h3 id="换种思路"><a href="#换种思路" class="headerlink" title="换种思路"></a>换种思路</h3><p>既然上面的问题都是因为WebSocket的Session不能复用导致的，那为什么不用WebSocket，换种别的协议，但是也能实现WebSocket功能呢。HTTP&#x2F;2 + SSE的方式，就能实现WebSocket的功能，详细见我的<a target="_blank" rel="noopener" href="https://xinstein-rx.github.io/2023/08/06/%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%81%8A%E5%A4%A9%E5%BA%94%E7%94%A8%EF%BC%9AChatGPT%E6%B5%81%E5%BC%8F%E5%93%8D%E5%BA%94%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%92%8C%E6%99%AE%E9%80%9A%E5%AF%B9%E8%AF%9D%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E9%80%89%E6%8B%A9/">这篇博客</a>。</p>
+
+		
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">WebSocket</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-机器人聊天应用：ChatGPT流式响应机器人和普通对话机器人的通信协议选择" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1311,80 +1388,6 @@ body{/*文档整体的属性*/
 
 
   
-    <article id="post-【回溯算法】回溯算法总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/03/%E3%80%90%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%E3%80%91%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/">【回溯算法】回溯算法总结</a>
-    </h1>
-  
-
-        
-        <a href="/2022/07/03/%E3%80%90%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%E3%80%91%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2022-07-03T14:51:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-		
-			<h2 id="1-求组和"><a href="#1-求组和" class="headerlink" title="1 求组和"></a>1 求组和</h2><h3 id="1-1-组合"><a href="#1-1-组合" class="headerlink" title="1.1 组合"></a>1.1 组合</h3><p>题目链接： <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/combinations/">https://leetcode.cn/problems/combinations/</a></p>
-<p>这个题还是比较简单的模板题，就是写个dfs搜索就可以了</p>
-<h4 id="剪枝"><a href="#剪枝" class="headerlink" title="剪枝"></a>剪枝</h4><p>如果for循环选择的起始位置之后的元素个数已经不⾜ 我们需要的元素个数了，那么就没有必要搜索<br>了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for (int i = startIndex; i &lt;= n - (k - path.size()) + 1; i++)</span><br></pre></td></tr></table></figure>
-			
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">dfs</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">回溯</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1696,6 +1699,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ChatGPT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WebSocket</a>
               </li>
             
             <div class="clearfix"></div>
