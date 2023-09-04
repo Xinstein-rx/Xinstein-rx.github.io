@@ -150,6 +150,77 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-1145-Hashing-Average-Search-Time-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/01/1145-Hashing-Average-Search-Time-25%E5%88%86/">1145 Hashing - Average Search Time (25分)</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/01/1145-Hashing-Average-Search-Time-25%E5%88%86/" class="archive-article-date">
+  	<time datetime="2020-06-01T06:13:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+		
+			<p>The task of this problem is simple: insert a sequence of distinct positive integers into a hash table first. Then try to find another sequence of integer keys from the table and output the average search time (the number of comparisons made to find whether or not the key is in the table). The hash function is defined to be <em>H</em>(<em>k</em> <em>e</em> <em>y</em>)&#x3D;<em>k</em> <em>e</em> <em>y</em>%<em>T</em> <em>S</em> <em>i</em> <em>z</em> <em>e</em> where <em>T</em> <em>S</em> <em>i</em> <em>z</em> <em>e</em> is the maximum size of the hash table. Quadratic probing (with positive increments only) is used to solve the collisions.</p>
+			
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PAT-Advanced</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">散列</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-1154-Vertex-Coloring-25分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -766,74 +837,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">dfs</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-神经网络" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">神经网络</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="archive-article-date">
-  	<time datetime="2020-05-25T06:44:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-		
-			<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="代价函数"><a href="#代价函数" class="headerlink" title="代价函数"></a>代价函数</h4><p>我目前对于神经网络的理解，就是他是好几个 Logistic 回归符合起来的，然后一层一个 Logistic 回归，输出还可以有多个。</p>
-<p>神经网络的代价函数有点复杂，复杂到我不太想写…… 就是这个魔鬼的函数<br>$$<br>J(\theta)&#x3D;-\dfrac{1}{m}[\sum_{i&#x3D;1}^{m}\sum_{k&#x3D;1}^{K}y^{(i)}<em>klog(h_\theta(x^{(i)}))<em>k+(1-y^{(i)}<em>k)log(1-(h_\theta(x^{(i)}))<em>k)]+\frac{\lambda}{2m}\sum</em>{l&#x3D;1}^{L-1}\sum</em>{i&#x3D;1}^{s_l}\sum</em>{j&#x3D;1}^{s</em>{l+1}}(\theta^{l}_{ij})^2<br>$$<br>啊好长…….</p>
-			
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
         		</li>
       		
 		</ul>
