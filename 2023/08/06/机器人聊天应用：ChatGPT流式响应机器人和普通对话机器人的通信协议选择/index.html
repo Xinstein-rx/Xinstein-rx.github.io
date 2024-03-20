@@ -16,7 +16,7 @@
 <meta property="og:description" content="ChatGPT与普通聊天机器人目前市面上有很多的聊天对话机器人，比如微软小冰，QQ小冰，客服机器人等。在ChatGPT出来之前，这些机器人的回复消息，都是一次性回复给用户的，然而ChatGPT是流式回复的，这是因为ChatGPT在聊天过程中，是需要不断的去预测下一句话是什么，要是等全部预测完才返回给用户，那用户体验肯定不好，所以他们采取了预测一部分就返回给用户，剩下的内容等生成出来再推送给用户。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-08-06T05:17:54.000Z">
-<meta property="article:modified_time" content="2023-08-06T14:44:57.663Z">
+<meta property="article:modified_time" content="2024-03-20T07:35:55.093Z">
 <meta property="article:author" content="Xinstein">
 <meta property="article:tag" content="ChatGPT">
 <meta name="twitter:card" content="summary">
@@ -197,7 +197,10 @@
 <h3 id="HTTP-x2F-2"><a href="#HTTP-x2F-2" class="headerlink" title="HTTP&#x2F;2"></a>HTTP&#x2F;2</h3><p>HTTP&#x2F;2相对于HTTP&#x2F;1.1做出了很大的改进：头部压缩、二进制格式、并发传输、服务器主动推送资源。其中的并发传输，和服务器主动推送资源的功能，极大的提高了HTTP&#x2F;2的传输效率，也使得HTTP&#x2F;2实现了全双工的通信方式。</p>
 <p>HTTP&#x2F;2允许服务器主动地发送资源到客户端缓存中。但是，并不允许直接发送数据到客户端应用程序中，服务器推送的内容只能被浏览器处理，SSE技术在这时候就派上了用场。SSE是基于HTTP协议的，天然亲和HTTP&#x2F;2，因此可以组合二者，以吸取各自精华：HTTP&#x2F;2通过多路复用流来提高传输层的效率，SSE则为客户端应用程序提供了接收推送的API。</p>
 <p>以前双向通信能力的缺失成为了SSE相对于WebSocket的主要缺陷，但通过HTTP&#x2F;2和SSE技术，客户端代码可以监听到服务器推送，可以进行双向的通信。</p>
-<h1 id="HTTP-x2F-2-SSE与WebSocket应该怎么选？"><a href="#HTTP-x2F-2-SSE与WebSocket应该怎么选？" class="headerlink" title="HTTP&#x2F;2 + SSE与WebSocket应该怎么选？"></a>HTTP&#x2F;2 + SSE与WebSocket应该怎么选？</h1><p>尽管HTTP&#x2F;2 + SSE的方式可以实现双向的通信，但是WebSocket还是有自己独特的优势的，比如更少的头部信息。一般而言，当需要真正的低延迟，希望客户端和服务器能有接近实时的连接，就使用WebSocket；对实时性要求没那么高的应用比如推送新闻消息，更新股票信息等，可以用SSE的方式。</p>
+<h1 id="HTTP-x2F-2-SSE与WebSocket应该怎么选？"><a href="#HTTP-x2F-2-SSE与WebSocket应该怎么选？" class="headerlink" title="HTTP&#x2F;2 + SSE与WebSocket应该怎么选？"></a>HTTP&#x2F;2 + SSE与WebSocket应该怎么选？</h1><p>在协议层面，HTTP&#x2F;2 确实支持全双工通信。它引入了多路复用（Multiplexing）功能，允许在单一连接上同时发送和接收多个请求和响应，而不需要等待前一个请求完成。这意味着理论上，服务器和客户端可以在同一时间向对方发送数据，实现了一种全双工的通信模式。</p>
+<p>尽管HTTP&#x2F;2 协议支持全双工通信，但它仍然遵循HTTP的请求-响应模型。这意味着每个由客户端发起的请求都需要服务器给出响应，通信仍然是由客户端主动发起的。即使HTTP&#x2F;2可以同时处理多个请求和响应，每个交互仍然遵循这个模式。</p>
+<p>相对于HTTP&#x2F;2，WebSocket 提供了一个不同级别的全双工通信。一旦WebSocket连接建立，客户端和服务器可以随时独立地发送消息，而不需要遵循请求-响应模式。WebSocket 更接近于一个持久的、双向开放的通信通道，这让它非常适合需要实时、双向通信的应用，如在线游戏、聊天应用等。</p>
+<p>一般而言，当需要真正的低延迟，希望客户端和服务器能有接近实时的连接，就使用WebSocket；对实时性要求没那么高的应用比如推送新闻消息，更新股票信息等，可以用SSE的方式。</p>
 
 		
     </div>
@@ -346,7 +349,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2023 Xinstein
+    		&copy; 2024 Xinstein
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
